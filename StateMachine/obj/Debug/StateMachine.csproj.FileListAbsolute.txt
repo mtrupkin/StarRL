@@ -1,0 +1,5 @@
+E:\netdev\StarRL\StarRL\StateMachine\bin\Debug\StateMachine.dll
+E:\netdev\StarRL\StarRL\StateMachine\bin\Debug\StateMachine.pdb
+E:\netdev\StarRL\StarRL\StateMachine\obj\Debug\ResolveAssemblyReference.cache
+E:\netdev\StarRL\StarRL\StateMachine\obj\Debug\StateMachine.dll
+E:\netdev\StarRL\StarRL\StateMachine\obj\Debug\StateMachine.pdb

@@ -1,0 +1,10 @@
+D:\netdev\rl4e\ConsoleCommon\bin\Release\ConsoleCommon.dll
+D:\netdev\rl4e\ConsoleCommon\bin\Release\ConsoleCommon.pdb
+D:\netdev\rl4e\ConsoleCommon\obj\Release\ResolveAssemblyReference.cache
+D:\netdev\rl4e\ConsoleCommon\obj\Release\ConsoleCommon.dll
+D:\netdev\rl4e\ConsoleCommon\obj\Release\ConsoleCommon.pdb
+C:\netdev\rl4e\ConsoleCommon\bin\Release\ConsoleCommon.dll
+C:\netdev\rl4e\ConsoleCommon\bin\Release\ConsoleCommon.pdb
+C:\netdev\rl4e\ConsoleCommon\obj\Release\ResolveAssemblyReference.cache
+C:\netdev\rl4e\ConsoleCommon\obj\Release\ConsoleCommon.dll
+C:\netdev\rl4e\ConsoleCommon\obj\Release\ConsoleCommon.pdb

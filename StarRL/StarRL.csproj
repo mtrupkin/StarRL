@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F671313B-23FD-4B17-A179-6F6CB2AB29CE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StarRL</RootNamespace>
+    <AssemblyName>StarRL</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="View\ConsoleScreen.cs" />
+    <Compile Include="StarRL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\GalaxyView\EntityControl.cs" />
+    <Compile Include="View\GalaxyView\GalaxyScreenViewModel.cs" />
+    <Compile Include="View\GalaxyView\GalaxyDetailComposite.cs" />
+    <Compile Include="View\GalaxyView\GalaxyMasterComposite.cs" />
+    <Compile Include="View\GalaxyView\GalaxyScreen.cs" />
+    <Compile Include="View\MainView\MainScreen.cs" />
+    <Compile Include="View\ViewModel.cs" />
+    <Compile Include="View\Widget\PointWidget.cs" />
+    <Compile Include="View\Widget\TimeWidget.cs" />
+    <Compile Include="View\GalaxyView\EntityDetailComposite.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleLib\ConsoleLib.csproj">
+      <Project>{107330EF-6C5C-4E32-BE01-9CF9ED482F3B}</Project>
+      <Name>ConsoleLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flagship\Flagship.csproj">
+      <Project>{189E93CF-F5E6-4B0D-9BAB-2F18FC680191}</Project>
+      <Name>Flagship</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libtcod\Libtcod.csproj">
+      <Project>{D1720F2B-E116-452B-A6F9-5DA63BBCCB4E}</Project>
+      <Name>Libtcod</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StateMachine\StateMachine.csproj">
+      <Project>{8D7A5259-5A06-4E60-80D4-14AC7355905A}</Project>
+      <Name>StateMachine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,5 @@
+E:\netdev\StarRL\StarRL\ConsoleLib\bin\Debug\ConsoleCommon.dll
+E:\netdev\StarRL\StarRL\ConsoleLib\bin\Debug\ConsoleCommon.pdb
+E:\netdev\StarRL\StarRL\ConsoleLib\obj\Debug\ResolveAssemblyReference.cache
+E:\netdev\StarRL\StarRL\ConsoleLib\obj\Debug\ConsoleCommon.dll
+E:\netdev\StarRL\StarRL\ConsoleLib\obj\Debug\ConsoleCommon.pdb
