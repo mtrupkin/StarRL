@@ -17,6 +17,8 @@ namespace StarRL.Widget
 
         public override void Render()
         {
+            //Con.Clear();
+
             if (Point != null)
             {
                 Con.Write(String.Format("[{0,2}.{1,2}]", Point.X, Point.Y));

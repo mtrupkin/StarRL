@@ -19,7 +19,13 @@ namespace StarRL
         {
             Galaxy = newGalaxy;
 
-            GalaxyControl = new EntityDisplayControl(Galaxy.StarSystems)
+            var entities = new List<IDrawable<Entity>>();
+
+            entities.AddRange(DrawableFactory.GetDrawableStarSystems(Galaxy.StarSystems));
+            entities.Add(DrawableFactory.GetDrawableShip(Galaxy.Flagship));
+            //entities.AddRange(DrawableFactory.GetDrawableShip(Galaxy.Flagship));
+
+            GalaxyControl = new EntityDisplayControl(entities)
             {
                 Width = 80-2,
                 Height = 60-2,
