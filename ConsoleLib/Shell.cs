@@ -18,7 +18,7 @@ namespace ConsoleLib
 
         public abstract bool isClosed();
 
-        public abstract IConsole CreateConsole(int width, int height);
+        public abstract Screen CreateConsole(int width, int height);
 
         public override void Render()
         {

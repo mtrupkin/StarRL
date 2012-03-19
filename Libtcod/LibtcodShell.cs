@@ -17,7 +17,7 @@ namespace Libtcod
             OldMouse = new Mouse();
         }
 
-        public override IConsole CreateConsole(int width, int height)
+        public override Screen CreateConsole(int width, int height)
         {
 
             return new LibtcodConsole(width, height);

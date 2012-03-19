@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public interface IConsole : IDisposable
+    public interface Screen : IDisposable
     {
         int Height { get; set; }
         int Width { get; set; }
@@ -26,6 +26,6 @@ namespace ConsoleLib
 
         void WriteFrame(int width, int height, String title);
 
-        void Display(int x, int y, IConsole console);
+        void Display(int x, int y, Screen console);
     }
 }

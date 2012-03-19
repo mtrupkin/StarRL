@@ -43,8 +43,8 @@
     <Compile Include="ConsoleRGB.cs" />
     <Compile Include="Control\Composite.cs" />
     <Compile Include="Control\Control.cs" />
-    <Compile Include="IConsole.cs" />
-    <Compile Include="Mouse.cs" />
+    <Compile Include="Screen.cs" />
+    <Compile Include="Input\Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shell.cs" />
     <Compile Include="Widget\BoxControl.cs" />

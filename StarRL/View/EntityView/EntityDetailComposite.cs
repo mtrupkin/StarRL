@@ -22,8 +22,12 @@ namespace StarRL
 			Height = 4;
 			
 			NameWidget = new TextWidget(){ Width=this.Width};
-			
-			PositionWidget = new PointWidget();			
+
+            PositionWidget = new PointWidget()
+            {
+                Enabled = false,
+            };		
+	
 			
 			LayoutManager layoutManager = new LayoutManager ();			
 			layoutManager.AddControl(NameWidget);

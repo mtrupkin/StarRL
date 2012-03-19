@@ -17,7 +17,7 @@ namespace ConsoleLib
 
         public bool Enabled { get; set; }
                 
-        public IConsole Con { get; set; }
+        public Screen Con { get; set; }
 
         public Mouse Mouse { get; set; }
 

@@ -8,7 +8,7 @@ using ConsoleLib;
 
 namespace Libtcod
 {
-	public class LibtcodConsole : IConsole
+	public class LibtcodConsole : Screen
 	{
 		public TCODConsole Con { get; set; }
 
@@ -98,7 +98,7 @@ namespace Libtcod
             
 		}
 
-		public void Display (int x, int y, IConsole console)
+        public void Display(int x, int y, Screen console)
 		{
 			LibtcodConsole tcodConsole = console as LibtcodConsole;
 			TCODConsole.blit (tcodConsole.Con, 0, 0, console.Width, console.Height, Con, x, y);

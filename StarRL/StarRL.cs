@@ -19,7 +19,6 @@ namespace StarRL
 
         FlagshipGame FlagshipGame { get; set; }
         FlagshipGameViewModel FlagshipGameViewModel { get; set; }
-        StateMachine<ConsoleScreen> ScreenStateMachine { get; set; }
 
         System.Timers.Timer updateTimer;
         DateTime lastUpdateTime;
@@ -72,22 +71,16 @@ namespace StarRL
             };
             Shell.Initialize();
 
-            // initialize view model
-            FlagshipGameViewModel = new FlagshipGameViewModel() { FlagshipGame = FlagshipGame };
 
             // intialize ui
-            ScreenStateMachine = new StateMachine<ConsoleScreen>();
-            MainScreen mainScreen = new MainScreen()
-            {
-                StateMachine = ScreenStateMachine,
-                FlagshipGameViewModel = FlagshipGameViewModel,
-            };
+            MainScreen mainScreen = new MainScreen();
+
+            // initialize view model
+            FlagshipGameViewModel = new FlagshipGameViewModel() { FlagshipGame = FlagshipGame, Shell = Shell, MainScreen = mainScreen};
+            FlagshipGameViewModel.Initialize();
 
             //ScreenStateMachine.ChangeScreen(mainScreen);
-
-            ScreenStateMachine.CurrentState = mainScreen;
             Shell.SetComposite(mainScreen);
-
 
             // intialize game update tick
             updateTimer = new Timer(100);
@@ -110,9 +103,7 @@ namespace StarRL
 
             if (lastDrawTimeSpan > drawTimeSpan)
             {
-                ScreenStateMachine.Update(lastDrawTimeSpan.Milliseconds);
-
-                Completed = ScreenStateMachine.CurrentState.Complete;
+                Shell.Render();
 
                 lastDrawTime = DateTime.Now;
             }            
@@ -125,7 +116,7 @@ namespace StarRL
 
             if (lastUpdateTimeSpan > updateTimeSpan)
             {
-                FlagshipGame.Update(lastUpdateTimeSpan.Milliseconds);
+                FlagshipGame.Update(lastUpdateTimeSpan.Milliseconds);                
 
                 lastUpdateTime = DateTime.Now;
             }

@@ -24,9 +24,7 @@ namespace StarRL
     public class MainScreen : ConsoleScreen
     {
 
-        ListControl<Option> ListControl { get; set; }
-
-        public FlagshipGameViewModel FlagshipGameViewModel { get; set; }
+        public ListControl<Option> ListControl { get; set; }
 
         public MainScreen()
         {
@@ -36,53 +34,9 @@ namespace StarRL
                 Height = 10,
             };
 
-            ListControl.AddItem(new Option() { Name = "Create New Game", OptionHandler = NewGame });
-            ListControl.AddItem(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame});
-            ListControl.AddItem(new Option() { Name = "Quit", OptionHandler = Quit});
-
-            ListControl.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
-
             AddControl(10, 10, ListControl);
-
         }
-
-        void ListControl_SelectedEvent(Option item)
-        {
-            item.OptionHandler();
-        }
-
-        void NewGame()
-        {
-            BeginGame(FlagshipGameViewModel.NewGame());
-        }
-
-        void LoadGame()
-        {
-            FlagshipGameViewModel.NewGame();
-            BeginGame(FlagshipGameViewModel.NewGame());
-        }
-
-        private void BeginGame(FlagshipGame flagshipGame)
-        {
-            var galaxyScreen = new GalaxyScreen()
-            {
-            };
-
-            var galaxyScreenViewModel = new GalaxyScreenViewModel()
-            {
-                GalaxyScreen = galaxyScreen,
-                FlagshipGame = flagshipGame
-            };
-
-            galaxyScreenViewModel.Initialize();
-
-            ChangeScreen(galaxyScreen);
-        }      
-
-        private void Quit()
-        {
-            Complete = true;
-        }
+       
 
     }
 }
