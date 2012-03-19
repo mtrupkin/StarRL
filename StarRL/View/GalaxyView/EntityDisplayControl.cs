@@ -35,13 +35,12 @@ namespace StarRL
         Entity SelectedEntity { get; set; }
         Entity HighlightedEntity { get; set; }
 
-        IEnumerable<IDrawable<Entity>> Entities { get; set; }
+        public IEnumerable<IDrawable<Entity>> Entities { get; set; }
 
-        Dictionary<Point, List<IDrawable<Entity>>> StackedEntities;
+        //Dictionary<Point, List<IDrawable<Entity>>> StackedEntities;
 
-        public EntityDisplayControl(IEnumerable<IDrawable<Entity>> newEntities)
+        public EntityDisplayControl()
         {
-            Entities = newEntities;
         }
 
         public event EntityEventHandler EntitySelectedEvent;
@@ -63,13 +62,12 @@ namespace StarRL
             }
         }
 
-        int renderCount = 1;
-
 
         Dictionary<Point, List<IDrawable<Entity>>> GetStackedEntities()
         {
 
             var stackedEntities = new Dictionary<Point, List<IDrawable<Entity>>>();
+
 
             foreach (IDrawable<Entity> o in Entities)
             {
@@ -85,24 +83,36 @@ namespace StarRL
             return stackedEntities;
         }
 
+        DateTime lastRenderTime = DateTime.Now;
+
         public override void Render()
         {
+            Con.Clear();
 
-            var stackedEntities = GetStackedEntities();
-
-            foreach (List<IDrawable<Entity>> stack in stackedEntities.Values)
+            if (Entities != null)
             {
-                int stackCount = stack.Count;
-                int drawIndex = (renderCount % stackCount);
-                DrawEntity(stack[drawIndex]);
+                var stackedEntities = GetStackedEntities();
+
+                TimeSpan lastRenderTimeSpan = DateTime.Now.Subtract(lastRenderTime);
+
+                foreach (List<IDrawable<Entity>> stack in stackedEntities.Values)
+                {
+                    DrawStackedEntities(stack, lastRenderTimeSpan);
+                }
+
+                // render mouse?
+                Con.SetPosition(Mouse.X, Mouse.Y);
+                Con.Write('X');
+
+                lastRenderTime = DateTime.Now;
             }
+        }
 
-            renderCount++;
-
-            // render mouse?
-            Con.SetPosition(Mouse.X, Mouse.Y);
-            Con.Write('X');
-
+        void DrawStackedEntities(List<IDrawable<Entity>> stack, TimeSpan lastRenderTimeSpan)
+        {             
+            int stackCount = stack.Count;
+            int drawIndex = ((lastRenderTime.Millisecond / 500 ) % stackCount);
+            DrawEntity(stack[drawIndex]);
         }
 
         void DrawEntity(IDrawable<Entity> drawableEntity)
@@ -113,6 +123,24 @@ namespace StarRL
 
         Point mousePosition = new Point();
 
+        Entity GetEntityAt(Point position)
+        {
+
+            if (Entities != null)
+            {
+                var stackedEntities = GetStackedEntities();
+                List<IDrawable<Entity>> stack = new List<IDrawable<Entity>>();
+
+                if (stackedEntities.TryGetValue(position, out stack))
+                {
+                    stack.Sort(SelectionPriorityComparer.DEFAULT);
+                    return stack[0].Entity;
+                }
+            }
+
+            return new Entity() { Position = new Point(mousePosition) };
+        }
+
         public override void OnMouseMove(Mouse mouse)
         {
             Con.SetPosition(Mouse.X, Mouse.Y);
@@ -121,54 +149,22 @@ namespace StarRL
             Con.SetPosition(mouse.X, mouse.Y);
             Con.Write('X');
 
-            Entity currentEntity = HighlightedEntity;
-            HighlightedEntity = null;
+            mousePosition.Set(mouse.X, mouse.Y);
 
-            var stackedEntities = GetStackedEntities();
+            HighlightedEntity = GetEntityAt(mousePosition);
 
-            mousePosition.X = mouse.X;
-            mousePosition.Y = mouse.Y;
-
-            List<IDrawable<Entity>> stack = new List<IDrawable<Entity>>();
-
-            if (stackedEntities.TryGetValue(mousePosition, out stack))
-            {
-                stack.Sort(SelectionPriorityComparer.DEFAULT);
-                HighlightedEntity = stack[0].Entity;
-                OnEntityHighlightedEvent(HighlightedEntity);
-            }
-
-            if ((currentEntity != null) && (HighlightedEntity == null))
-            {
-                OnEntityHighlightedEvent(HighlightedEntity);
-            }
-
+            OnEntityHighlightedEvent(HighlightedEntity);
+            
             base.OnMouseMove(mouse);
         }
 
         public override void OnMouseButton(Mouse mouse)
         {
-            Entity currentEntity = SelectedEntity;
-            SelectedEntity = null;
+            mousePosition.Set(mouse.X, mouse.Y);
 
-            var stackedEntities = GetStackedEntities();
+            SelectedEntity = GetEntityAt(mousePosition);
 
-            mousePosition.X = mouse.X;
-            mousePosition.Y = mouse.Y;
-
-            List<IDrawable<Entity>> stack = new List<IDrawable<Entity>>();
-
-            if (stackedEntities.TryGetValue(mousePosition, out stack))
-            {
-                stack.Sort(SelectionPriorityComparer.DEFAULT);
-                SelectedEntity = stack[0].Entity;
-                OnEntitySelectedEvent(SelectedEntity);
-            }
-
-            if ((currentEntity != null) && (SelectedEntity == null))
-            {
-                OnEntitySelectedEvent(SelectedEntity);
-            }
+            OnEntitySelectedEvent(SelectedEntity);            
 
             base.OnMouseButton(mouse);
         }

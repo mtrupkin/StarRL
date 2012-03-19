@@ -11,14 +11,14 @@ namespace StarRL
 
     public class GalaxyScreen : ConsoleScreen
     {
-        GalaxyScreenViewModel GalaxyScreenViewModel { get; set; }
+        public GalaxyScreenViewModel GalaxyScreenViewModel { get; set; }
 
         public GalaxyMasterComposite GalaxyMasterComposite { get; set; }
         public GalaxyDetailComposite GalaxyDetailComposite { get; set; }
 
-        public GalaxyScreen(Galaxy galaxy)
+        public GalaxyScreen()
         {
-            GalaxyMasterComposite = new GalaxyMasterComposite(galaxy)
+            GalaxyMasterComposite = new GalaxyMasterComposite()
             {
                 Width = 80,
                 Height= 60,
@@ -32,20 +32,6 @@ namespace StarRL
 
             AddControl(0, 0, GalaxyMasterComposite);
             AddControl(80, 0, GalaxyDetailComposite);
-
-            GalaxyScreenViewModel = new GalaxyScreenViewModel(this);
-            GalaxyScreenViewModel.Galaxy = galaxy;
-        }
-
-        public override int Update(int duration)
-        {
-            GalaxyScreenViewModel.Update(duration);
-
-            return base.Update(duration);
-        }
-        private void Quit()
-        {
-            Complete = true;
         }
 
     }

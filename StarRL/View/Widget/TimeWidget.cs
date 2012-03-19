@@ -12,9 +12,9 @@ namespace StarRL.Widget
 
         public TimeWidget()
         {
-            Width = 14;
+            Width = 10;
             Height = 1;
-        } 
+        }
 
         public override void Render()
         {
@@ -22,7 +22,7 @@ namespace StarRL.Widget
                 //Con.SetPosition(0, 0);
                 //Con.Write(String.Format("[{0,2}:{1,2}:{2,2}]", Time.Hours, Time.Minutes, Time.Seconds));
                 Con.Write(Time.ToString(@"\[hh\:mm\:ss\]"));
-                //Con.Write(Time.ToString("c"));
+                //Con.Write(Time.ToString("c"));                
             }
         }
     }

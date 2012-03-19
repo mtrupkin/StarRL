@@ -22,7 +22,7 @@ namespace StarRL
         {
             Shell.Render();
 
-            return 0;
+            return duration;
         }
 
         public void ChangeScreen(ConsoleScreen newState)

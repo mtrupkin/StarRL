@@ -8,6 +8,8 @@ namespace StarRL
 {
     public class Drawable<T> : IDrawable<T> where T : Entity
     {
+        public int EntityType { get; set; }
+
         public T Entity { get; set; }
         public char Icon { get; set; }
 

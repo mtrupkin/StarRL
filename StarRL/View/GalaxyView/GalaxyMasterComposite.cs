@@ -11,21 +11,13 @@ namespace StarRL
 
     public class GalaxyMasterComposite : Composite
     {
-        Galaxy Galaxy { get; set; }
         public EntityDisplayControl GalaxyControl { get; set; }
 
 
-        public GalaxyMasterComposite(Galaxy newGalaxy)
+        public GalaxyMasterComposite()
         {
-            Galaxy = newGalaxy;
 
-            var entities = new List<IDrawable<Entity>>();
-
-            entities.AddRange(DrawableFactory.GetDrawableStarSystems(Galaxy.StarSystems));
-            entities.Add(DrawableFactory.GetDrawableShip(Galaxy.Flagship));
-            //entities.AddRange(DrawableFactory.GetDrawableShip(Galaxy.Flagship));
-
-            GalaxyControl = new EntityDisplayControl(entities)
+            GalaxyControl = new EntityDisplayControl()
             {
                 Width = 80-2,
                 Height = 60-2,

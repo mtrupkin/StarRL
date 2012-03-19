@@ -19,7 +19,7 @@ namespace StarRL
 
 		public TimeWidget TimeWidget { get; set; }
 
-		public PointWidget CursorWidget { get; set; }
+		//public PointWidget CursorWidget { get; set; }
 
 		public GalaxyDetailComposite ()
 		{
@@ -51,12 +51,12 @@ namespace StarRL
 			AddLayoutManager (layoutManager);
 
 			TimeWidget = new TimeWidget ();
-			CursorWidget = new PointWidget ();
+			//CursorWidget = new PointWidget ();
 
 			int bottomLine = boxControl.Height - 2;
 
-			AddControl (1, bottomLine, TimeWidget);
-			AddControl (boxControl.Width - CursorWidget.Width - 1, bottomLine, CursorWidget);
+			//AddControl (1, bottomLine, TimeWidget);
+            AddControl(boxControl.Width - TimeWidget.Width - 1, bottomLine, TimeWidget);
 		}
 
 	}

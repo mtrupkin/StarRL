@@ -65,6 +65,7 @@
     <Compile Include="View\GalaxyView\GalaxyDetailComposite.cs" />
     <Compile Include="View\GalaxyView\GalaxyMasterComposite.cs" />
     <Compile Include="View\GalaxyView\GalaxyScreen.cs" />
+    <Compile Include="View\MainView\FlagshipGameViewModel.cs" />
     <Compile Include="View\MainView\MainScreen.cs" />
     <Compile Include="View\ViewModel.cs" />
     <Compile Include="View\Widget\PointWidget.cs" />

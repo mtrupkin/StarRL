@@ -5,6 +5,8 @@ using System.Text;
 using StateMachine;
 using Libtcod;
 using ConsoleLib;
+using Flagship;
+using System.Timers;
 
 namespace StarRL
 {
@@ -13,10 +15,20 @@ namespace StarRL
     //
     class StarRL
     {
-
         Shell Shell { get; set; }
 
+        FlagshipGame FlagshipGame { get; set; }
+        FlagshipGameViewModel FlagshipGameViewModel { get; set; }
         StateMachine<ConsoleScreen> ScreenStateMachine { get; set; }
+
+        System.Timers.Timer updateTimer;
+        DateTime lastUpdateTime;
+        TimeSpan updateTimeSpan = new TimeSpan(0, 0, 0, 0, 10);
+
+        DateTime lastDrawTime;        
+        TimeSpan drawTimeSpan = new TimeSpan(0, 0, 0, 0, 25);
+
+        bool Completed { get; set; }
 
         static void Main(string[] args)
         {
@@ -30,52 +42,103 @@ namespace StarRL
             Initialize();
 
             // main loop
-            bool closed = false;
-
             do
             {
-                //
-                closed = Update();
-            } while (!closed);
+
+                Shell.Render();
+
+                if (Shell.isClosed())
+                {
+                    Exit();
+                }
+
+            } while (!Completed);
         }
 
         // first time initialization
         private void Initialize()
         {
+            Completed = false;
+
+            // initialize game model
+            FlagshipGame = new FlagshipGame();
+
+            // intialize console
             Shell = new Libtcod.LibtcodShell()
             {
                 Title = "StarRL",
                 Width = 120,
                 Height = 60,
             };
-
             Shell.Initialize();
+
+            // initialize view model
+            FlagshipGameViewModel = new FlagshipGameViewModel() { FlagshipGame = FlagshipGame };
+
+            // intialize ui
             ScreenStateMachine = new StateMachine<ConsoleScreen>();
             MainScreen mainScreen = new MainScreen()
             {
-                Shell = Shell,
                 StateMachine = ScreenStateMachine,
+                FlagshipGameViewModel = FlagshipGameViewModel,
             };
+
+            //ScreenStateMachine.ChangeScreen(mainScreen);
 
             ScreenStateMachine.CurrentState = mainScreen;
             Shell.SetComposite(mainScreen);
+
+
+            // intialize game update tick
+            updateTimer = new Timer(100);
+            updateTimer.Elapsed += new ElapsedEventHandler(updateTimer_Elapsed);
+            updateTimer.Start();
+
+            lastUpdateTime = DateTime.Now;
+            lastDrawTime = DateTime.Now;
+        }
+
+        void updateTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {            
+            Update();
+            //Draw();
+        }
+        
+        //
+        private void Draw() {
+            TimeSpan lastDrawTimeSpan = DateTime.Now.Subtract(lastDrawTime);
+
+            if (lastDrawTimeSpan > drawTimeSpan)
+            {
+                ScreenStateMachine.Update(lastDrawTimeSpan.Milliseconds);
+
+                Completed = ScreenStateMachine.CurrentState.Complete;
+
+                lastDrawTime = DateTime.Now;
+            }            
         }
 
         //
-        private bool Update()
+        private void Update()
         {
+            TimeSpan lastUpdateTimeSpan = DateTime.Now.Subtract(lastUpdateTime);
 
-            ScreenStateMachine.Update(200);
-            bool complete = ScreenStateMachine.CurrentState.Complete;
-
-            if (Shell.isClosed())
+            if (lastUpdateTimeSpan > updateTimeSpan)
             {
-                Shell.Dispose();
+                FlagshipGame.Update(lastUpdateTimeSpan.Milliseconds);
 
-                complete = true;
+                lastUpdateTime = DateTime.Now;
             }
-            return complete;
         }
 
+        //
+        private void Exit()
+        {
+            updateTimer.Stop();
+
+            Shell.Dispose();
+
+            Completed = true;
+        }
     }
 }

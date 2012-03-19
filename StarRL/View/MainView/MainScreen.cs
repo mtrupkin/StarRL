@@ -26,6 +26,7 @@ namespace StarRL
 
         ListControl<Option> ListControl { get; set; }
 
+        public FlagshipGameViewModel FlagshipGameViewModel { get; set; }
 
         public MainScreen()
         {
@@ -36,7 +37,6 @@ namespace StarRL
             };
 
             ListControl.AddItem(new Option() { Name = "Create New Game", OptionHandler = NewGame });
-            ListControl.AddItem(new Option() { Name = "Save Current Game", OptionHandler = SaveGame });
             ListControl.AddItem(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame});
             ListControl.AddItem(new Option() { Name = "Quit", OptionHandler = Quit});
 
@@ -51,39 +51,38 @@ namespace StarRL
             item.OptionHandler();
         }
 
+        void NewGame()
+        {
+            BeginGame(FlagshipGameViewModel.NewGame());
+        }
+
+        void LoadGame()
+        {
+            FlagshipGameViewModel.NewGame();
+            BeginGame(FlagshipGameViewModel.NewGame());
+        }
+
+        private void BeginGame(FlagshipGame flagshipGame)
+        {
+            var galaxyScreen = new GalaxyScreen()
+            {
+            };
+
+            var galaxyScreenViewModel = new GalaxyScreenViewModel()
+            {
+                GalaxyScreen = galaxyScreen,
+                FlagshipGame = flagshipGame
+            };
+
+            galaxyScreenViewModel.Initialize();
+
+            ChangeScreen(galaxyScreen);
+        }      
+
         private void Quit()
         {
             Complete = true;
         }
-
-        // initialization for each new game
-        private void NewGame()
-        {
-            GalaxyFactory galaxyFactory = new GalaxyFactory(80, 60);
-            Galaxy galaxy = galaxyFactory.CreateGalaxy();
-
-            BeginGame(galaxy);
-        }
-
-        private void ContinueGame()
-        {
-            BeginGame(null);
-        }
-
-        private void LoadGame()
-        {
-            BeginGame(null);
-        }
-
-        private void SaveGame()
-        {
-            BeginGame(null);
-        }
-
-        private void BeginGame(Galaxy galaxy)
-        {
-            ChangeScreen(new GalaxyScreen(galaxy));
-        }      
 
     }
 }
