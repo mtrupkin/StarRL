@@ -68,6 +68,9 @@
     <None Include="libtcod-net.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="libtcodxx.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="celtic_garamond_10x10_gs_tc.png">
