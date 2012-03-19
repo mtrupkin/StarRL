@@ -1,5 +1,0 @@
-E:\netdev\StarRL\StarRL\Flagship\obj\Release\ResolveAssemblyReference.cache
-E:\netdev\StarRL\StarRL\Flagship\bin\Release\Flagship.dll
-E:\netdev\StarRL\StarRL\Flagship\bin\Release\Flagship.pdb
-E:\netdev\StarRL\StarRL\Flagship\obj\Release\Flagship.dll
-E:\netdev\StarRL\StarRL\Flagship\obj\Release\Flagship.pdb
