@@ -4,7 +4,7 @@ namespace ConsoleLib
 {
 	public class TextWidget : Control
 	{
-		public String TextValue { get; set; }
+		public String TextValue { get; protected set; }
 
 		public TextWidget ()
 		{
@@ -19,6 +19,12 @@ namespace ConsoleLib
 				Con.Write(TextValue);
 			}
 		}
+
+        public void SetText(String text)
+        {
+            TextValue = text;
+        }
+
 	}
 }
 

@@ -6,7 +6,7 @@ namespace StarRL.Widget
 {
     public class PointWidget : Control
     {
-        public Point Point { get; set; }
+        public Point Point { get; protected set; }
 
         public PointWidget()
         {
@@ -23,6 +23,11 @@ namespace StarRL.Widget
             {
                 Con.Write(String.Format("[{0,2}.{1,2}]", Point.X, Point.Y));
             }
+        }
+
+        public void SetPoint(Point point)
+        {
+            Point.Set(point);
         }
     }
 }

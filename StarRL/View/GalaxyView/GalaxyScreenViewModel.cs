@@ -29,7 +29,7 @@ namespace StarRL
 		
 		void EntitySelectedEvent (Entity item)
 		{
-			GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.Entity = item;
+			GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.SetEntity(item);
 			
 			if (item != null) {
                 FlagshipGame.Galaxy.Flagship.Position.Set(item.Position);
@@ -38,7 +38,7 @@ namespace StarRL
 
 		void EntityHighlightedEvent (Entity item)
 		{
-			GalaxyScreen.GalaxyDetailComposite.HighlightedDetailControl.Entity = item;
+            GalaxyScreen.GalaxyDetailComposite.HighlightedDetailControl.SetEntity(item);
 		}
 				
 		public void Initialize ()
@@ -58,11 +58,12 @@ namespace StarRL
 
             FlagshipGame.GameUpdateEvent += new GameUpdateEventHandler(GameUpdateEvent);
 
-            GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.Entity = FlagshipGame.Galaxy.Flagship;
+            GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity(FlagshipGame.Galaxy.Flagship);
 		}
 
         public void GameUpdateEvent(int duration)
 		{
+            GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity(FlagshipGame.Galaxy.Flagship);
             GalaxyScreen.GalaxyDetailComposite.TimeWidget.Time = TimeSpan.FromMilliseconds(FlagshipGame.Galaxy.Time);
 				
 			//Mouse cursor = GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Mouse;

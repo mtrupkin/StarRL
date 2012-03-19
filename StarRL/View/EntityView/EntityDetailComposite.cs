@@ -11,7 +11,7 @@ namespace StarRL
 {
 	public class EntityDetailComposite : Composite
 	{
-		public Entity Entity { get; set; }
+		public Entity Entity { get; protected set; }
 		
 		TextWidget NameWidget {get;set;}
 		PointWidget PositionWidget {get;set;}
@@ -34,19 +34,27 @@ namespace StarRL
 		
 		public override void Render ()
 		{
-			Con.Clear();
-			
-			if (Entity != null) {                
-				NameWidget.TextValue = String.Format ("Name: {0}", Entity.Name);
-
-                PositionWidget.Enabled = true;
-				PositionWidget.Point.Set(Entity.Position);
-			} else {
-				NameWidget.TextValue = "Not Selected";
-                PositionWidget.Enabled = false;
-			}
-			
+			//Con.Clear();
+						
 			base.Render();
 		}
+
+        public void SetEntity(Entity entity)
+        {
+
+            if (entity != null)
+            {
+                NameWidget.SetText(String.Format("Name: {0}", entity.Name));
+                PositionWidget.SetPoint(entity.Position);
+                PositionWidget.Enabled = true;
+            }
+            else
+            {
+                NameWidget.SetText("Not Selected");
+                PositionWidget.Enabled = false;
+            }
+
+            Entity = entity;
+        }
 	}
 }
