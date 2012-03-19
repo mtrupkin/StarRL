@@ -14,6 +14,8 @@ namespace Flagship
 
         public StarSystem(Star newStar)
         {
+            EntityType = EntityTypeEnum.StarSystem;
+
             Star = newStar;
             Name = Star.Name;
 			

@@ -9,5 +9,9 @@ namespace Flagship
     {        
         public Char Category { get; set; }
 
+        public Star()
+        {
+            EntityType = EntityTypeEnum.Star;
+        }
     }
 }

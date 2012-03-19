@@ -29,6 +29,12 @@ namespace Libtcod
 
             TCODConsole.flush();
 
+            ProcessInput();
+        }
+
+        protected void ProcessInput()
+        {
+        
             TCODMouseData mouse = TCODMouse.getStatus();
 
             OldMouse.SetMouse(Mouse);

@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Flagship
 {
-    public class Planet : Entity
+    public class Planet : MovableEntity
     {
+        public Planet()
+        {
+            EntityType = EntityTypeEnum.Planet;
+        }
     }
 }

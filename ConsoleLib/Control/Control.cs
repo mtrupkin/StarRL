@@ -43,6 +43,7 @@ namespace ConsoleLib
             {
                 Con.Dispose();
                 Con = null;
+                Enabled = false;
             }
         }
 

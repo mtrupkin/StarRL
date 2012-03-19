@@ -5,9 +5,14 @@ using System.Text;
 
 namespace Flagship
 {
-    public class Ship : Entity
+    public class Ship : MovableEntity
     {
         Char Category { get; set; }
+
+        public Ship()
+        {
+            EntityType = EntityTypeEnum.Ship;
+        }
 
         public override Point Acceleration()
         {

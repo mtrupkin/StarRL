@@ -22,15 +22,12 @@ namespace ConsoleLib
 
         public override void Render()
         {
-            if (Composite != null)
-            {
-                if (Composite.Shell == null)
+                if (Composite != null)
                 {
-                    Composite.Shell = this;
+                    Composite.Render();
+                    Con.Display(0, 0, Composite.Con);
                 }
-                Composite.Render();
-                Con.Display(0, 0, Composite.Con);
-            }
+
         }
 
         public virtual void SetComposite(Composite composite)

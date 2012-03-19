@@ -5,19 +5,18 @@ using System.Text;
 
 namespace Flagship
 {
-    public abstract class Entity
+    public class Entity
     {
+        public EntityTypeEnum EntityType { get; set; }
         public String Name { get; set; }
-
+        public Point Position { get; set; }
         public int Radius { get; set; }
 
-        public Point Position { get; set; }
-        public Point Velocity { get; set; }
-
-        public virtual Point Acceleration()
+        public Entity()
         {
-            return Point.ZERO;
+            EntityType = EntityTypeEnum.Space;
+            Name = "Space";
+            Radius = 1;
         }
-
     }
 }
