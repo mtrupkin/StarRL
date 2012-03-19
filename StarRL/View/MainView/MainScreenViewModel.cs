@@ -8,11 +8,10 @@ using ConsoleLib.Widget;
 
 namespace StarRL
 {
-    public class FlagshipGameViewModel
+    public class MainScreenViewModel
     {
         public MainScreen MainScreen { get; set; }
-        public FlagshipGame FlagshipGame { get; set; }
-        public Shell Shell { get; set; }
+        public FlagshipGameViewModel FlagshipGameViewModel  { get; set; }
 
         public void Initialize()
         {
@@ -31,10 +30,12 @@ namespace StarRL
         // initialization for each new game
         public FlagshipGame CreateNewGame()
         {
-            GalaxyFactory galaxyFactory = new GalaxyFactory(80, 60);
-            FlagshipGame.Galaxy = galaxyFactory.CreateGalaxy();
+            var flagshipGame = new FlagshipGame();
 
-            return FlagshipGame;
+            GalaxyFactory galaxyFactory = new GalaxyFactory(80, 60);
+            flagshipGame.Galaxy = galaxyFactory.CreateGalaxy();
+
+            return flagshipGame;
         }
 
         public FlagshipGame LoadGameFile(String filename)
@@ -44,36 +45,21 @@ namespace StarRL
 
         public void SaveGameFile(FlagshipGame galaxy)
         {
-        }
-
-        private void BeginGame(FlagshipGame flagshipGame)
-        {
-            var galaxyScreen = new GalaxyScreen()
-            {
-            };
-
-            var galaxyScreenViewModel = new GalaxyScreenViewModel()
-            {
-                GalaxyScreen = galaxyScreen,
-                FlagshipGame = flagshipGame
-            };
-            galaxyScreenViewModel.Initialize();
-
-            Shell.SetComposite(galaxyScreen);
-        }
+        }      
 
         public void NewGame()
         {
-            BeginGame(CreateNewGame());
+            FlagshipGameViewModel.BeginGame(CreateNewGame());
         }
 
         public void LoadGame()
         {
-            BeginGame(CreateNewGame());
+            FlagshipGameViewModel.BeginGame(CreateNewGame());
         }
 
         public void Quit()
         {
+            FlagshipGameViewModel.Quit();
             //FlagshipGameViewModel.Complete = true;
         }
 

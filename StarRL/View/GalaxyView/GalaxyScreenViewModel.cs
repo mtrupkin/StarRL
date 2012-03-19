@@ -11,7 +11,7 @@ namespace StarRL
 	public class GalaxyScreenViewModel
 	{
         public FlagshipGame FlagshipGame { get; set; }
-
+        public FlagshipGameViewModel FlagshipGameViewModel { get; set; }
 		public GalaxyScreen GalaxyScreen { get; set; }
 		 
 		public GalaxyScreenViewModel ()

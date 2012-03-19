@@ -72,15 +72,12 @@ namespace StarRL
             Shell.Initialize();
 
 
-            // intialize ui
-            MainScreen mainScreen = new MainScreen();
-
             // initialize view model
-            FlagshipGameViewModel = new FlagshipGameViewModel() { FlagshipGame = FlagshipGame, Shell = Shell, MainScreen = mainScreen};
+            FlagshipGameViewModel = new FlagshipGameViewModel() { FlagshipGame = FlagshipGame, Shell = Shell};
             FlagshipGameViewModel.Initialize();
 
             //ScreenStateMachine.ChangeScreen(mainScreen);
-            Shell.SetComposite(mainScreen);
+            //Shell.SetComposite(mainScreen);
 
             // intialize game update tick
             updateTimer = new Timer(100);
