@@ -5,6 +5,27 @@ using System.Text;
 
 namespace ConsoleLib.Widget
 {
+    public delegate void OptionHandler();
+
+    public class Option
+    {
+        public string Name { get; set; }
+        public bool Enabled { get; set; }
+        public bool Visable { get; set; }
+        public OptionHandler OptionHandler { get; set; }
+
+        public Option()
+        {
+            Enabled = true;
+            Visable = true; 
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
     public delegate void ItemSelectedEventHandler<T>(T item);
 
     public class ListControl<T> : Control
@@ -33,6 +54,8 @@ namespace ConsoleLib.Widget
 
         public override void Render()
         {
+            Con.Clear();
+
             int i = 0;
             foreach (T o in Items)
             {
@@ -48,13 +71,10 @@ namespace ConsoleLib.Widget
                     {
                         Con.BackgroundColor = ConsoleRGB.Gray;
                     }
-                    else
-                    {
-                        Con.BackgroundColor = ConsoleRGB.Black;
-                    }
                 }
                 Con.SetPosition(0, i);
                 Con.Write(o.ToString());
+                Con.BackgroundColor = ConsoleRGB.Black;
                 i++;
             }
         }
@@ -119,6 +139,11 @@ namespace ConsoleLib.Widget
             SelectedItem = Items[index];
             SelectedIndex = index;
             OnItemSelectedEvent(SelectedItem);
+        }
+
+        public void SetItemList(List<T> items)
+        {            
+            Items = items;
         }
 
         public void AddItem(T item)

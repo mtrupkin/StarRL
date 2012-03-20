@@ -43,7 +43,6 @@ namespace StarRL
             // main loop
             do
             {
-
                 Shell.Render();
 
                 if (Shell.isClosed())
@@ -51,7 +50,7 @@ namespace StarRL
                     Exit();
                 }
 
-            } while (!Completed);
+            } while (!FlagshipGame.Complete);
         }
 
         // first time initialization
@@ -71,13 +70,18 @@ namespace StarRL
             };
             Shell.Initialize();
 
+            // intialize view
+            var FlagshipGameScreen = new FlagshipGameScreen();
 
             // initialize view model
-            FlagshipGameViewModel = new FlagshipGameViewModel() { FlagshipGame = FlagshipGame, Shell = Shell};
+            FlagshipGameViewModel = new FlagshipGameViewModel()
+            {
+                FlagshipGameScreen = FlagshipGameScreen,
+                FlagshipGame = FlagshipGame,
+            };
             FlagshipGameViewModel.Initialize();
 
-            //ScreenStateMachine.ChangeScreen(mainScreen);
-            //Shell.SetComposite(mainScreen);
+            Shell.SetComposite(FlagshipGameViewModel.FlagshipGameScreen);
 
             // intialize game update tick
             updateTimer = new Timer(100);
@@ -126,7 +130,7 @@ namespace StarRL
 
             Shell.Dispose();
 
-            Completed = true;
+            FlagshipGame.Complete = true;
         }
     }
 }

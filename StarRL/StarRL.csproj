@@ -60,16 +60,17 @@
     <Compile Include="StarRL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\EntityView\IDrawable.cs" />
-    <Compile Include="View\GalaxyView\EntityDisplayControl.cs" />
-    <Compile Include="View\GalaxyView\GalaxyScreenViewModel.cs" />
+    <Compile Include="View\EntityView\EntityDisplayControl.cs" />
+    <Compile Include="ViewModel\GalaxyScreenViewModel.cs" />
     <Compile Include="View\GalaxyView\GalaxyDetailComposite.cs" />
     <Compile Include="View\GalaxyView\GalaxyMasterComposite.cs" />
     <Compile Include="View\GalaxyView\GalaxyScreen.cs" />
-    <Compile Include="View\MainView\MainScreenViewModel.cs" />
-    <Compile Include="View\FlagshipGameViewModel.cs" />
-    <Compile Include="View\MainView\MainScreen.cs" />
-    <Compile Include="View\Widget\PointWidget.cs" />
-    <Compile Include="View\Widget\TimeWidget.cs" />
+    <Compile Include="ViewModel\MainScreenViewModel.cs" />
+    <Compile Include="ViewModel\FlagshipGameViewModel.cs" />
+    <Compile Include="View\FlagshipGameScreen.cs" />
+    <Compile Include="View\MainView\MainMenuScreen.cs" />
+    <Compile Include="Widget\PointWidget.cs" />
+    <Compile Include="Widget\TimeWidget.cs" />
     <Compile Include="View\EntityView\EntityDetailComposite.cs" />
   </ItemGroup>
   <ItemGroup>

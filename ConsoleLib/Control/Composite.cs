@@ -166,7 +166,10 @@ namespace ConsoleLib
 
             foreach (ControlLayout layout in Controls)
             {
-                layout.Control.OnKeyPress(consoleKey);
+                if (layout.Control.Enabled)
+                {
+                    layout.Control.OnKeyPress(consoleKey);
+                }
             }
         }
 
@@ -178,7 +181,10 @@ namespace ConsoleLib
             {
                 Mouse newMouse = MouseInControl(layout, mouse);
                 if (newMouse != null) {
-                    layout.Control.OnMouseMove(newMouse);
+                    if (layout.Control.Enabled)
+                    {
+                        layout.Control.OnMouseMove(newMouse);
+                    }
                 }
             }
         }
@@ -192,7 +198,10 @@ namespace ConsoleLib
                 Mouse newMouse = MouseInControl(layout, mouse);
                 if (newMouse != null)
                 {
-                    layout.Control.OnMouseButton(newMouse);
+                    if (layout.Control.Enabled)
+                    {
+                        layout.Control.OnMouseButton(newMouse);
+                    }
                 }
             }
         }

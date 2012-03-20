@@ -11,7 +11,5 @@ namespace StarRL
     public class ConsoleScreen : Composite
     {
 
-        public virtual void Initialize() { }
-
     }
 }

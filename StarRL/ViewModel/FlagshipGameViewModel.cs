@@ -10,60 +10,53 @@ namespace StarRL
 {
     public class FlagshipGameViewModel
     {
+        //public bool Completed { get; set; }
         public FlagshipGame FlagshipGame { get; set; }
 
-        public MainScreen MainScreen { get; set; }
-        public GalaxyScreen GalaxyScreen { get; set; }
+        public FlagshipGameScreen FlagshipGameScreen { get; set; }
 
         public MainScreenViewModel MainScreenViewModel { get; set; }
         public GalaxyScreenViewModel GalaxyScreenViewModel { get; set; }
 
-        public Shell Shell { get; set; }
-
         public void Initialize()
         {
-            // intialize ui
-            MainScreen = new MainScreen();
-            GalaxyScreen = new GalaxyScreen();
-
             MainScreenViewModel = new MainScreenViewModel()
             {
-                MainScreen = MainScreen,
+                MainScreen = FlagshipGameScreen.MainScreen,
                 FlagshipGameViewModel = this,
             };
-
             MainScreenViewModel.Initialize();
 
             GalaxyScreenViewModel = new GalaxyScreenViewModel()
             {
-                GalaxyScreen = GalaxyScreen,
-                FlagshipGame = FlagshipGame
+                GalaxyScreen = FlagshipGameScreen.GalaxyScreen,
+                FlagshipGameViewModel = this,
             };
-
             GalaxyScreenViewModel.Initialize();
 
             DisplayMainMenu();
         }
 
-        public void BeginGame(FlagshipGame flagshipGame)
-        {
-            GalaxyScreenViewModel.SetFlagshipGame(flagshipGame);
-            DisplayGame();
-        }
-
         public void Quit()
         {
+            FlagshipGame.Complete = true;
             //FlagshipGameViewModel.Complete = true;
         }
 
+
+
         public void DisplayGame()
         {
-            Shell.SetComposite(GalaxyScreen);
+            FlagshipGameScreen.GalaxyScreen.Enabled = true;
+            FlagshipGameScreen.MainScreen.Enabled = false;
+
+            GalaxyScreenViewModel.SetFlagshipGame(FlagshipGame);           
         }
 
         public void DisplayMainMenu()
         {
-            Shell.SetComposite(MainScreen);
+            FlagshipGameScreen.GalaxyScreen.Enabled = false;
+            FlagshipGameScreen.MainScreen.Enabled = true;
         }
     }
 }

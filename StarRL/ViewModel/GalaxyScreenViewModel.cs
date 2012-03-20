@@ -10,7 +10,7 @@ namespace StarRL
 {
 	public class GalaxyScreenViewModel
 	{
-		public FlagshipGame FlagshipGame { get; set; }
+		protected FlagshipGame FlagshipGame { get; set; }
 
 		public FlagshipGameViewModel FlagshipGameViewModel { get; set; }
 
@@ -19,14 +19,28 @@ namespace StarRL
 		public GalaxyScreenViewModel ()
 		{
 		}
-		
+
+        public void Initialize()
+        {
+            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.EntitySelectedEvent += new EntityEventHandler(EntitySelectedEvent);
+            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.EntityHighlightedEvent += new EntityEventHandler(EntityHighlightedEvent);
+
+            GalaxyScreen.KeyPressEvent += new KeyPressEventHandler(KeyPressedEvent);
+
+            //FlagshipGame.GameUpdateEvent += new GameUpdateEventHandler(GameUpdateEvent);
+        }
+
 		void KeyPressedEvent (ConsoleKey consoleKey)
 		{
-			switch (consoleKey) {
-			case ConsoleKey.Spacebar:
-				FlagshipGame.Paused = !FlagshipGame.Paused;
-				break;
-			}
+            switch (consoleKey)
+            {
+                case ConsoleKey.Spacebar:
+                    FlagshipGame.Pause = !FlagshipGame.Pause;
+                    break;
+                case ConsoleKey.Escape:
+                    FlagshipGameViewModel.DisplayMainMenu();
+                    break;
+            }
 		}
 		
 		void EntitySelectedEvent (Entity item)
@@ -43,18 +57,6 @@ namespace StarRL
 			GalaxyScreen.GalaxyDetailComposite.HighlightedDetailControl.SetEntity (item);
 		}
 				
-		public void Initialize ()
-		{
-			//GalaxyScreen = new GalaxyScreen();
-			
-			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.EntitySelectedEvent += new EntityEventHandler (EntitySelectedEvent);
-			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.EntityHighlightedEvent += new EntityEventHandler (EntityHighlightedEvent);
-
-			GalaxyScreen.KeyPressEvent += new KeyPressEventHandler (KeyPressedEvent);
-
-			FlagshipGame.GameUpdateEvent += new GameUpdateEventHandler (GameUpdateEvent);
-		}
-
 		public void SetFlagshipGame (FlagshipGame flagshipGame)
 		{
 			FlagshipGame = flagshipGame;
@@ -75,5 +77,6 @@ namespace StarRL
 			//Mouse cursor = GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Mouse;
 			//GalaxyScreen.GalaxyDetailComposite.CursorWidget.Point.Set (cursor.X, cursor.Y);
 		}
+
 	}
 }

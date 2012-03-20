@@ -33,6 +33,5 @@ namespace StarRL
             AddControl(0, 0, GalaxyMasterComposite);
             AddControl(80, 0, GalaxyDetailComposite);
         }
-
     }
 }

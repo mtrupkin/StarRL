@@ -12,11 +12,14 @@ namespace Flagship
     {
         public Galaxy Galaxy { get; set; }
 
-        public bool Paused { get; set; }
+        public bool Pause { get; set; }
+
+        public bool Complete { get; set; }
 
         public FlagshipGame()
         {
-            Paused = false;
+            Pause = false;
+            Complete = false;
         }
 
         public event GameUpdateEventHandler GameUpdateEvent;
@@ -25,7 +28,7 @@ namespace Flagship
         {
             if (Galaxy != null)
             {
-                if (!Paused)
+                if (!Pause)
                 {
                     int elapsed = Galaxy.Update(duration);
                     if (GameUpdateEvent != null)

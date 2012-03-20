@@ -8,25 +8,13 @@ using Flagship;
 
 namespace StarRL
 {
-    public delegate void OptionHandler();
 
-    public class Option
-    {
-        public string Name { get; set; }
-        public OptionHandler OptionHandler { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
-    public class MainScreen : ConsoleScreen
+    public class MainMenuScreen : ConsoleScreen
     {
 
         public ListControl<Option> ListControl { get; set; }
 
-        public MainScreen()
+        public MainMenuScreen()
         {
             ListControl = new ListControl<Option>()
             {
