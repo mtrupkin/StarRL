@@ -42,14 +42,12 @@ namespace StarRL
 
             GalaxyScreenViewModel.Initialize();
 
-
             DisplayMainMenu();
-
         }
 
         public void BeginGame(FlagshipGame flagshipGame)
         {
-            //galaxyScreenViewModel
+            GalaxyScreenViewModel.SetFlagshipGame(flagshipGame);
             DisplayGame();
         }
 
