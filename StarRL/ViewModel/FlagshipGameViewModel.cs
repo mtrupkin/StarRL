@@ -37,6 +37,15 @@ namespace StarRL
             DisplayMainMenu();
         }
 
+        public void Update(int duration)
+        {            
+            if (FlagshipGame.Galaxy != null)
+            {
+                FlagshipGame.Update(duration);
+                GalaxyScreenViewModel.SetTime(TimeSpan.FromMilliseconds(FlagshipGame.Galaxy.Time));
+            }
+        }                
+
         public void Quit()
         {
             FlagshipGame.Complete = true;
