@@ -26,8 +26,6 @@ namespace StarRL
             GalaxyScreen.GalaxyMasterComposite.GalaxyControl.EntityHighlightedEvent += new EntityEventHandler(EntityHighlightedEvent);
 
             GalaxyScreen.KeyPressEvent += new KeyPressEventHandler(KeyPressedEvent);
-
-            //FlagshipGame.GameUpdateEvent += new GameUpdateEventHandler(GameUpdateEvent);
         }
 
 		void KeyPressedEvent (ConsoleKey consoleKey)
@@ -68,15 +66,5 @@ namespace StarRL
 			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
 			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity (FlagshipGame.Galaxy.Flagship);
 		}
-
-		public void GameUpdateEvent (int duration)
-		{
-			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity (FlagshipGame.Galaxy.Flagship);
-			GalaxyScreen.GalaxyDetailComposite.TimeWidget.Time = TimeSpan.FromMilliseconds (FlagshipGame.Galaxy.Time);
-				
-			//Mouse cursor = GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Mouse;
-			//GalaxyScreen.GalaxyDetailComposite.CursorWidget.Point.Set (cursor.X, cursor.Y);
-		}
-
 	}
 }
