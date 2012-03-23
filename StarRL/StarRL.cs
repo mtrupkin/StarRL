@@ -117,7 +117,8 @@ namespace StarRL
 
             if (lastUpdateTimeSpan > updateTimeSpan)
             {
-                FlagshipGame.Update(lastUpdateTimeSpan.Milliseconds);                
+                FlagshipGameViewModel.Update(lastUpdateTimeSpan.Milliseconds);
+                //FlagshipGame.Update(lastUpdateTimeSpan.Milliseconds);                
 
                 lastUpdateTime = DateTime.Now;
             }

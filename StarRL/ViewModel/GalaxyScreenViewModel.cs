@@ -47,6 +47,7 @@ namespace StarRL
 			
 			if (item != null) {
 				FlagshipGame.Galaxy.Flagship.Position.Set (item.Position);
+                GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity(FlagshipGame.Galaxy.Flagship);
 			}
 		}
 
@@ -66,5 +67,15 @@ namespace StarRL
 			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
 			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity (FlagshipGame.Galaxy.Flagship);
 		}
+
+
+		public void SetTime(TimeSpan timeSpan)
+		{
+            GalaxyScreen.GalaxyDetailComposite.TimeWidget.Time = timeSpan;
+				
+			//Mouse cursor = GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Mouse;
+			//GalaxyScreen.GalaxyDetailComposite.CursorWidget.Point.Set (cursor.X, cursor.Y);
+		}
+
 	}
-}
+} 

@@ -67,7 +67,7 @@
     <Compile Include="View\GalaxyView\GalaxyScreen.cs" />
     <Compile Include="ViewModel\MainScreenViewModel.cs" />
     <Compile Include="ViewModel\FlagshipGameViewModel.cs" />
-    <Compile Include="View\FlagshipGameScreen.cs" />
+    <Compile Include="View\MainView\FlagshipGameScreen.cs" />
     <Compile Include="View\MainView\MainMenuScreen.cs" />
     <Compile Include="Widget\PointWidget.cs" />
     <Compile Include="Widget\TimeWidget.cs" />

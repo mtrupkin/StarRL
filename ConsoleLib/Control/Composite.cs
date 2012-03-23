@@ -193,6 +193,8 @@ namespace ConsoleLib
         {
             base.OnMouseButton(mouse);
 
+            var enabledControls = new List<ControlLayout>();
+
             foreach (ControlLayout layout in Controls)
             {
                 Mouse newMouse = MouseInControl(layout, mouse);
@@ -200,9 +202,19 @@ namespace ConsoleLib
                 {
                     if (layout.Control.Enabled)
                     {
-                        layout.Control.OnMouseButton(newMouse);
+                        enabledControls.Add(layout);
                     }
                 }
+            }
+
+            foreach (ControlLayout layout in enabledControls)
+            {
+                Mouse newMouse = MouseInControl(layout, mouse);
+                if (newMouse != null)
+                {
+                    layout.Control.OnMouseButton(newMouse);
+                }
+
             }
         }
 

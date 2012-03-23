@@ -11,37 +11,48 @@ namespace StarRL
 {
 	public class EntityDetailComposite : Composite
 	{
+        
 		public Entity Entity { get; protected set; }
+
+        TextWidget TitleWidget { get; set; }
+        TextWidget NameWidget { get; set; }
+        PointWidget PositionWidget { get; set; }
 		
-		TextWidget NameWidget {get;set;}
-		PointWidget PositionWidget {get;set;}
-		
-		public EntityDetailComposite ()
+		public EntityDetailComposite (String title)
 		{
 			Width = 30;
 			Height = 4;
-			
-			NameWidget = new TextWidget(){ Width=this.Width};
+
+            TitleWidget = new TextWidget() { Width = this.Width };
+            TitleWidget.SetText(String.Format("-----{0}", title));
+
+            NameWidget = new TextWidget() { Width = this.Width };
 
             PositionWidget = new PointWidget()
             {
                 Enabled = false,
             };		
-	
-			
-			LayoutManager layoutManager = new LayoutManager ();			
+				
+			LayoutManager layoutManager = new LayoutManager ();
+            layoutManager.AddControl(TitleWidget);
 			layoutManager.AddControl(NameWidget);
 			layoutManager.AddControl(PositionWidget);
 			
 			AddLayoutManager(layoutManager);
 		}
-		
+
+      
 		public override void Render ()
 		{
 			//Con.Clear();
 						
 			base.Render();
 		}
+
+        public void SetTitle(String title)
+        {
+            TitleWidget.SetText(String.Format("-----{0}",title));
+        }
 
         public void SetEntity(Entity entity)
         {
