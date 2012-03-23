@@ -23,11 +23,11 @@ namespace StarRL
 
 		public GalaxyDetailComposite ()
 		{
-			TargetDetailControl = new EntityDetailComposite ();
+			TargetDetailControl = new EntityDetailComposite ("Target");
 
-			HighlightedDetailControl = new EntityDetailComposite ();
+			HighlightedDetailControl = new EntityDetailComposite ("Cursor");
 
-			FlagshipDetailControl = new EntityDetailComposite ();
+			FlagshipDetailControl = new EntityDetailComposite ("Flagship");
 
 			var boxControl = new BoxControl ()
             {
