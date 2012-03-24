@@ -11,7 +11,7 @@ namespace StarRL
 {
 	public class GalaxyDetailComposite : Composite
 	{
-		public EntityDetailComposite FlagshipDetailControl { get; set; }
+		public ShipDetailComposite FlagshipDetailControl { get; set; }
 
 		public EntityDetailComposite TargetDetailControl { get; set; }
 
@@ -27,7 +27,7 @@ namespace StarRL
 
 			HighlightedDetailControl = new EntityDetailComposite ("Cursor");
 
-			FlagshipDetailControl = new EntityDetailComposite ("Flagship");
+			FlagshipDetailControl = new ShipDetailComposite ("Flagship");
 
 			var boxControl = new BoxControl ()
             {

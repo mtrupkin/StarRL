@@ -47,7 +47,7 @@ namespace StarRL
 			
 			if (item != null) {
 				FlagshipGame.Galaxy.Flagship.Position.Set (item.Position);
-                GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity(FlagshipGame.Galaxy.Flagship);
+                GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip(FlagshipGame.Galaxy.Flagship);
 			}
 		}
 
@@ -65,7 +65,7 @@ namespace StarRL
 			entities.Add (DrawableFactory.GetDrawableShip (FlagshipGame.Galaxy.Flagship));
 
 			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
-			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetEntity (FlagshipGame.Galaxy.Flagship);
+			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip (FlagshipGame.Galaxy.Flagship);
 		}
 
 
