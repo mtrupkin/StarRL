@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StarRL/View/EntityView/ShipDetailComposite.cs">
+    <Files>
+      <File FileName="StarRL/View/EntityView/ShipDetailComposite.cs" Line="39" Column="4" />
+      <File FileName="StarRL/View/EntityView/EntityDetailComposite.cs" Line="60" Column="1" />
+      <File FileName="StarRL/View/GalaxyView/GalaxyDetailComposite.cs" Line="30" Column="36" />
+      <File FileName="StarRL/ViewModel/GalaxyScreenViewModel.cs" Line="68" Column="68" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/mike/Desktop/StarRL/StarRL/View/GalaxyView/GalaxyScreenViewModel.cs" line="50" />
+      <Breakpoint file="/home/mike/Desktop/StarRL/StarRL/ViewModel/FlagshipGameViewModel.cs" line="50" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
