@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StarRL/View/EntityView/ShipDetailComposite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleLib/Widget/LabelWidget.cs">
     <Files>
-      <File FileName="StarRL/View/EntityView/ShipDetailComposite.cs" Line="39" Column="4" />
-      <File FileName="StarRL/View/EntityView/EntityDetailComposite.cs" Line="60" Column="1" />
-      <File FileName="StarRL/View/GalaxyView/GalaxyDetailComposite.cs" Line="30" Column="36" />
-      <File FileName="StarRL/ViewModel/GalaxyScreenViewModel.cs" Line="68" Column="68" />
+      <File FileName="StarRL/View/EntityView/ShipDetailComposite.cs" Line="57" Column="68" />
+      <File FileName="ConsoleLib/Widget/LabelWidget.cs" Line="34" Column="4" />
+      <File FileName="ConsoleLib/Control/Composite.cs" Line="85" Column="27" />
+      <File FileName="ConsoleLib/Control/ControlLayout.cs" Line="13" Column="45" />
+      <File FileName="ConsoleLib/Control/LayoutManager.cs" Line="38" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

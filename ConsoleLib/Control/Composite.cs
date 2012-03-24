@@ -26,11 +26,10 @@ namespace ConsoleLib
         {
             if (control != null)
             {
-                ControlLayout layout = new ControlLayout()
+                ControlLayout layout = new ControlLayout(control)
                 {
                     X = x,
                     Y = y,
-                    Control = control
                 };
 
                 AddLayout(layout);
@@ -80,11 +79,10 @@ namespace ConsoleLib
                     control.Height = Height;
                 }
 
-                ControlLayout layout = new ControlLayout()
+                ControlLayout layout = new ControlLayout(control)
                 {
                     X = x,
                     Y = y,
-                    Control = control
                 };
 
                 Mouse newMouse = MouseInControl(layout, Mouse);
@@ -127,7 +125,6 @@ namespace ConsoleLib
                     Con.Display(layout.X, layout.Y, layout.Control.Con);
                 }
             }
-
         }
 
         public override void Initialize(Shell shell)

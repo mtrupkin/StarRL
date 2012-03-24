@@ -43,8 +43,6 @@ namespace StarRL
       
 		public override void Render ()
 		{
-			//Con.Clear();
-								
 			base.Render();
 		}
 		
@@ -56,6 +54,7 @@ namespace StarRL
         public void SetShip(Ship ship)
 		{			
 			EntityWidget.SetEntity(ship);
+			ShieldsWidget.SetText(String.Format("Shields: {0}", ship.Shields));
 
             Ship = ship;
         }

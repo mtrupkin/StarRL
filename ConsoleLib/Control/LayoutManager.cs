@@ -32,11 +32,10 @@ namespace ConsoleLib
 
             foreach (Control control in Controls)
             {
-                ControlLayout layout = new ControlLayout()
+                ControlLayout layout = new ControlLayout(control)
                 {
                     X = this.X,
                     Y = lastY,
-                    Control = control
                 };
 
                 layouts.Add(layout);

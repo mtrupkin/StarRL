@@ -51,7 +51,7 @@ namespace StarRL
 
         public void SetTitle(String title)
         {
-            TitleWidget.SetText(String.Format("-----{0}",title));
+            TitleWidget.SetText(String.Format("-----{0}-----",title));
         }
 
         public void SetEntity(Entity entity)

@@ -11,5 +11,9 @@ namespace ConsoleLib
         public int Y { get; set; }
 
         public Control Control { get; set; }
+			
+		public ControlLayout(Control control) {
+			Control = control;
+		}
     }
 }
