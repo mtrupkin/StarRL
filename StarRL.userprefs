@@ -1,19 +1,24 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleLib/Control/Control.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Libtcod/LibtcodConsole.cs">
     <Files>
-      <File FileName="StarRL/View/EntityView/ShipDetailComposite.cs" Line="57" Column="68" />
-      <File FileName="ConsoleLib/Control/Composite.cs" Line="85" Column="27" />
-      <File FileName="ConsoleLib/Control/ControlLayout.cs" Line="13" Column="45" />
-      <File FileName="ConsoleLib/Control/LayoutManager.cs" Line="38" Column="31" />
-      <File FileName="ConsoleLib/Widget/ReadoutWidget.cs" Line="20" Column="52" />
-      <File FileName="ConsoleLib/Control/Control.cs" Line="83" Column="1" />
+      <File FileName="ConsoleLib/Control/Control.cs" Line="43" Column="1" />
+      <File FileName="StarRL/StarRL.cs" Line="127" Column="25" />
+      <File FileName="ConsoleLib/Control/Composite.cs" Line="140" Column="1" />
+      <File FileName="ConsoleLib/Shell.cs" Line="1" Column="1" />
+      <File FileName="StarRL/ViewModel/FlagshipGameViewModel.cs" Line="53" Column="1" />
+      <File FileName="Flagship/FlagshipGame.cs" Line="15" Column="1" />
+      <File FileName="Libtcod/LibtcodShell.cs" Line="2" Column="1" />
+      <File FileName="Libtcod/LibtcodConsole.cs" Line="104" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/home/mike/Desktop/StarRL/StarRL/View/GalaxyView/GalaxyScreenViewModel.cs" line="50" />
-      <Breakpoint file="/home/mike/Desktop/StarRL/StarRL/ViewModel/FlagshipGameViewModel.cs" line="50" />
+      <Breakpoint file="/home/mike/Desktop/StarRL/ConsoleLib/Control/Composite.cs" line="142" />
+      <Breakpoint file="/home/mike/Desktop/StarRL/ConsoleLib/Control/Control.cs" line="43" />
+      <Breakpoint file="/home/mike/Desktop/StarRL/StarRL/StarRL.cs" line="127" />
+      <Breakpoint file="/home/mike/Desktop/StarRL/Libtcod/LibtcodConsole.cs" line="109" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

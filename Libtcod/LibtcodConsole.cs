@@ -10,7 +10,7 @@ namespace Libtcod
 {
 	public class LibtcodScreen : Screen
 	{
-		protected TCODConsole TCODConsole { get; set; }
+		protected TCODConsole LIBTCODConsole { get; set; }
 
 		int CursorX { get; set; }
 
@@ -29,7 +29,7 @@ namespace Libtcod
 			Width = width;
 			Height = height;
 
-			TCODConsole = new TCODConsole (width, height);
+			LIBTCODConsole = new TCODConsole (width, height);
 			Initialize ();
 		}
 
@@ -38,31 +38,31 @@ namespace Libtcod
 			Width = width;
 			Height = height;
 
-			TCODConsole = root;
+			LIBTCODConsole = root;
 			Initialize ();
 		}
 
 		void Initialize ()
 		{
-			TCODConsole.setBackgroundFlag (TCODBackgroundFlag.Overlay);
+			LIBTCODConsole.setBackgroundFlag (TCODBackgroundFlag.Overlay);
 			BackgroundColor = ConsoleRGB.Black;
 			ForegroundColor = ConsoleRGB.White;
-			TCODConsole.setKeyColor (TCODColor.red);
+			LIBTCODConsole.setKeyColor (TCODColor.red);
 		}
 
 		public void Clear ()
 		{
 			TCODColor bg = getTCODColor (BackgroundColor);
             
-			TCODConsole.setBackgroundColor (bg);
-			TCODConsole.clear ();
+			LIBTCODConsole.setBackgroundColor (bg);
+			LIBTCODConsole.clear ();
 		}
 
 		public void Write (char c)
 		{
 			TCODColor bg = getTCODColor (BackgroundColor);
 			TCODColor fg = getTCODColor (ForegroundColor);
-			TCODConsole.putCharEx (CursorX, CursorY, c, fg, bg);
+			LIBTCODConsole.putCharEx (CursorX, CursorY, c, fg, bg);
 		}
 
 		public void WriteFrame (int width, int height)
@@ -70,10 +70,10 @@ namespace Libtcod
 			TCODColor bg = getTCODColor (BackgroundColor);
 			TCODColor fg = getTCODColor (ForegroundColor);
 			
-			TCODConsole.setBackgroundColor (bg);
-			TCODConsole.setForegroundColor (fg);                        
+			LIBTCODConsole.setBackgroundColor (bg);
+			LIBTCODConsole.setForegroundColor (fg);                        
   
-			TCODConsole.printFrame (CursorX, CursorY, width, height);
+			LIBTCODConsole.printFrame (CursorX, CursorY, width, height);
             
 		}
 
@@ -81,10 +81,10 @@ namespace Libtcod
 		{
 			TCODColor bg = getTCODColor (BackgroundColor);
 			TCODColor fg = getTCODColor (ForegroundColor);
-			TCODConsole.setBackgroundColor (bg);
-			TCODConsole.setForegroundColor (fg);                        
+			LIBTCODConsole.setBackgroundColor (bg);
+			LIBTCODConsole.setForegroundColor (fg);                        
   
-			TCODConsole.printFrame (CursorX, CursorY, width, height, false, TCODBackgroundFlag.Set, title);
+			LIBTCODConsole.printFrame (CursorX, CursorY, width, height, false, TCODBackgroundFlag.Set, title);
 
 		}
 
@@ -92,21 +92,21 @@ namespace Libtcod
 		{
 			TCODColor bg = getTCODColor (BackgroundColor);
 			TCODColor fg = getTCODColor (ForegroundColor);
-			TCODConsole.setBackgroundColor (bg);
-			TCODConsole.setForegroundColor (fg);                        
-			TCODConsole.printEx (CursorX, CursorY, TCODBackgroundFlag.Set, TCODAlignment.LeftAlignment, s);
+			LIBTCODConsole.setBackgroundColor (bg);
+			LIBTCODConsole.setForegroundColor (fg);                        
+			LIBTCODConsole.printEx (CursorX, CursorY, TCODBackgroundFlag.Set, TCODAlignment.LeftAlignment, s);
             
 		}
 
         public void Display(int x, int y, Screen console)
 		{
 			LibtcodScreen tcodConsole = console as LibtcodScreen;
-			TCODConsole.blit (tcodConsole.TCODConsole, 0, 0, console.Width, console.Height, TCODConsole, x, y);
+			TCODConsole.blit (tcodConsole.LIBTCODConsole, 0, 0, console.Width, console.Height, LIBTCODConsole, x, y);
 		}
 
 		public void Dispose ()
 		{
-			TCODConsole.Dispose ();
+			LIBTCODConsole.Dispose ();
 		}
 
 		public void SetPosition (int x, int y)
