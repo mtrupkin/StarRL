@@ -1,17 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Libtcod/LibtcodConsole.cs">
-    <Files>
-      <File FileName="ConsoleLib/Control/Control.cs" Line="43" Column="1" />
-      <File FileName="StarRL/StarRL.cs" Line="127" Column="25" />
-      <File FileName="ConsoleLib/Control/Composite.cs" Line="140" Column="1" />
-      <File FileName="ConsoleLib/Shell.cs" Line="1" Column="1" />
-      <File FileName="StarRL/ViewModel/FlagshipGameViewModel.cs" Line="53" Column="1" />
-      <File FileName="Flagship/FlagshipGame.cs" Line="15" Column="1" />
-      <File FileName="Libtcod/LibtcodShell.cs" Line="2" Column="1" />
-      <File FileName="Libtcod/LibtcodConsole.cs" Line="104" Column="4" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/home/mike/Desktop/StarRL/StarRL/View/GalaxyView/GalaxyScreenViewModel.cs" line="50" />

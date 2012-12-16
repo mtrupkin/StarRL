@@ -29,7 +29,7 @@ namespace StarRL
 
             FlagshipDetailControl = new ShipDetailComposite(this, "Flagship");
 
-			var boxControl = new BoxControl (this, "", 40, 70);
+			var boxControl = new BoxControl (this, "", 40, 60);
 
 			AddControl (0, 0, boxControl);
 
