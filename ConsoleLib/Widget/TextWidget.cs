@@ -4,10 +4,10 @@ namespace ConsoleLib
 {
 	public class TextWidget : Control
 	{
-		public String TextValue { get; protected set; }
+		public String TextValue { get; set; }
 
 		public TextWidget (Composite parent)
-            : base(parent, 1, 0)
+            : base(parent, 30, 1)
 		{
 			
 		}
@@ -20,12 +20,6 @@ namespace ConsoleLib
 				Screen.Write(TextValue);
 			}
 		}
-
-        public void SetText(String text)
-        {
-            TextValue = text;
-        }
-
 	}
 }
 

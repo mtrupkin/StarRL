@@ -22,7 +22,7 @@ namespace StarRL
 		{
 
             TitleWidget = new TextWidget(this) { Width = this.Width };
-            TitleWidget.SetText(String.Format("-----{0}", title));
+            TitleWidget.TextValue = String.Format("-----{0}", title);
 
             NameWidget = new TextWidget(this) { Width = this.Width };
 
@@ -49,7 +49,7 @@ namespace StarRL
 
         public void SetTitle(String title)
         {
-            TitleWidget.SetText(String.Format("-----{0}-----",title));
+            TitleWidget.TextValue = String.Format("-----{0}-----",title);
         }
 
         public void SetEntity(Entity entity)
@@ -57,13 +57,13 @@ namespace StarRL
 
             if (entity != null)
             {
-                NameWidget.SetText(String.Format("Name: {0}", entity.Name));
+                NameWidget.TextValue = String.Format("Name: {0}", entity.Name);
                 PositionWidget.SetPoint(entity.Position);
                 PositionWidget.Enabled = true;
             }
             else
             {
-                NameWidget.SetText("Not Selected");
+                NameWidget.TextValue = "Not Selected";
                 PositionWidget.Enabled = false;
             }
 

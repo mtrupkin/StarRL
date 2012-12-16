@@ -51,6 +51,8 @@ namespace StarRL
                 }
 
             } while (!FlagshipGame.Complete);
+
+            Exit();
         }
 
         // first time initialization
@@ -90,21 +92,8 @@ namespace StarRL
         void updateTimer_Elapsed(object sender, ElapsedEventArgs e)
         {            
             Update();
-            //Draw();
         }
         
-        //
-        private void Draw() {
-            TimeSpan lastDrawTimeSpan = DateTime.Now.Subtract(lastDrawTime);
-
-            if (lastDrawTimeSpan > drawTimeSpan)
-            {
-                Shell.Render();
-
-                lastDrawTime = DateTime.Now;
-            }            
-        }
-
         //
         private void Update()
         {
@@ -113,7 +102,6 @@ namespace StarRL
             if (lastUpdateTimeSpan > updateTimeSpan)
             {
                 FlagshipGameViewModel.Update(lastUpdateTimeSpan.Milliseconds);
-                //FlagshipGame.Update(lastUpdateTimeSpan.Milliseconds);                
 
                 lastUpdateTime = DateTime.Now;
             }

@@ -15,10 +15,6 @@ namespace ConsoleLib
             Controls = new List<ControlLayout>();
         }
 
-        protected Composite(Composite parent):this(parent, 0, 0)
-        {            
-        }
-
         public Composite(Composite parent, int width, int height) : base(parent, width, height)
         {
             Controls = new List<ControlLayout>();
