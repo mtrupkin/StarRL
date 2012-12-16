@@ -37,7 +37,8 @@ namespace ConsoleLib.Widget
         public int SelectedIndex { get; set; }
         public int HighlightedIndex { get; set; }
 
-        public ListControl():base()
+        public ListControl(Composite parent)
+            : base(parent, 10, 10)
         {
             Items = new List<T>();
         }
@@ -54,7 +55,7 @@ namespace ConsoleLib.Widget
 
         public override void Render()
         {
-            Con.Clear();
+            Screen.Clear();
 
             int i = 0;
             foreach (T o in Items)
@@ -66,15 +67,15 @@ namespace ConsoleLib.Widget
                 //}
                 //else
                 {
-                    Con.ForegroundColor = ConsoleRGB.White;
+                    Screen.ForegroundColor = ConsoleRGB.White;
                     if (i == HighlightedIndex)
                     {
-                        Con.BackgroundColor = ConsoleRGB.Gray;
+                        Screen.BackgroundColor = ConsoleRGB.Gray;
                     }
                 }
-                Con.SetPosition(0, i);
-                Con.Write(o.ToString());
-                Con.BackgroundColor = ConsoleRGB.Black;
+                Screen.SetPosition(0, i);
+                Screen.Write(o.ToString());
+                Screen.BackgroundColor = ConsoleRGB.Black;
                 i++;
             }
         }

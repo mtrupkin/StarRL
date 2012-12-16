@@ -14,21 +14,12 @@ namespace StarRL
         public EntityDisplayControl GalaxyControl { get; set; }
 
 
-        public GalaxyMasterComposite()
+        public GalaxyMasterComposite(Composite parent):base(parent, 80, 60)
         {
 
-            GalaxyControl = new EntityDisplayControl()
-            {
-                Width = 80-2,
-                Height = 60-2,
-            };            
+            GalaxyControl = new EntityDisplayControl(parent, 80-2, 60-2);
 
-            var boxControl = new BoxControl()
-            {
-                Title = "Galaxy",
-                Width = 80,
-                Height = 60,
-            };
+            var boxControl = new BoxControl(this, "Galaxy", 80, 60);
 
             AddControl(0, 0, boxControl);
             AddControl(1, 1, GalaxyControl);

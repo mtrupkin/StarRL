@@ -26,6 +26,6 @@ namespace ConsoleLib
 
         void WriteFrame(int width, int height, String title);
 
-        void Display(int x, int y, Screen console);
+        void Display(int x, int y, Screen screen);
     }
 }

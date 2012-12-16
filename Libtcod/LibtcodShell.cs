@@ -12,15 +12,15 @@ namespace Libtcod
         ConsoleKey Key { get; set; }
         public Mouse OldMouse { get; set; }
 
-        public LibtcodShell()
+        public LibtcodShell(string title, int width, int height) : base (title, width, height)
         {
             OldMouse = new Mouse();
         }
 
-        public override Screen CreateConsole(int width, int height)
+        public override Screen CreateScreen(int width, int height)
         {
 
-            return new LibtcodConsole(width, height);
+            return new LibtcodScreen(width, height);
         }        
 
         public override void Render()
@@ -82,7 +82,7 @@ namespace Libtcod
             TCODConsole.root.clear();
             TCODSystem.setFps(24);
 
-            Con = new LibtcodConsole(Width, Height, TCODConsole.root);
+            Screen = new LibtcodScreen(Width, Height, TCODConsole.root);
 
             TCODConsole.flush();
         }

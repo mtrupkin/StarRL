@@ -8,13 +8,25 @@ namespace ConsoleLib
 
     public abstract class Composite : Control
     {
-        public Shell Shell { get; set; }
-
         protected List<ControlLayout> Controls { get; set; }
 
-        public Composite() : base()
+        protected Composite(int width, int height) : base(width, height)
         {
             Controls = new List<ControlLayout>();
+        }
+
+        protected Composite(Composite parent):this(parent, 0, 0)
+        {            
+        }
+
+        public Composite(Composite parent, int width, int height) : base(parent, width, height)
+        {
+            Controls = new List<ControlLayout>();
+        }
+
+        public virtual Screen CreateScreen(int width, int height)
+        {
+            return Parent.CreateScreen(width, height);
         }
 
         public virtual void AddControl(Control control)
@@ -40,7 +52,6 @@ namespace ConsoleLib
         {
             Control control = layout.Control;
 
-            control.Parent = this;
             if ((control.Width == 0) && (control.Height == 0))
             {
                 // set the size of the control to the parent's size               
@@ -120,35 +131,18 @@ namespace ConsoleLib
             {
                 if (layout.Control.Enabled)
                 {
-                    layout.Control.Initialize(Shell);
                     layout.Control.Render();
-                    Con.Display(layout.X, layout.Y, layout.Control.Con);
+                    Screen.Display(layout.X, layout.Y, layout.Control.Screen);
                 }
-            }
-        }
-
-        public override void Initialize(Shell shell)
-        {
-            Shell = shell;
-
-            if (Con == null)
-            {
-
-                Con = shell.CreateConsole(Width, Height);
-            }
-
-            foreach (ControlLayout layout in Controls)
-            {
-                layout.Control.Initialize(shell);
             }
         }
 
         public override void Dispose()
         {
-            if (Con != null)
+            if (Screen != null)
             {
-                Con.Dispose();
-                Con = null;
+                Screen.Dispose();
+                Screen = null;
             }
             foreach (ControlLayout layout in Controls)
             {

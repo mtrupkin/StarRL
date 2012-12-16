@@ -7,12 +7,18 @@ namespace ConsoleLib.Widget
 {
     public class BoxControl : Control
     {
-        public String Title { get; set; }
+        public String Title { get; protected set; }
 
+        public BoxControl(Composite parent, String title, int width, int height)
+            : base(parent, width, height)
+        {
+            Title = title;
+        }
+        
         public override void Render()
         {            
-            Con.SetPosition(0, 0);
-            Con.WriteFrame(Con.Width, Con.Height, Title);
+            Screen.SetPosition(0, 0);
+            Screen.WriteFrame(Width, Height, Title);
         }
     }
 }

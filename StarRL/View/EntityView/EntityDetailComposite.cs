@@ -18,17 +18,15 @@ namespace StarRL
         TextWidget NameWidget { get; set; }
         PointWidget PositionWidget { get; set; }
 		
-		public EntityDetailComposite (String title)
+		public EntityDetailComposite (Composite parent, String title) : base (parent, 30, 4)
 		{
-			Width = 30;
-			Height = 4;
 
-            TitleWidget = new TextWidget() { Width = this.Width };
+            TitleWidget = new TextWidget(this) { Width = this.Width };
             TitleWidget.SetText(String.Format("-----{0}", title));
 
-            NameWidget = new TextWidget() { Width = this.Width };
+            NameWidget = new TextWidget(this) { Width = this.Width };
 
-            PositionWidget = new PointWidget()
+            PositionWidget = new PointWidget(this)
             {
                 Enabled = false,
             };		

@@ -18,21 +18,21 @@ namespace StarRL
 		TextWidget PhasersWidget { get; set; }
 		TextWidget ScannersWidget { get; set; }
 
-		public ShipDetailComposite (String title) 
+		public ShipDetailComposite (Composite parent, String title) :base (parent)
 		{
-			EntityWidget = new EntityDetailComposite(title);
+			EntityWidget = new EntityDetailComposite(this, title);
 			
 			Width = EntityWidget.Width;
 			Height = EntityWidget.Height + 4;
 			
-            ShieldsWidget = new TextWidget() { Width = this.Width };
-            TorpedoesWidget = new TextWidget() { Width = this.Width };
-            PhasersWidget = new TextWidget() { Width = this.Width };
-            ScannersWidget = new TextWidget() { Width = this.Width };
+            ShieldsWidget = new TextWidget(this) { Width = this.Width };
+            TorpedoesWidget = new TextWidget(this) { Width = this.Width };
+            PhasersWidget = new TextWidget(this) { Width = this.Width };
+            ScannersWidget = new TextWidget(this) { Width = this.Width };
 		
 			LayoutManager layoutManager = new LayoutManager ();
 			layoutManager.AddControl(EntityWidget);
-            layoutManager.AddControl(ShieldsWidget);
+            layoutManager.AddControl(ShieldsWidget); 
 			layoutManager.AddControl(TorpedoesWidget);
 			layoutManager.AddControl(PhasersWidget);
 			layoutManager.AddControl(ScannersWidget);

@@ -6,17 +6,18 @@ namespace ConsoleLib
 	{
 		public String TextValue { get; protected set; }
 
-		public TextWidget ()
+		public TextWidget (Composite parent)
+            : base(parent, 1, 0)
 		{
-			Height = 1;
+			
 		}
 		
 		public override void Render ()
 		{
-			Con.Clear();
+			Screen.Clear();
 			
 			if (TextValue != null) {
-				Con.Write(TextValue);
+				Screen.Write(TextValue);
 			}
 		}
 
