@@ -10,39 +10,40 @@ namespace ConsoleLib
 
     public abstract class Control 
     {
-        public Composite Parent { get; set; }
-
-        public int Width { get; set; }
         public int Height { get; set; }
+        public int Width { get; set; }
+        
 
         public bool Enabled { get; set; }
+
+        public Composite Parent { get; protected set; }
                 
-        public Screen Con { get; set; }
+        public Screen Screen { get; protected set; }
 
         public Mouse Mouse { get; set; }
 
-        public Control()
+        protected Control(int width, int height)
         {
+            Width = width;
+            Height = height;
             Enabled = true;
             Mouse = new Mouse();
         }
 
-        public abstract void Render();
-
-        public virtual void Initialize(Shell shell)
+        public Control(Composite parent, int width, int height):this(width, height)
         {
-            if (Con == null)
-            {
-                Con = shell.CreateConsole(Width, Height);
-            }
+            Parent = parent;
+            Screen = Parent.CreateScreen(width, height);
         }
+
+        public abstract void Render();
 
         public virtual void Dispose()
         {
-            if (Con != null)
+            if (Screen != null)
             {
-                Con.Dispose();
-                Con = null;
+                Screen.Dispose();
+                Screen = null;
                 Enabled = false;
             }
         }

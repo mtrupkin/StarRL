@@ -39,7 +39,7 @@ namespace StarRL
 
         //Dictionary<Point, List<IDrawable<Entity>>> StackedEntities;
 
-        public EntityDisplayControl()
+        public EntityDisplayControl(Composite parent, int width, int height) : base (parent, width, height)
         {
         }
 
@@ -87,7 +87,7 @@ namespace StarRL
 
         public override void Render()
         {
-            Con.Clear();
+            Screen.Clear();
 
             if (Entities != null)
             {
@@ -101,8 +101,8 @@ namespace StarRL
                 }
 
                 // render mouse?
-                Con.SetPosition(Mouse.X, Mouse.Y);
-                Con.Write('X');
+                Screen.SetPosition(Mouse.X, Mouse.Y);
+                Screen.Write('X');
 
                 lastRenderTime = DateTime.Now;
             }
@@ -117,8 +117,8 @@ namespace StarRL
 
         void DrawEntity(IDrawable<Entity> drawableEntity)
         {
-            Con.SetPosition(drawableEntity.Entity.Position.X, drawableEntity.Entity.Position.Y);
-            Con.Write(drawableEntity.Icon);  
+            Screen.SetPosition(drawableEntity.Entity.Position.X, drawableEntity.Entity.Position.Y);
+            Screen.Write(drawableEntity.Icon);  
         }
 
         Point mousePosition = new Point();
@@ -143,11 +143,11 @@ namespace StarRL
 
         public override void OnMouseMove(Mouse mouse)
         {
-            Con.SetPosition(Mouse.X, Mouse.Y);
-            Con.Write(' ');
+            Screen.SetPosition(Mouse.X, Mouse.Y);
+            Screen.Write(' ');
 
-            Con.SetPosition(mouse.X, mouse.Y);
-            Con.Write('X');
+            Screen.SetPosition(mouse.X, mouse.Y);
+            Screen.Write('X');
 
             mousePosition.Set(mouse.X, mouse.Y);
 

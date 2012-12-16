@@ -8,20 +8,17 @@ namespace StarRL.Widget
     {
         public Point Point { get; protected set; }
 
-        public PointWidget()
+        public PointWidget(Composite parent) : base(parent, 7, 1)
         {
             Point = new Point();
-            Width = 7;
-            Height = 1;
         }
 
         public override void Render()
         {
-            //Con.Clear();
 
             if (Point != null)
             {
-                Con.Write(String.Format("[{0,2}.{1,2}]", Point.X, Point.Y));
+                Screen.Write(String.Format("[{0,2}.{1,2}]", Point.X, Point.Y));
             }
         }
 

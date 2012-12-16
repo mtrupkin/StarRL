@@ -21,20 +21,15 @@ namespace StarRL
 
 		//public PointWidget CursorWidget { get; set; }
 
-		public GalaxyDetailComposite ()
+		public GalaxyDetailComposite (Composite parent): base (parent, 40, 60)
 		{
-			TargetDetailControl = new EntityDetailComposite ("Target");
+			TargetDetailControl = new EntityDetailComposite (this, "Target");
 
-			HighlightedDetailControl = new EntityDetailComposite ("Cursor");
+            HighlightedDetailControl = new EntityDetailComposite(this, "Cursor");
 
-			FlagshipDetailControl = new ShipDetailComposite ("Flagship");
+            FlagshipDetailControl = new ShipDetailComposite(this, "Flagship");
 
-			var boxControl = new BoxControl ()
-            {
-                //Title = "Galaxy Detail",
-                Width = 40,
-                Height = 60,
-            };
+			var boxControl = new BoxControl (this, "", 40, 70);
 
 			AddControl (0, 0, boxControl);
 
@@ -50,7 +45,7 @@ namespace StarRL
             
 			AddLayoutManager (layoutManager);
 
-			TimeWidget = new TimeWidget ();
+			TimeWidget = new TimeWidget (this);
 			//CursorWidget = new PointWidget ();
 
 			int bottomLine = boxControl.Height - 2;

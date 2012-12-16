@@ -5,87 +5,21 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public abstract class Shell : Control
+    public abstract class Shell : Composite
     {
-        Composite Composite { get; set; }
-        public string Title { get; set; }
+        public string Title { get; protected set; }
 
-        public Shell():base()           
+        public Shell(string title, int width, int height)
+            : base(width, height)           
         {
+            Title = title;
         }
+
+        public override abstract Screen CreateScreen(int width, int height);
 
         public abstract void Initialize();
 
         public abstract bool isClosed();
 
-        public abstract Screen CreateConsole(int width, int height);
-
-        public override void Render()
-        {
-                if (Composite != null)
-                {
-                    Composite.Render();
-                    Con.Display(0, 0, Composite.Con);
-                }
-
-        }
-
-        public virtual void SetComposite(Composite composite)
-        {
-            // Remove the old composite
-            if (Composite != null)
-            {
-                Composite.Dispose();
-                Composite = null;
-            }
-
-            Composite = composite;
-            Composite.Shell = this;
-            Composite.Con = CreateConsole(Width, Height);
-            Composite.Width = Width;
-            Composite.Height = Height;
-        }
-
-        public override void OnKeyPress(ConsoleKey consoleKey)
-        {
-            base.OnKeyPress(consoleKey);
-
-            if (Composite != null)
-            {
-                Composite.OnKeyPress(consoleKey);
-            }
-        }
-
-        public override void OnMouseMove(Mouse mouse)
-        {
-            base.OnMouseMove(mouse);
-
-            if (Composite != null)
-            {
-                Composite.OnMouseMove(mouse);
-            }
-        }
-
-        public override void OnMouseButton(Mouse mouse)
-        {
-            base.OnMouseButton(mouse);
-            if (Composite != null)
-            {
-                Composite.OnMouseButton(mouse);
-            }
-        }
-
-
-        public override void Dispose()
-        {
-            if (Composite != null)
-            {
-                Composite.Dispose();
-            }
-            if (Con != null)
-            {
-                Con.Dispose();
-            }
-        }
     }
 }
