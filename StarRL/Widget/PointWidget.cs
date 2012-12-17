@@ -4,7 +4,7 @@ using Flagship;
 
 namespace StarRL.Widget
 {
-    public class PointWidget : Control
+    public class PointWidget : ControlBase
     {
         public Point Point { get; protected set; }
 

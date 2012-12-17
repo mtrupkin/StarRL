@@ -9,7 +9,7 @@ using StarRL.Widget;
 
 namespace StarRL
 {
-	public class ShipDetailComposite : Composite
+    public class ShipDetailComposite : CompositeBase
 	{
 		public Ship Ship {get;set;}
         EntityDetailComposite EntityWidget {get;set;}
@@ -24,19 +24,17 @@ namespace StarRL
 			EntityWidget = new EntityDetailComposite(this, title);
 			
 			
-            ShieldsWidget = new TextWidget(this) { Width = this.Width, TextValue = "Shields" };
-            TorpedoesWidget = new TextWidget(this) { Width = this.Width };
-            PhasersWidget = new TextWidget(this) { Width = this.Width };
-            ScannersWidget = new TextWidget(this) { Width = this.Width };
+            ShieldsWidget = new TextWidget(this, "Sheilds");
+            TorpedoesWidget = new TextWidget(this, "Torps");
+            PhasersWidget = new TextWidget(this, "Phasers");
+            ScannersWidget = new TextWidget(this, "Scanners");
 		
-			LayoutManager layoutManager = new LayoutManager ();
-			layoutManager.AddControl(EntityWidget);
-            layoutManager.AddControl(ShieldsWidget); 
-			layoutManager.AddControl(TorpedoesWidget);
-			layoutManager.AddControl(PhasersWidget);
-			layoutManager.AddControl(ScannersWidget);
+			AddControl(EntityWidget);
+            AddControl(ShieldsWidget); 
+			AddControl(TorpedoesWidget);
+			AddControl(PhasersWidget);
+			AddControl(ScannersWidget);
 			
-			AddLayoutManager(layoutManager);
 		}
 
       
@@ -53,7 +51,7 @@ namespace StarRL
         public void SetShip(Ship ship)
 		{			
 			EntityWidget.SetEntity(ship);
-            ShieldsWidget.TextValue = String.Format("Shields: {0}", ship.Shields);
+            ShieldsWidget.SetText(String.Format("Shields: {0}", ship.Shields));
 
             Ship = ship;
         }

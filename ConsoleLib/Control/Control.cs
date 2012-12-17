@@ -1,93 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ConsoleLib
 {
-    public delegate void KeyPressEventHandler(ConsoleKey key);
-    public delegate void MouseEventHandler(Mouse mouse);
 
-    public abstract class Control 
+    public interface Control : IDisposable
     {
-        public int Height { get; set; }
-        public int Width { get; set; }
-        
+        int X { get; set; }
+        int Y { get; set; }
 
-        public bool Enabled { get; set; }
+        int Height { get; }
+        int Width { get; }
 
-        public Composite Parent { get; protected set; }
-                
-        public Screen Screen { get; protected set; }
+        bool Enabled { get; }
+        Mouse Mouse { get; }
 
-        public Mouse Mouse { get; set; }
+        Control Parent { get; }
+        Screen Screen { get; }
 
-        protected Control(int width, int height)
-        {
-            if (width <= 0)
-            {
-                throw new ArgumentOutOfRangeException("width");
-            }
+        void Resize(int width, int height);
+        void SetEnabled(bool enabled);
 
-            if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException("height");
-            }
+        void Render();        
+        Screen CreateScreen(int width, int height);
 
-            Width = width;
-            Height = height;
-            Enabled = true;
-            Mouse = new Mouse();
-        }
+        event KeyPressEventHandler KeyPressEvent;
+        event MouseEventHandler MouseMoveEvent;
+        event MouseEventHandler MouseButtonEvent;
 
-        public Control(Composite parent, int width, int height):this(width, height)
-        {
-            Parent = parent;
-            Screen = Parent.CreateScreen(width, height);
-        }
+        void OnKeyPress(ConsoleKey consoleKey);
+        void OnMouseMove(Mouse mouse);
+        void OnMouseButton(Mouse mouse);
 
-        public abstract void Render();
+        bool IsMouseInControl(Mouse mouse);
+        Mouse GetMouseInControl(Mouse mouse);
 
-        public virtual void Dispose()
-        {
-            if (Screen != null)
-            {
-                Screen.Dispose();
-                Screen = null;
-                Enabled = false;
-            }
-        }
-
-        public event KeyPressEventHandler KeyPressEvent;
-        public event MouseEventHandler MouseMoveEvent;
-        public event MouseEventHandler MouseButtonEvent;
-
-        public virtual void OnKeyPress(ConsoleKey consoleKey)
-        {
-            if (KeyPressEvent != null)
-            {
-                KeyPressEvent(consoleKey);
-            }
-        }
-
-        public virtual void OnMouseMove(Mouse mouse)
-        {
-            Mouse.X = mouse.X;
-            Mouse.Y = mouse.Y;
-
-            if (MouseMoveEvent != null)
-            {
-                MouseMoveEvent(mouse);
-            }
-        }
-
-        public virtual void OnMouseButton(Mouse mouse)
-        {
-            if (MouseButtonEvent != null)
-            {
-                MouseButtonEvent(mouse);
-            }
-        }
-    }
-    
+        // ???
+        void LayoutControls();
+    }    
 }

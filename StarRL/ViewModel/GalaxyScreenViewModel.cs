@@ -72,10 +72,7 @@ namespace StarRL
 		public void SetTime(TimeSpan timeSpan)
 		{
             GalaxyScreen.GalaxyDetailComposite.TimeWidget.Time = timeSpan;
-				
-			//Mouse cursor = GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Mouse;
-			//GalaxyScreen.GalaxyDetailComposite.CursorWidget.Point.Set (cursor.X, cursor.Y);
-		}
+	    }
 
 	}
 } 

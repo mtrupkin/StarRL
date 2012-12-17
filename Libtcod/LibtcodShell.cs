@@ -10,18 +10,39 @@ namespace Libtcod
     public class LibtcodShell : Shell
     {
         ConsoleKey Key { get; set; }
-        public Mouse OldMouse { get; set; }
+        Mouse OldMouse { get; set; }
 
         public LibtcodShell(string title, int width, int height) : base (title, width, height)
         {
             OldMouse = new Mouse();
+
+            TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);
+            TCODConsole.root.setBackgroundColor(TCODColor.black);
+            TCODConsole.root.setForegroundColor(TCODColor.white);
+            TCODConsole.root.setKeyColor(TCODColor.red);
+            TCODConsole.root.clear();
+            TCODSystem.setFps(24);
+
+            Screen = new LibtcodScreen(Width, Height, TCODConsole.root);
+
+            TCODConsole.flush();
         }
 
         public override Screen CreateScreen(int width, int height)
         {
-
             return new LibtcodScreen(width, height);
-        }        
+        }
+
+        public override void Resize(int width, int height)
+        {
+            Width = width;
+            Height = height;
+
+            TCODConsole.root.Dispose();
+
+            TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);
+
+        }
 
         public override void Render()
         {
@@ -69,22 +90,6 @@ namespace Libtcod
             newMouse.X = mouse.CellX;
             newMouse.Y = mouse.CellY;
             newMouse.LeftButton = mouse.LeftButton;
-        }
-
-        public override void Initialize()
-        {
-            Mouse = new Mouse();
-
-            TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);
-            TCODConsole.root.setBackgroundColor(TCODColor.black);
-            TCODConsole.root.setForegroundColor(TCODColor.white);
-            TCODConsole.root.setKeyColor(TCODColor.red);
-            TCODConsole.root.clear();
-            TCODSystem.setFps(24);
-
-            Screen = new LibtcodScreen(Width, Height, TCODConsole.root);
-
-            TCODConsole.flush();
         }
 
         public override bool isClosed()

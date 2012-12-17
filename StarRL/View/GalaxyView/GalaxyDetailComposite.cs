@@ -9,49 +9,41 @@ using Flagship;
 
 namespace StarRL
 {
-	public class GalaxyDetailComposite : Composite
+    public class GalaxyDetailComposite : CompositeBase
 	{
 		public ShipDetailComposite FlagshipDetailControl { get; set; }
 
 		public EntityDetailComposite TargetDetailControl { get; set; }
 
-		public EntityDetailComposite HighlightedDetailControl { get; set; }
+		public EntityBaseView HighlightedDetailControl { get; set; }
 
 		public TimeWidget TimeWidget { get; set; }
 
-		//public PointWidget CursorWidget { get; set; }
-
-		public GalaxyDetailComposite (Composite parent): base (parent, 40, 60)
+        public GalaxyDetailComposite(Composite parent, int width, int height)
+            : base(parent, width, height)
 		{
-			TargetDetailControl = new EntityDetailComposite (this, "Target");
-
-            HighlightedDetailControl = new EntityDetailComposite(this, "Cursor");
-
             FlagshipDetailControl = new ShipDetailComposite(this, "Flagship");
 
-			var boxControl = new BoxControl (this, "", 40, 60);
+			TargetDetailControl = new EntityDetailComposite (this, "Target");
 
-			AddControl (0, 0, boxControl);
+            HighlightedDetailControl = new EntityBaseView(this);
 
-			LayoutManager layoutManager = new LayoutManager ()
-            {
-                X = 1,
-                Y = 1,
-            };
+			
 
-			layoutManager.AddControl (FlagshipDetailControl);
-			layoutManager.AddControl (TargetDetailControl);
-			layoutManager.AddControl (HighlightedDetailControl);
-            
-			AddLayoutManager (layoutManager);
+            //SetLayoutManager(new StackedLayoutManager());
 
-			TimeWidget = new TimeWidget (this);
-			//CursorWidget = new PointWidget ();
+            var detailComposite = new CompositeBase(this, 39, 49);
 
-			int bottomLine = boxControl.Height - 2;
+            detailComposite.AddControl(FlagshipDetailControl);
+            detailComposite.AddControl(TargetDetailControl);
+            detailComposite.AddControl(HighlightedDetailControl);
+            // TODO move to bottom of control
+            TimeWidget = new TimeWidget(this);
+            detailComposite.AddControl(TimeWidget);
 
-			//AddControl (1, bottomLine, TimeWidget);
-            AddControl(boxControl.Width - TimeWidget.Width - 1, bottomLine, TimeWidget);
+            var boxControl = new BoxWidget(detailComposite, "");
+            AddControl(boxControl);
+
 		}
 
 	}

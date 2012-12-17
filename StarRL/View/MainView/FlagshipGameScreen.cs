@@ -6,29 +6,22 @@ using ConsoleLib;
 
 namespace StarRL
 {
-    public class FlagshipGameScreen : Composite
+    public class FlagshipGameScreen : CompositeBase
     {
         public MainMenuScreen MainScreen { get; set; }
         public GalaxyScreen GalaxyScreen { get; set; }
          
-        public FlagshipGameScreen(Composite parent):base (parent, 120,60) {
+        public FlagshipGameScreen(Control parent):base (parent, 120,60) {
             Width = 140;
             Height = 60;
 
-            MainScreen = new MainMenuScreen(parent)
-            {
-                Width = this.Width,
-                Height = this.Height,
-            };
+            MainScreen = new MainMenuScreen(parent);
 
-            GalaxyScreen = new GalaxyScreen(parent)
-            {
-                Width = this.Width,
-                Height = this.Height,
-            };
+            GalaxyScreen = new GalaxyScreen(parent);
 
-            AddControl(0, 0, MainScreen);
-            AddControl(0, 0, GalaxyScreen);
+            SetLayoutManager(new StackedLayoutManager());
+            AddControl(MainScreen);
+            AddControl(GalaxyScreen);
         }
     } 
 }

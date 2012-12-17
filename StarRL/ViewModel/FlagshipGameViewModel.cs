@@ -56,16 +56,16 @@ namespace StarRL
 
         public void DisplayGame()
         {
-            FlagshipGameScreen.GalaxyScreen.Enabled = true;
-            FlagshipGameScreen.MainScreen.Enabled = false;
+            FlagshipGameScreen.GalaxyScreen.SetEnabled(true);
+            FlagshipGameScreen.MainScreen.SetEnabled(false);
 
             GalaxyScreenViewModel.SetFlagshipGame(FlagshipGame);           
         }
 
         public void DisplayMainMenu()
         {
-            FlagshipGameScreen.GalaxyScreen.Enabled = false;
-            FlagshipGameScreen.MainScreen.Enabled = true;
+            FlagshipGameScreen.GalaxyScreen.SetEnabled(false);
+            FlagshipGameScreen.MainScreen.SetEnabled(true);
         }
     }
 }

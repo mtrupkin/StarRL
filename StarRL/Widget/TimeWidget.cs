@@ -6,7 +6,7 @@ using ConsoleLib;
 
 namespace StarRL.Widget
 {
-    public class TimeWidget : Control
+    public class TimeWidget : ControlBase
     {
         public TimeSpan Time { get; set; }
 

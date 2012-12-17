@@ -29,9 +29,9 @@ namespace StarRL
             List2.Add(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
             List2.Add(new Option() { Name = "Quit", OptionHandler = Quit });
 
-            MainScreen.ListControl.Items = List1;
+            MainScreen.ListWidget.Items = List1;
 
-            MainScreen.ListControl.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
+            MainScreen.ListWidget.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
         }
 
         void ListControl_SelectedEvent(Option item)
@@ -42,7 +42,7 @@ namespace StarRL
         // initialization for each new game
         public void CreateNewGame()
         {
-            MainScreen.ListControl.Items = List2;
+            MainScreen.ListWidget.Items = List2;
             GalaxyFactory galaxyFactory = new GalaxyFactory(80, 60);
             FlagshipGameViewModel.FlagshipGame.Galaxy = galaxyFactory.CreateGalaxy();
         }

@@ -9,20 +9,23 @@ using Flagship;
 namespace StarRL
 {
 
-    public class GalaxyMasterComposite : Composite
+    public class GalaxyMasterComposite : CompositeBase
     {
         public EntityDisplayControl GalaxyControl { get; set; }
 
-
-        public GalaxyMasterComposite(Composite parent):base(parent, 80, 60)
+        public GalaxyMasterComposite(Composite parent, int width, int height)
+            : base(parent, width, height)
         {
 
-            GalaxyControl = new EntityDisplayControl(parent, 80-2, 60-2);
+            GalaxyControl = new EntityDisplayControl(parent, width - 2, height - 2);
 
-            var boxControl = new BoxControl(this, "Galaxy", 80, 60);
+            var boxControl = new BoxWidget(GalaxyControl, "Galaxy");
 
-            AddControl(0, 0, boxControl);
-            AddControl(1, 1, GalaxyControl);
+            //SetLayoutManager(new StackedLayoutManager());
+            AddControl(boxControl);
+            //GalaxyControl.X = 1;
+            //GalaxyControl.Y = 1;
+            //AddControl(GalaxyControl);
         }
         
 

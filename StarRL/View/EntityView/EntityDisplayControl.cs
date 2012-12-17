@@ -30,7 +30,7 @@ namespace StarRL
 
     }
 
-    public class EntityDisplayControl : Control
+    public class EntityDisplayControl : ControlBase
     {
         Entity SelectedEntity { get; set; }
         Entity HighlightedEntity { get; set; }
@@ -143,6 +143,8 @@ namespace StarRL
 
         public override void OnMouseMove(Mouse mouse)
         {
+            base.OnMouseMove(mouse);
+
             Screen.SetPosition(Mouse.X, Mouse.Y);
             Screen.Write(' ');
 
@@ -155,7 +157,7 @@ namespace StarRL
 
             OnEntityHighlightedEvent(HighlightedEntity);
             
-            base.OnMouseMove(mouse);
+           
         }
 
         public override void OnMouseButton(Mouse mouse)

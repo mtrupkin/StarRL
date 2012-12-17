@@ -58,6 +58,7 @@
     <Compile Include="View\EntityView\DrawableFactory.cs" />
     <Compile Include="StarRL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\EntityView\EntityBaseView.cs" />
     <Compile Include="View\EntityView\IDrawable.cs" />
     <Compile Include="View\EntityView\EntityDisplayControl.cs" />
     <Compile Include="ViewModel\GalaxyScreenViewModel.cs" />

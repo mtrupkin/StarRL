@@ -9,29 +9,24 @@ using Flagship;
 namespace StarRL
 {
 
-    public class GalaxyScreen : Composite
+    public class GalaxyScreen : CompositeBase
     {
         public GalaxyScreenViewModel GalaxyScreenViewModel { get; set; }
 
         public GalaxyMasterComposite GalaxyMasterComposite { get; set; }
         public GalaxyDetailComposite GalaxyDetailComposite { get; set; }
 
-        public GalaxyScreen(Composite parent) : base (parent, 120, 60)
+        public GalaxyScreen(Control parent)
+            : base(parent, parent.Width, parent.Height)
         {
-            GalaxyMasterComposite = new GalaxyMasterComposite(this)
-            {
-                Width = 80,
-                Height= 60,
-            };
+            GalaxyMasterComposite = new GalaxyMasterComposite(this, 80, parent.Height);
 
-            GalaxyDetailComposite = new GalaxyDetailComposite(this)
-            {
-                Width = 40,
-                Height = 60,
-            };
+            GalaxyDetailComposite = new GalaxyDetailComposite(this, 40, parent.Height);
 
-            AddControl(0, 0, GalaxyMasterComposite);
-            AddControl(80, 0, GalaxyDetailComposite);
+            SetLayoutManager(new HorizontalLayout());
+
+            AddControl(GalaxyMasterComposite);
+            AddControl(GalaxyDetailComposite);
         }
     }
 }

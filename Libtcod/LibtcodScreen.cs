@@ -24,31 +24,22 @@ namespace Libtcod
 
 		public int Height { get; set; }
     
-		public LibtcodScreen (int width, int height)
+		public LibtcodScreen (int width, int height) : this(width, height, new TCODConsole (width, height))
+		{
+		}
+
+        public LibtcodScreen(int width, int height, TCODConsole tcodConsole)
 		{
 			Width = width;
 			Height = height;
 
-			TCODConsoleInst = new TCODConsole (width, height);
-			Initialize ();
-		}
+            TCODConsoleInst = tcodConsole;
 
-		public LibtcodScreen (int width, int height, TCODConsole root)
-		{
-			Width = width;
-			Height = height;
-
-			TCODConsoleInst = root;
-			Initialize ();
-		}
-
-		void Initialize ()
-		{
-			TCODConsoleInst.setBackgroundFlag (TCODBackgroundFlag.Overlay);
-			BackgroundColor = ConsoleRGB.Black;
-			ForegroundColor = ConsoleRGB.White;
-			TCODConsoleInst.setKeyColor (TCODColor.red);
-		}
+            TCODConsoleInst.setBackgroundFlag(TCODBackgroundFlag.Overlay);
+            BackgroundColor = ConsoleRGB.Black;
+            ForegroundColor = ConsoleRGB.White;
+            TCODConsoleInst.setKeyColor(TCODColor.red);
+        }
 
 		public void Clear ()
 		{
