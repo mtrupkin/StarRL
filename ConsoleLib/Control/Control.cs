@@ -2,6 +2,8 @@
 
 namespace ConsoleLib
 {
+    public delegate void KeyPressEventHandler(ConsoleKey key);
+    public delegate void MouseEventHandler(Mouse mouse);
 
     public interface Control : IDisposable
     {
@@ -14,14 +16,13 @@ namespace ConsoleLib
         bool Enabled { get; }
         Mouse Mouse { get; }
 
-        Control Parent { get; }
+        Composite Parent { get; }
         Screen Screen { get; }
 
         void Resize(int width, int height);
         void SetEnabled(bool enabled);
 
         void Render();        
-        Screen CreateScreen(int width, int height);
 
         event KeyPressEventHandler KeyPressEvent;
         event MouseEventHandler MouseMoveEvent;
@@ -33,8 +34,5 @@ namespace ConsoleLib
 
         bool IsMouseInControl(Mouse mouse);
         Mouse GetMouseInControl(Mouse mouse);
-
-        // ???
-        void LayoutControls();
     }    
 }

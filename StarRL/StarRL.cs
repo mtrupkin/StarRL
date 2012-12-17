@@ -40,19 +40,20 @@ namespace StarRL
             // first time initialization
             Initialize();
 
+            bool complete = false;
             // main loop
             do
             {
                 Shell.Render();
 
-                if (Shell.isClosed())
+                if (Shell.isClosed() || FlagshipGame.Complete)
                 {
-                    Exit();
+                    complete = true;
                 }
 
-            } while (!FlagshipGame.Complete);
-
-            Exit();
+            } while (!complete);
+            
+            Dispose();
         }
 
         // first time initialization
@@ -77,7 +78,7 @@ namespace StarRL
             };
             FlagshipGameViewModel.Initialize();
 
-            Shell.SetMainControl(FlagshipGameScreen);
+            Shell.AddControl(FlagshipGameScreen);
 
             // intialize game update tick
             updateTimer = new Timer(100);
@@ -86,6 +87,16 @@ namespace StarRL
 
             lastUpdateTime = DateTime.Now;
             lastDrawTime = DateTime.Now;
+        }
+
+        // clean-up
+        private void Dispose()
+        {
+            updateTimer.Stop();
+
+            Shell.Dispose();
+
+            FlagshipGame.Complete = true;
         }
 
         void updateTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -104,16 +115,6 @@ namespace StarRL
 
                 lastUpdateTime = DateTime.Now;
             }
-        }
-
-        //
-        private void Exit()
-        {
-            updateTimer.Stop();
-
-            Shell.Dispose();
-
-            FlagshipGame.Complete = true;
         }
     }
 }

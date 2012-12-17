@@ -7,12 +7,16 @@ namespace ConsoleLib
 { 
 
     public interface Composite : Control
-    {                            
-        void SetLayoutManager(Layout layout);
+    {
+
+        Screen CreateScreen(int width, int height);
 
         void AddControl(Control control);
 
         void RemoveControl(Control control);
 
+        void SetLayoutManager(Layout layout);
+
+        void LayoutControls();
     }
 }

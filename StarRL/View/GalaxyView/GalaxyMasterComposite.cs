@@ -26,8 +26,7 @@ namespace StarRL
             //GalaxyControl.X = 1;
             //GalaxyControl.Y = 1;
             //AddControl(GalaxyControl);
-        }
-        
+        }        
 
         void Fire() { }
 

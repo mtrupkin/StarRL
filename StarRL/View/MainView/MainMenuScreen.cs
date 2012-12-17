@@ -14,7 +14,7 @@ namespace StarRL
 
         public ListWidget<Option> ListWidget { get; set; }
 
-        public MainMenuScreen(Control parent)
+        public MainMenuScreen(Composite parent)
             : base(parent, parent.Width, parent.Height)
         {
             ListWidget = new ListWidget<Option>(this);

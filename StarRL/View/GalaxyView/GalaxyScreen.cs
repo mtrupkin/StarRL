@@ -16,7 +16,7 @@ namespace StarRL
         public GalaxyMasterComposite GalaxyMasterComposite { get; set; }
         public GalaxyDetailComposite GalaxyDetailComposite { get; set; }
 
-        public GalaxyScreen(Control parent)
+        public GalaxyScreen(Composite parent)
             : base(parent, parent.Width, parent.Height)
         {
             GalaxyMasterComposite = new GalaxyMasterComposite(this, 80, parent.Height);

@@ -45,6 +45,8 @@
     <Compile Include="Control\Control.cs" />
     <Compile Include="Control\ControlBase.cs" />
     <Compile Include="Control\CompositeBase.cs" />
+    <Compile Include="Control\AbstractControl.cs" />
+    <Compile Include="Control\AbstractComposite.cs" />
     <Compile Include="Layout\HorizontalLayout.cs" />
     <Compile Include="Layout\VerticalLayout.cs" />
     <Compile Include="Layout\StackedLayout.cs" />

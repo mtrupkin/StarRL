@@ -6,51 +6,26 @@ using System.Text;
 namespace ConsoleLib
 {
 
-    public class CompositeBase : ControlBase, Composite
+    public class CompositeBase : AbstractComposite, Composite
     {
-        protected List<Control> Controls { get; set; }
 
-        protected Layout LayoutManager { get; set; }
-
-        public CompositeBase(Control parent, int width, int height)
-            : base(parent, width, height)
+        public CompositeBase(Composite parent, int width, int height)
+            : base(width, height)
         {
-            Controls = new List<Control>();
-            LayoutManager = new VerticalLayout();
-        }
-                    
-        public void SetLayoutManager(Layout layout)
-        {
-            LayoutManager = layout;
-
-            LayoutControls();
-        }
-
-        public virtual void AddControl(Control control)
-        {
-            Controls.Add(control);
-
-            if (control.IsMouseInControl(Mouse) ) {
-                var mouse = control.GetMouseInControl(Mouse);
-                control.Mouse.SetMouse(mouse);
+            if (parent == null)
+            {
+                throw new ArgumentNullException("parent");
             }
 
-            LayoutControls();
+            Parent = parent;
+            Screen = Parent.CreateScreen(width, height);
         }
 
-        public virtual void RemoveControl(Control control)
+        public override Screen CreateScreen(int width, int height)
         {
-            Controls.Remove(control);
-            control.Dispose();
-
-            LayoutControls();
+            return Parent.CreateScreen(width, height);
         }
-
-        public virtual void LayoutControls()
-        {
-            LayoutManager.LayoutControls(Controls);
-        }
-
+                    
         public override void Render()
         {
             foreach (Control control in Controls)
@@ -63,56 +38,16 @@ namespace ConsoleLib
             }
         }
 
-        public override void Dispose()
+        public override void Resize(int width, int height)
         {
-            base.Dispose();
-
-            foreach (Control control in Controls)
+            // default behavior to only grow widget
+            if ((width > Width) || (height > Height))
             {
-                control.Dispose();
+                Screen.Dispose();
+                Screen = Parent.CreateScreen(width, height);
             }
-        }
-
-        public override void OnKeyPress(ConsoleKey consoleKey)
-        {
-            base.OnKeyPress(consoleKey);
-
-            foreach (Control control in Controls)
-            {
-                if (control.Enabled)
-                {
-                    control.OnKeyPress(consoleKey);
-                }
-            }
-        }
-
-        public override void OnMouseMove(Mouse mouse)
-        {
-            base.OnMouseMove(mouse);
-
-            foreach (Control control in Controls)
-            {
-                if (control.IsMouseInControl(mouse))
-                {
-                    var mouseInControl = control.GetMouseInControl(mouse);
-                    control.OnMouseMove(mouseInControl);
-                }
-            }
-        }
-
-        public override void OnMouseButton(Mouse mouse)
-        {
-            base.OnMouseButton(mouse);
-
-            foreach (Control control in Controls)
-            {
-                if (control.IsMouseInControl(mouse))                
-                {
-                    var mouseInControl = control.GetMouseInControl(mouse);
-
-                    control.OnMouseButton(mouseInControl);
-                }
-            }
+            Width = width;
+            Height = height;
         }
     }
 }
