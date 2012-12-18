@@ -18,20 +18,20 @@ namespace StarRL
 
         public void Initialize()
         {
-            List1 = new List<Option>();
-            List1.Add(new Option() { Name = "Create New Game", OptionHandler = NewGame });
-            List1.Add(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
-            List1.Add(new Option() { Name = "Quit", OptionHandler = Quit });
+            MainScreen.NewListWidget.AddItem(new Option() { Name = "Create New Game", OptionHandler = NewGame });
+            MainScreen.NewListWidget.AddItem(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
+            MainScreen.NewListWidget.AddItem(new Option() { Name = "Quit", OptionHandler = Quit });
 
-            List2 = new List<Option>();
-            List2.Add(new Option() { Name = "Create New Game", OptionHandler = NewGame });
-            List2.Add(new Option() { Name = "Continue Game", OptionHandler = ContinueGame });
-            List2.Add(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
-            List2.Add(new Option() { Name = "Quit", OptionHandler = Quit });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Create New Game", OptionHandler = NewGame });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Continue Game", OptionHandler = ContinueGame });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Quit", OptionHandler = Quit });
 
-            MainScreen.ListWidget.Items = List1;
+            MainScreen.NewListWidget.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
+            MainScreen.ContinueListWidget.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
 
-            MainScreen.ListWidget.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
+            MainScreen.NewListWidget.SetEnabled(true);
+            MainScreen.ContinueListWidget.SetEnabled(false);
         }
 
         void ListControl_SelectedEvent(Option item)
@@ -42,7 +42,9 @@ namespace StarRL
         // initialization for each new game
         public void CreateNewGame()
         {
-            MainScreen.ListWidget.Items = List2;
+            MainScreen.NewListWidget.SetEnabled(false);
+            MainScreen.ContinueListWidget.SetEnabled(true);
+
             GalaxyFactory galaxyFactory = new GalaxyFactory(80, 60);
             FlagshipGameViewModel.FlagshipGame.Galaxy = galaxyFactory.CreateGalaxy();
         }

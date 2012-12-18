@@ -5,11 +5,26 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class StackedLayoutManager : Layout
+    public class StackedLayoutManager : LayoutBase
     {     
-        public virtual void LayoutControls(List<Control> controls)
+        public override void LayoutControls(List<Control> controls)
         {
-            // no op
+            int maxWidth = 0;
+            int maxHeight = 0;
+
+            foreach (Control control in controls)
+            {
+                if (control.Width > maxWidth) {
+                    maxWidth = control.Width;
+                }
+                if (control.Height > maxHeight)
+                {
+                    maxHeight = control.Height;
+                }
+            }
+
+            Width = maxWidth;
+            Height = maxHeight;
         }
     }
 }

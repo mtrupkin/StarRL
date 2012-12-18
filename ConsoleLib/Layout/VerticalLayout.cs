@@ -5,17 +5,36 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class VerticalLayout : Layout
+    public class VerticalLayout : LayoutBase
     {
-        public void LayoutControls(List<Control> controls)
+        public override void LayoutControls(List<Control> controls)
         {
-            int lastY = 0;
+            Height = MinHeight;
+            Width = MinWidth;
+
+            int maxWidth = MinWidth;
+            int maxHeight = 0;
 
             foreach (Control control in controls)
             {
-                control.Y = lastY;
+                control.Y = maxHeight;
 
-                lastY += control.Height;
+                maxHeight += control.Height;
+
+                if (control.Width > maxWidth)
+                {
+                    maxWidth = control.Width;
+                }
+            }
+
+            if (maxHeight > MinHeight)
+            {
+                Height = maxHeight;
+            }
+
+            if (maxWidth > MinWidth)
+            {
+                Width = maxWidth;
             }
         }
     }

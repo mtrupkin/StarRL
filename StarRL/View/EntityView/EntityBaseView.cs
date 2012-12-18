@@ -17,10 +17,10 @@ namespace StarRL
         protected PointWidget Position { get; set; }
 
         public EntityBaseView(Composite parent)
-            : base(parent, 10, 10)
+            : base(parent, 20, 10)
         {
-            EntityType = new TextWidget(this);
-            Name = new TextWidget(this);
+            EntityType = new TextWidget(this, Width);
+            Name = new TextWidget(this, Width);
             Position = new PointWidget(this);
 
             AddControl(EntityType);

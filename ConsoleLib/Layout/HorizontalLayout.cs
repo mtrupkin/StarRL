@@ -5,18 +5,27 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class HorizontalLayout : Layout
+    public class HorizontalLayout : LayoutBase
     {
-        public void LayoutControls(List<Control> controls)
+        public override void LayoutControls(List<Control> controls)
         {
-            int lastX = 0;
+            int maxWidth = 0;
+            int maxHeight = 0;
 
             foreach (Control control in controls)
             {
-                control.X = lastX;
+                control.X = maxWidth;
 
-                lastX += control.Width;
+                maxWidth += control.Width;
+
+                if (control.Height > maxHeight)
+                {
+                    maxHeight = control.Height;
+                }
             }
+
+            Width = maxWidth;
+            Height = maxHeight;
         }
     }
 }

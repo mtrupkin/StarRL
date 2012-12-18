@@ -30,7 +30,7 @@ namespace ConsoleLib.Widget
 
     public class ListWidget<T> : ControlBase
     {
-        public List<T> Items { get; set; }
+        public List<T> Items { get; protected set; }
 
         public T SelectedItem { get; set; }
 
@@ -151,6 +151,23 @@ namespace ConsoleLib.Widget
         public void AddItem(T item)
         {
             Items.Add(item);
+
+            int maxWidth = Width;
+            int maxHeight = Height;
+            int itemWidth = item.ToString().Length;
+            int itemHeight = Items.Count;
+
+            if ( itemWidth > Width)
+            {
+                maxWidth = itemWidth;
+            }
+
+            if (itemHeight > Height)
+            {
+                maxHeight = itemHeight;
+            }
+
+            Resize(maxWidth, maxHeight);
         }
     }
 }

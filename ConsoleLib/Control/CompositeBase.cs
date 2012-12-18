@@ -6,7 +6,7 @@ using System.Text;
 namespace ConsoleLib
 {
 
-    public class CompositeBase : AbstractComposite, Composite
+    public class CompositeBase : CompositeCommon, Composite
     {
 
         public CompositeBase(Composite parent, int width, int height)

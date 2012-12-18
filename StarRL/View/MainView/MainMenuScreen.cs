@@ -12,14 +12,19 @@ namespace StarRL
     public class MainMenuScreen : CompositeBase
     {
 
-        public ListWidget<Option> ListWidget { get; set; }
+        public ListWidget<Option> NewListWidget { get; set; }
+        public ListWidget<Option> ContinueListWidget { get; set; }
 
         public MainMenuScreen(Composite parent)
             : base(parent, parent.Width, parent.Height)
         {
-            ListWidget = new ListWidget<Option>(this);
+            SetLayoutManager(new StackedLayoutManager());
 
-            AddControl(ListWidget);            
+            NewListWidget = new ListWidget<Option>(this);
+            ContinueListWidget = new ListWidget<Option>(this);
+
+            AddControl(NewListWidget);
+            AddControl(ContinueListWidget);            
         }
        
 

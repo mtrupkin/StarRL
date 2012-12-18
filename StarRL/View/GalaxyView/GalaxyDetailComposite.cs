@@ -32,7 +32,7 @@ namespace StarRL
 
             //SetLayoutManager(new StackedLayoutManager());
 
-            var detailComposite = new CompositeBase(this, 39, 49);
+            var detailComposite = new CompositeBase(this, 38, 48);
 
             detailComposite.AddControl(FlagshipDetailControl);
             detailComposite.AddControl(TargetDetailControl);

@@ -6,8 +6,8 @@ namespace ConsoleLib
 	{
         public String TextValue { get; protected set; }
 
-        public TextWidget(Composite parent)
-            : base(parent, 1, 1)
+        public TextWidget(Composite parent, int width)
+            : base(parent, width, 1)
         {
             
         }

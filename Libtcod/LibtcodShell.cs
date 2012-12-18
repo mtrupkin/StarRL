@@ -42,6 +42,7 @@ namespace Libtcod
 
             TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);
 
+            Screen = new LibtcodScreen(Width, Height, TCODConsole.root);
         }
 
         public override void Render()

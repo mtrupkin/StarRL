@@ -6,7 +6,7 @@ using System.Text;
 namespace ConsoleLib
 {
 
-    public abstract class ControlBase : AbstractControl
+    public abstract class ControlBase : ControlCommon
     {
 
         public ControlBase(Composite parent, int width, int height) : base(width, height)
@@ -29,14 +29,14 @@ namespace ConsoleLib
 
         public override void Resize(int width, int height)
         {
-            // default behavior to only grow widget
-            if ((width > Width) || (height > Height))
-            {
-                Screen.Dispose();
-                Screen = Parent.CreateScreen(width, height);
-            }
+
+            Screen.Dispose();
+            Screen = Parent.CreateScreen(width, height);
+
             Width = width;
             Height = height;
+
+            Parent.LayoutControls();
         }
     }    
 }

@@ -23,7 +23,7 @@ namespace StarRL
 
             TitleWidget = new TextWidget(this, String.Format("-----{0}-----", title));
 
-            NameWidget = new TextWidget(this);
+            NameWidget = new TextWidget(this, 20);
 
             PositionWidget = new PointWidget(this);
             PositionWidget.SetEnabled(false);

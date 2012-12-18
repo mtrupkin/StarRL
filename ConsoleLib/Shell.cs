@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public abstract class Shell : AbstractComposite
+    public abstract class Shell : CompositeCommon
     {
         public string Title { get; protected set; }                
 
