@@ -35,14 +35,16 @@ namespace Libtcod
 
         public override void Resize(int width, int height)
         {
-            Width = width;
-            Height = height;
+            if ((width != Width) || (height != Height)) {
+                Width = width;
+                Height = height;
 
-            TCODConsole.root.Dispose();
+                TCODConsole.root.Dispose();
 
-            TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);
+                TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);
 
-            Screen = new LibtcodScreen(Width, Height, TCODConsole.root);
+                Screen = new LibtcodScreen(Width, Height, TCODConsole.root);
+            }
         }
 
         public override void Render()

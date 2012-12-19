@@ -27,8 +27,8 @@ namespace ConsoleLib
             int newSize = text.Length;
             if (newSize > MinWidth)
             {
-                MinWidth = newSize;
-                Resize(MinWidth, 1);
+                //MinWidth = newSize;
+                Resize(newSize, 1);
             }
         }
 		

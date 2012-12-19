@@ -65,8 +65,8 @@ namespace StarRL
             FlagshipGame = new FlagshipGame();
 
             // intialize console
-            Shell = new Libtcod.LibtcodShell("StarRL", 120, 60);            
-
+            Shell = new Libtcod.LibtcodShell("StarRL", 140, 60);
+            
             // intialize view
             var FlagshipGameScreen = new FlagshipGameScreen(Shell);
 

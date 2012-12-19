@@ -9,6 +9,9 @@ namespace ConsoleLib
     {     
         public override void LayoutControls(List<Control> controls)
         {
+            Height = MinHeight;
+            Width = MinWidth;
+
             int maxWidth = 0;
             int maxHeight = 0;
 
@@ -23,8 +26,15 @@ namespace ConsoleLib
                 }
             }
 
-            Width = maxWidth;
-            Height = maxHeight;
+            if (maxHeight > MinHeight)
+            {
+                Height = maxHeight;
+            }
+
+            if (maxWidth > MinWidth)
+            {
+                Width = maxWidth;
+            }
         }
     }
 }
