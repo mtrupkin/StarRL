@@ -6,16 +6,17 @@ using System.Text;
 namespace ConsoleLib
 {
 
-    public abstract class CompositeCommon : ControlCommon, Composite
+    public abstract class CompositeCommon : ControlCommon, Composite 
     {
-        protected List<Control> Controls { get; set; }
+        
 
         protected Layout LayoutManager { get; set; }
+
+        protected List<Control> Controls { get { return LayoutManager.Controls; } }
 
         public CompositeCommon(int width, int height)
             : base(width, height)
         {
-            Controls = new List<Control>();
             LayoutManager = new VerticalLayout();
             LayoutManager.SetMinSize(Width, Height);   
         }
@@ -25,12 +26,21 @@ namespace ConsoleLib
         public void SetLayoutManager(Layout layout)
         {
             LayoutManager = layout;
-            LayoutManager.SetMinSize(Width, Height);   
+            LayoutManager.SetMinSize(Width, Height);
+
+            //if (control.IsMouseInControl(Mouse))
+            //{
+            //    var mouse = control.GetMouseInControl(Mouse);
+            //    control.Mouse.SetMouse(mouse);
+            //}
+
             LayoutControls();
         }
 
         public virtual void AddControl(Control control)
         {
+            LayoutManager.AddControl(control);
+
             Controls.Add(control);
 
             if (control.IsMouseInControl(Mouse) ) {
@@ -41,17 +51,10 @@ namespace ConsoleLib
             LayoutControls();
         }
 
-        public virtual void RemoveControl(Control control)
-        {
-            Controls.Remove(control);
-            control.Dispose();
-
-            LayoutControls();
-        }
 
         public virtual void LayoutControls()
         {
-            LayoutManager.LayoutControls(Controls);
+            LayoutManager.LayoutControls(this);
 
             Resize(LayoutManager.Width, LayoutManager.Height);
         }

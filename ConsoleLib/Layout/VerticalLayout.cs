@@ -5,9 +5,11 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class VerticalLayout : LayoutBase
+    public class VerticalLayout : LayoutBase<VerticalLayoutData>
     {
-        public override void LayoutControls(List<Control> controls)
+        public bool GrabHorizontal { get; set; }
+
+        public override void LayoutControls(Composite composite)
         {
             Height = MinHeight;
             Width = MinWidth;
@@ -15,16 +17,26 @@ namespace ConsoleLib
             int maxWidth = MinWidth;
             int maxHeight = 0;
 
-            foreach (Control control in controls)
+            if (GrabHorizontal)
             {
+                maxWidth = composite.Parent.Width;
+            }
+
+
+            foreach (ControlLayout<VerticalLayoutData> controlLayout in ControlLayouts)
+            {
+                Control control = controlLayout.Control;
+
                 control.Y = maxHeight;
 
                 maxHeight += control.Height;
+
 
                 if (control.Width > maxWidth)
                 {
                     maxWidth = control.Width;
                 }
+
             }
 
             if (maxHeight > MinHeight)
@@ -36,6 +48,17 @@ namespace ConsoleLib
             {
                 Width = maxWidth;
             }
+
+            foreach (ControlLayout<VerticalLayoutData> controlLayout in ControlLayouts)
+            {
+                if (controlLayout.LayoutData.HorizontalJustify == HorizontalJustify.Right)
+                {
+                    Control control = controlLayout.Control;
+
+                    control.X = Width - control.Width;
+                }
+            }
+
         }
     }
 }

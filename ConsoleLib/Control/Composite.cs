@@ -13,8 +13,6 @@ namespace ConsoleLib
 
         void AddControl(Control control);
 
-        void RemoveControl(Control control);
-
         void SetLayoutManager(Layout layout);
 
         void LayoutControls();

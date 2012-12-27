@@ -22,7 +22,9 @@ namespace StarRL
         public GalaxyDetailComposite(Composite parent, int width, int height)
             : base(parent, width, height)
 		{
-            var detailComposite = new BoxComposite(this, 1, 1);
+            var detailComposite = new CompositeBase(this, 1, 1);
+
+            VerticalLayout layout = new VerticalLayout();
 
             FlagshipDetailControl = new ShipDetailComposite(detailComposite, "Flagship");
 
@@ -30,20 +32,16 @@ namespace StarRL
 
             HighlightedDetailControl = new EntityBaseView(this);
 
-			
-
-            //SetLayoutManager(new StackedLayoutManager());
-
-            detailComposite.AddControl(FlagshipDetailControl);
-            detailComposite.AddControl(TargetDetailControl);
-            detailComposite.AddControl(HighlightedDetailControl);
+            layout.AddControl(FlagshipDetailControl);
+            layout.AddControl(TargetDetailControl);
+            layout.AddControl(HighlightedDetailControl);
             // TODO move to bottom of control
 
             TimeWidget = new TimeWidget(this);
-            detailComposite.AddControl(TimeWidget);
+            layout.AddControl(TimeWidget);
 
-            //var boxControl = new BoxWidget(detailComposite, "");
-            //AddControl(boxControl);
+            detailComposite.SetLayoutManager(layout);
+
             AddControl(detailComposite);
 		}
 

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class HorizontalLayout : LayoutBase
+    public class HorizontalLayout : LayoutBase<HorizontalLayoutData>
     {
-        public override void LayoutControls(List<Control> controls)
+        public override void LayoutControls(Composite parent)
         {
             Height = MinHeight;
             Width = MinWidth;
@@ -15,8 +15,10 @@ namespace ConsoleLib
             int maxWidth = 0;
             int maxHeight = 0;
 
-            foreach (Control control in controls)
+            foreach (ControlLayout<HorizontalLayoutData> controlLayout in ControlLayouts)
             {
+                Control control = controlLayout.Control;
+
                 control.X = maxWidth;
 
                 maxWidth += control.Width;

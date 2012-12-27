@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class StackedLayoutManager : LayoutBase
-    {     
-        public override void LayoutControls(List<Control> controls)
+    public class StackedLayoutManager : LayoutBase<LayoutData>
+    {
+        public override void LayoutControls(Composite parent)
         {
             Height = MinHeight;
             Width = MinWidth;
@@ -15,9 +15,12 @@ namespace ConsoleLib
             int maxWidth = 0;
             int maxHeight = 0;
 
-            foreach (Control control in controls)
+            foreach (ControlLayout<LayoutData> controlLayout in ControlLayouts)
             {
-                if (control.Width > maxWidth) {
+                Control control = controlLayout.Control;
+
+                if (control.Width > maxWidth)
+                {
                     maxWidth = control.Width;
                 }
                 if (control.Height > maxHeight)
@@ -35,6 +38,6 @@ namespace ConsoleLib
             {
                 Width = maxWidth;
             }
-        }
+        }       
     }
 }

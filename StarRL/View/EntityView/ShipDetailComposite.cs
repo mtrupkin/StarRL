@@ -21,6 +21,9 @@ namespace StarRL
         public ShipDetailComposite(Composite parent, String title)
             : base(parent, 1, 1)
 		{
+            VerticalLayout layout = new VerticalLayout();
+            layout.GrabHorizontal = true;
+
 			EntityWidget = new EntityDetailComposite(this, title);
 			
 			
@@ -28,13 +31,16 @@ namespace StarRL
             TorpedoesWidget = new TextWidget(this, "Torps");
             PhasersWidget = new TextWidget(this, "Phasers");
             ScannersWidget = new TextWidget(this, "Scanners");
-		
-			AddControl(EntityWidget);
-            AddControl(ShieldsWidget); 
-			AddControl(TorpedoesWidget);
-			AddControl(PhasersWidget);
-			AddControl(ScannersWidget);
-			
+
+            layout.AddControl(EntityWidget);
+            layout.AddControl(ShieldsWidget);
+            layout.AddControl(TorpedoesWidget);
+
+            layout.AddControl(PhasersWidget, new VerticalLayoutData() { HorizontalJustify = HorizontalJustify.Right});
+
+            layout.AddControl(ScannersWidget);
+
+            SetLayoutManager(layout);
 		}
 
       

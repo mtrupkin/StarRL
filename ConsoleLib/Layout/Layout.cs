@@ -7,14 +7,18 @@ namespace ConsoleLib
 {
     public interface Layout
     {
+        List<Control> Controls { get; }
+
         int MinWidth { get; }
         int MinHeight { get; }
 
         int Width { get; }
         int Height { get; }
 
-        void LayoutControls(List<Control> controls);
+        void LayoutControls(Composite parent);
 
         void SetMinSize(int width, int height);
+
+        void AddControl(Control control);
     }
 }
