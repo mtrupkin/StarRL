@@ -9,7 +9,7 @@ using StarRL.Widget;
 
 namespace StarRL
 {
-    public class EntityDetailComposite : CompositeBase
+    public class EntityDetailComposite : VerticalComposite
 	{
         
 		public Entity Entity { get; protected set; }

@@ -7,14 +7,10 @@ namespace ConsoleLib
 
     public interface Control : IDisposable
     {
-        int X { get; set; }
-        int Y { get; set; }
-
         int Height { get; }
         int Width { get; }
 
         bool Enabled { get; }
-        Mouse Mouse { get; }
 
         Composite Parent { get; }
         Screen Screen { get; }
@@ -31,8 +27,5 @@ namespace ConsoleLib
         void OnKeyPress(ConsoleKey consoleKey);
         void OnMouseMove(Mouse mouse);
         void OnMouseButton(Mouse mouse);
-
-        bool IsMouseInControl(Mouse mouse);
-        Mouse GetMouseInControl(Mouse mouse);
     }    
 }

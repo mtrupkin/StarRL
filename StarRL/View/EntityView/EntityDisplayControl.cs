@@ -101,8 +101,8 @@ namespace StarRL
                 }
 
                 // render mouse?
-                Screen.SetPosition(Mouse.X, Mouse.Y);
-                Screen.Write('X');
+                //Screen.SetPosition(Mouse.X, Mouse.Y);
+                //Screen.Write('X');
 
                 lastRenderTime = DateTime.Now;
             }
@@ -145,7 +145,7 @@ namespace StarRL
         {
             base.OnMouseMove(mouse);
 
-            Screen.SetPosition(Mouse.X, Mouse.Y);
+            Screen.SetPosition(mouse.X, mouse.Y);
             Screen.Write(' ');
 
             Screen.SetPosition(mouse.X, mouse.Y);

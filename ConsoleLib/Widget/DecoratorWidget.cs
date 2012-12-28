@@ -7,6 +7,9 @@ namespace ConsoleLib.Widget
 {
     public class DecoratorWidget : ControlBase
     {
+        public override int Width { get { return Control.Width; } }
+        public override int Height { get { return Control.Height; } }
+
         public Control Control { get; protected set; }
 
         public DecoratorWidget(Control control, int width, int height)
@@ -24,7 +27,7 @@ namespace ConsoleLib.Widget
         public override void Render()
         {
             Control.Render();
-            Screen.Display(Control.X, Control.Y, Control.Screen);
+            Screen.Display(0, 0, Control.Screen);
         }
 
         public override void Dispose()

@@ -6,7 +6,7 @@ using ConsoleLib;
 
 namespace StarRL
 {
-    public class FlagshipGameScreen : CompositeBase
+    public class FlagshipGameScreen : StackedComposite
     {
         public MainMenuScreen MainScreen { get; set; }
         public GalaxyScreen GalaxyScreen { get; set; }
@@ -17,7 +17,6 @@ namespace StarRL
 
             GalaxyScreen = new GalaxyScreen(parent);
 
-            SetLayoutManager(new StackedLayoutManager());
             AddControl(MainScreen);
             AddControl(GalaxyScreen);
         }

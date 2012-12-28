@@ -7,40 +7,86 @@ namespace ConsoleLib.Widget
 {
     public class BoxWidget : DecoratorWidget
     {
-        public String Title { get; set; }
+        public override int Width { get { return Control.Width + 2; } }
+        public override int Height { get { return Control.Height + 2; } }
 
-        public BoxWidget(Control control, String title)
-            : base(control, control.Width +2, control.Height+2) 
+        protected Mouse TempMouse { get; set; }
+
+        public BoxWidget(Control control)
+            : base(control, control.Width+2, control.Height+2) 
         {
-            Title = title;
-            Control.X = 1;
-            Control.Y = 1;
+            TempMouse = new Mouse();
         }
         
         public override void Render()
         {
             Screen.SetPosition(0, 0);
-            Screen.WriteFrame(Width, Height, Title);
+            Screen.WriteFrame(Control.Width+2, Control.Height+2);            
 
             Control.Render();
-            Screen.Display(Control.X, Control.Y, Control.Screen);
+            Screen.Display(1, 1, Control.Screen);
 
+        }
+
+        public override void Resize(int width, int height)
+        {
+            if (width <= 0)
+            {
+                throw new ArgumentOutOfRangeException("width");
+            }
+
+            if (height <= 0)
+            {
+                throw new ArgumentOutOfRangeException("height");
+            }
+
+            base.Resize(width + 2, height + 2);           
+        }
+
+        protected bool IsMouseInControl(Mouse mouse)
+        {
+            if (Control.Enabled)
+            {
+                if ((mouse.X >= 1) &&
+                     (mouse.Y >= 1) &&
+                     (mouse.X < (1 + Control.Width)) &&
+                     (mouse.Y < (1 + Control.Height)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        protected Mouse GetMouseInControl(Mouse mouse)
+        {
+            TempMouse.SetMouse(mouse);
+
+            TempMouse.X = mouse.X - 1;
+            TempMouse.Y = mouse.Y - 1;
+
+            return TempMouse;
         }
 
         public override void OnMouseMove(Mouse mouse)
         {
-            base.OnMouseMove(mouse);
 
-            var mouseInControl = Control.GetMouseInControl(mouse);
-            Control.OnMouseMove(mouseInControl);            
+            if (IsMouseInControl(mouse))
+            {
+                var mouseInControl = GetMouseInControl(mouse);
+                Control.OnMouseMove(mouseInControl);
+            }
+
         }
 
         public override void OnMouseButton(Mouse mouse)
         {
-            base.OnMouseButton(mouse);
-
-            var mouseInControl = Control.GetMouseInControl(mouse);
-            Control.OnMouseButton(mouseInControl);            
+            if (IsMouseInControl(mouse))
+            {
+                var mouseInControl = GetMouseInControl(mouse);
+                Control.OnMouseButton(mouseInControl);
+            }
         }
     }
 }

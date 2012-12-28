@@ -9,16 +9,15 @@ using Flagship;
 namespace StarRL
 {
 
-    public class MainMenuScreen : CompositeBase
+    public class MainMenuScreen : StackedComposite
     {
 
         public ListWidget<Option> NewListWidget { get; set; }
         public ListWidget<Option> ContinueListWidget { get; set; }
 
         public MainMenuScreen(Composite parent)
-            : base(parent, parent.Width, parent.Height)
+            : base(parent)
         {
-            SetLayoutManager(new StackedLayoutManager());
 
             NewListWidget = new ListWidget<Option>(this);
             ContinueListWidget = new ListWidget<Option>(this);

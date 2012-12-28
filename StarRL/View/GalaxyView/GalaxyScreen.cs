@@ -9,7 +9,7 @@ using Flagship;
 namespace StarRL
 {
 
-    public class GalaxyScreen : CompositeBase
+    public class GalaxyScreen : HorizontalComposite
     {
         public GalaxyScreenViewModel GalaxyScreenViewModel { get; set; }
 
@@ -22,8 +22,6 @@ namespace StarRL
             GalaxyMasterComposite = new GalaxyMasterComposite(this, 80, parent.Height);
 
             GalaxyDetailComposite = new GalaxyDetailComposite(this, 40, parent.Height);
-
-            SetLayoutManager(new HorizontalLayout());
 
             AddControl(GalaxyMasterComposite);
             AddControl(GalaxyDetailComposite);

@@ -9,7 +9,7 @@ using Flagship;
 
 namespace StarRL
 {
-    public class GalaxyDetailComposite : CompositeBase
+    public class GalaxyDetailComposite : VerticalComposite
 	{
 		public ShipDetailComposite FlagshipDetailControl { get; set; }
 
@@ -22,9 +22,7 @@ namespace StarRL
         public GalaxyDetailComposite(Composite parent, int width, int height)
             : base(parent, width, height)
 		{
-            var detailComposite = new CompositeBase(this, 1, 1);
-
-            VerticalLayout layout = new VerticalLayout();
+            var detailComposite = new VerticalComposite(this, 1, 1);
 
             FlagshipDetailControl = new ShipDetailComposite(detailComposite, "Flagship");
 
@@ -32,17 +30,16 @@ namespace StarRL
 
             HighlightedDetailControl = new EntityBaseView(this);
 
-            layout.AddControl(FlagshipDetailControl);
-            layout.AddControl(TargetDetailControl);
-            layout.AddControl(HighlightedDetailControl);
+            detailComposite.AddControl(FlagshipDetailControl);
+            detailComposite.AddControl(TargetDetailControl);
+            detailComposite.AddControl(HighlightedDetailControl);
             // TODO move to bottom of control
 
             TimeWidget = new TimeWidget(this);
-            layout.AddControl(TimeWidget);
+            detailComposite.AddControl(TimeWidget);
 
-            detailComposite.SetLayoutManager(layout);
 
-            AddControl(detailComposite);
+            AddControl(new BoxWidget(detailComposite));
 		}
 
 	}

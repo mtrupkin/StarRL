@@ -6,9 +6,9 @@ using System.Text;
 namespace ConsoleLib
 {
 
-    public class CompositeBase : CompositeCommon, Composite
+    public abstract class CompositeBase<T> : CompositeCommon<T>, Composite where T : LayoutData
     {
-
+      
         public CompositeBase(Composite parent, int width, int height)
             : base(width, height)
         {
@@ -19,7 +19,8 @@ namespace ConsoleLib
 
             Parent = parent;
             Screen = Parent.CreateScreen(width, height);
-        }
+
+        }        
 
         public override Screen CreateScreen(int width, int height)
         {
@@ -28,18 +29,29 @@ namespace ConsoleLib
 
         public override void Render()
         {
-            foreach (Control control in Controls)
+            foreach (LayoutData layoutData in ControlData)
             {
+                Control control = layoutData.Control;
                 if (control.Enabled)
                 {
                     control.Render();
-                    Screen.Display(control.X, control.Y, control.Screen);
+                    Screen.Display(layoutData.X, layoutData.Y, control.Screen);
                 }
             }
         }
 
         public override void Resize(int width, int height)
         {
+            if (width <= 0)
+            {
+                throw new ArgumentOutOfRangeException("width");
+            }
+
+            if (height <= 0)
+            {
+                throw new ArgumentOutOfRangeException("height");
+            }
+
             Screen.Dispose();
             Screen = Parent.CreateScreen(width, height);
 

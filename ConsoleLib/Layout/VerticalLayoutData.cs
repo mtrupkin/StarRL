@@ -5,10 +5,11 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public enum VerticalJustify { None, Top, Center, Bottom };
-
+    
     public class VerticalLayoutData : LayoutData
     {
         public HorizontalJustify HorizontalJustify { get; set; }
+
+        public VerticalLayoutData(Control control) : base(control) { }
     }
 }

@@ -9,11 +9,12 @@ namespace Libtcod
 {
     public class LibtcodShell : Shell
     {
-        ConsoleKey Key { get; set; }
+        ConsoleKey Key { get; set; }        
         Mouse OldMouse { get; set; }
 
         public LibtcodShell(string title, int width, int height) : base (title, width, height)
         {
+            Mouse = new Mouse();
             OldMouse = new Mouse();
 
             TCODConsole.initRoot(Width, Height, Title, false, TCODRendererType.SDL);

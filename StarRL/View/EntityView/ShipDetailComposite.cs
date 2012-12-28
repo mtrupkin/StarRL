@@ -9,7 +9,7 @@ using StarRL.Widget;
 
 namespace StarRL
 {
-    public class ShipDetailComposite : CompositeBase
+    public class ShipDetailComposite : VerticalComposite
 	{
 		public Ship Ship {get;set;}
         EntityDetailComposite EntityWidget {get;set;}
@@ -21,8 +21,8 @@ namespace StarRL
         public ShipDetailComposite(Composite parent, String title)
             : base(parent, 1, 1)
 		{
-            VerticalLayout layout = new VerticalLayout();
-            layout.GrabHorizontal = true;
+            
+            //GrabHorizontal = true;
 
 			EntityWidget = new EntityDetailComposite(this, title);
 			
@@ -32,15 +32,14 @@ namespace StarRL
             PhasersWidget = new TextWidget(this, "Phasers");
             ScannersWidget = new TextWidget(this, "Scanners");
 
-            layout.AddControl(EntityWidget);
-            layout.AddControl(ShieldsWidget);
-            layout.AddControl(TorpedoesWidget);
+            AddControl(EntityWidget);
+            AddControl(ShieldsWidget);
+            AddControl(TorpedoesWidget);
 
-            layout.AddControl(PhasersWidget, new VerticalLayoutData() { HorizontalJustify = HorizontalJustify.Right});
+            AddControl(PhasersWidget, HorizontalJustify.Right);
 
-            layout.AddControl(ScannersWidget);
+            AddControl(ScannersWidget);
 
-            SetLayoutManager(layout);
 		}
 
       

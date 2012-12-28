@@ -100,9 +100,9 @@ namespace ConsoleLib.Widget
         {
             base.OnMouseMove(mouse);
 
-            if (Mouse.Y < Items.Count)
+            if (mouse.Y < Items.Count)
             {
-                HighlightedIndex = Mouse.Y;
+                HighlightedIndex = mouse.Y;
             }
             
         }

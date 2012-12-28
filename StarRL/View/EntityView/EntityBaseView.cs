@@ -8,7 +8,7 @@ using Flagship;
 
 namespace StarRL
 {
-    public class EntityBaseView : CompositeBase
+    public class EntityBaseView : VerticalComposite
     {
         protected Entity Entity { get; set; }
 

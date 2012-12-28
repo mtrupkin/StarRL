@@ -8,20 +8,14 @@ namespace ConsoleLib
 
     public abstract class ControlCommon : Control
     {
-        public int X { get; set; }
-        public int Y { get; set; }
 
-        public int Height { get; protected set; }
-        public int Width { get; protected set; }
+        public virtual int Width { get; protected set; }
+        public virtual int Height { get; protected set; }       
 
         public bool Enabled { get; protected set; }
 
         public Composite Parent { get; protected set; }                
         public Screen Screen { get; protected set; }
-
-        private Mouse TempMouse { get; set; }
-        public Mouse Mouse { get; protected set; }
-
 
         public ControlCommon(int width, int height)
         {
@@ -38,8 +32,6 @@ namespace ConsoleLib
             Width = width;
             Height = height;
             Enabled = true;
-            Mouse = new Mouse();
-            TempMouse = new Mouse();
         }
 
         public abstract void Render();
@@ -67,8 +59,6 @@ namespace ConsoleLib
 
         public virtual void OnMouseMove(Mouse mouse)
         {
-            Mouse.SetMouse(mouse);
-
             if (MouseMoveEvent != null)
             {
                 MouseMoveEvent(mouse);
@@ -77,38 +67,11 @@ namespace ConsoleLib
 
         public virtual void OnMouseButton(Mouse mouse)
         {
-            Mouse.SetMouse(mouse);
-
             if (MouseButtonEvent != null)
             {
                 MouseButtonEvent(mouse);
             }
         }
 
-        public bool IsMouseInControl(Mouse mouse)
-        {
-            if (Enabled)
-            {
-                if ((mouse.X >= X) &&
-                     (mouse.Y >= Y) &&
-                     (mouse.X < (X + Width)) &&
-                     (mouse.Y < (Y + Height)))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public Mouse GetMouseInControl(Mouse mouse)
-        {
-            TempMouse.SetMouse(mouse);
-
-            TempMouse.X = mouse.X - X;
-            TempMouse.Y = mouse.Y - Y;
-
-            return TempMouse;
-        }
     }    
 }

@@ -40,30 +40,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composite\HorizontalComposite.cs" />
+    <Compile Include="Composite\StackedComposite.cs" />
+    <Compile Include="Composite\VerticalComposite.cs" />
     <Compile Include="ConsoleRGB.cs" />
-    <Compile Include="Control\Composite.cs" />
+    <Compile Include="Composite\Composite.cs" />
     <Compile Include="Control\Control.cs" />
     <Compile Include="Control\Base\ControlBase.cs" />
-    <Compile Include="Control\Base\CompositeBase.cs" />
+    <Compile Include="Composite\Base\CompositeBase.cs" />
     <Compile Include="Control\Base\ControlCommon.cs" />
-    <Compile Include="Control\Base\CompositeCommon.cs" />
-    <Compile Include="Layout\ControlLayout.cs" />
-    <Compile Include="Layout\HorizontalLayout.cs" />
+    <Compile Include="Composite\Base\CompositeCommon.cs" />
     <Compile Include="Layout\HorizontalLayoutData.cs" />
-    <Compile Include="Layout\LayoutBase.cs" />
     <Compile Include="Layout\LayoutData.cs" />
-    <Compile Include="Layout\VerticalLayout.cs" />
-    <Compile Include="Layout\StackedLayout.cs" />
     <Compile Include="Layout\VerticalLayoutData.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shell.cs" />
-    <Compile Include="Widget\BoxComposite.cs" />
     <Compile Include="Widget\BoxWidget.cs" />
+    <Compile Include="Widget\TitledBoxWidget.cs" />
     <Compile Include="Widget\DecoratorWidget.cs" />
     <Compile Include="Widget\ListWidget.cs" />
-    <Compile Include="Layout\Layout.cs" />
     <Compile Include="Widget\TextWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
