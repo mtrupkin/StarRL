@@ -26,8 +26,6 @@ namespace ConsoleLib
         public void AddControl(VerticalLayoutData layoutData)
         {
             ControlData.Add(layoutData);
-
-            Resize();
         }
 
         public override Size MinimumSize()

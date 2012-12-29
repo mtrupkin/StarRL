@@ -34,7 +34,7 @@ namespace Libtcod
             return new LibtcodScreen(width, height);
         }
 
-        public override void Resize(int width, int height, bool notify)
+        public override void Resize(int width, int height)
         {
             if ((width != Width) || (height != Height)) {
                 Width = width;

@@ -27,16 +27,6 @@ namespace ConsoleLib
 
         public abstract void AddControl(Control control);
 
-
-        public virtual void Resize()
-        {
-            Size size = MinimumSize();
-
-            Resize(size.Width, size.Height, true);
-
-            LayoutControls();
-        }
-
         public virtual void LayoutControls()
         {
         }

@@ -20,7 +20,6 @@ namespace ConsoleLib
         {
             ControlData.Add(layoutData);
 
-            Resize();
         }
 
 

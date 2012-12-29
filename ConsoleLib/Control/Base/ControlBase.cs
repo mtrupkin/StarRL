@@ -27,7 +27,7 @@ namespace ConsoleLib
             Enabled = false;
         }
 
-        public override void Resize(int width, int height, bool notify)
+        public override void Resize(int width, int height)
         {
             if (width <= 0)
             {
@@ -45,11 +45,6 @@ namespace ConsoleLib
 
                 Width = width;
                 Height = height;
-
-                if (notify)
-                {
-                    Parent.Resize();
-                }
             }
         }
     }    

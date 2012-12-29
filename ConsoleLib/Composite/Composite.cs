@@ -18,8 +18,7 @@ namespace ConsoleLib
         void AddControl(Control control);
 
         Size MinimumSize();
-        void Resize();
- 
+
         void LayoutControls();
     }
 }

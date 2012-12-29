@@ -14,8 +14,14 @@ namespace ConsoleLib
 
         Composite Parent { get; }
         Screen Screen { get; }
-       
-        void Resize(int width, int height, bool notify);
+
+        //Size CompactSize { get; }
+        //void CompactControls();
+        //void GrabExcessSize();
+        //void PositionControls();
+        //void Resize();
+
+        void Resize(int width, int height);
         void SetEnabled(bool enabled);
 
         void Render();        

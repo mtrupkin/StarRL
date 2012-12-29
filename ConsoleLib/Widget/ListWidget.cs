@@ -167,7 +167,7 @@ namespace ConsoleLib.Widget
                 maxHeight = itemHeight;
             }
 
-            Resize(maxWidth, maxHeight, true);
+            Resize(maxWidth, maxHeight);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace ConsoleLib
 
         public abstract void Render();
 
-        public abstract void Resize(int width, int height, bool notify);
+        public abstract void Resize(int width, int height);
 
         public abstract void Dispose();
 
