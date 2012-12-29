@@ -25,37 +25,38 @@ namespace ConsoleLib
             LayoutControls();
         }
 
-        protected override void CompactControls()
+        public override Size MinimumSize()
         {
-            Height = MinHeight;
-            Width = MinWidth;
+            Size minimumSize = new Size(MinWidth, MinHeight);
 
-            int maxWidth = 0;
-            int maxHeight = 0;
+            int width = 0;
+            int height = 0;
 
             foreach (LayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
 
-                if (control.Width > maxWidth)
+                if (control.Width > width)
                 {
-                    maxWidth = control.Width;
+                    width = control.Width;
                 }
-                if (control.Height > maxHeight)
+                if (control.Height > height)
                 {
-                    maxHeight = control.Height;
+                    height = control.Height;
                 }
             }
 
-            if (maxHeight > MinHeight)
+            if (height > MinHeight)
             {
-                Height = maxHeight;
+                minimumSize.Height = height;
             }
 
-            if (maxWidth > MinWidth)
+            if (width > MinWidth)
             {
-                Width = maxWidth;
+                minimumSize.Width = width;
             }
+
+            return minimumSize;
         }    
     }
 }

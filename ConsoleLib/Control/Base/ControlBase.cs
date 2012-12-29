@@ -38,15 +38,16 @@ namespace ConsoleLib
             {
                 throw new ArgumentOutOfRangeException("height");
             }
+            if ((width != Width) || (height != Height))
+            {
+                Screen.Dispose();
+                Screen = Parent.CreateScreen(width, height);
 
+                Width = width;
+                Height = height;
 
-            Screen.Dispose();
-            Screen = Parent.CreateScreen(width, height);
-
-            Width = width;
-            Height = height;
-
-            Parent.LayoutControls();
+                Parent.Resize();
+            }
         }
     }    
 }

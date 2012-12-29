@@ -10,6 +10,8 @@ namespace ConsoleLib
 
     public class LayoutData
     {
+        public bool GrabExcess { get; set; }
+
         public int X { get; set; }
         public int Y { get; set; }
 

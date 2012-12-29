@@ -20,40 +20,54 @@ namespace ConsoleLib
         {
             ControlData.Add(layoutData);
 
-            LayoutControls();
+            Resize();
         }
 
 
-        protected override void CompactControls()
+        public override Size MinimumSize()
         {
-            Height = MinHeight;
-            Width = MinWidth;
+            Size minimumSize = new Size(MinWidth, MinHeight);
 
-            int maxWidth = 0;
-            int maxHeight = 0;
+            int width = 0;
+            int height = 0;
 
             foreach (HorizontalLayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
 
-                controlLayout.X = maxWidth;
+                width += control.Width;
 
-                maxWidth += control.Width;
-
-                if (control.Height > maxHeight)
+                if (control.Height > height)
                 {
-                    maxHeight = control.Height;
+                    height = control.Height;
                 }
             }
 
-            if (maxHeight > MinHeight)
+            if (height > MinHeight)
             {
-                Height = maxHeight;
+                minimumSize.Height = height;
             }
 
-            if (maxWidth > MinWidth)
+            if (width > MinWidth)
             {
-                Width = maxWidth;
+                minimumSize.Width = width;
+            }
+
+            return minimumSize;
+        }
+
+        public override void LayoutControls()
+        {
+            int width = 0;
+
+            foreach (HorizontalLayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+
+                controlLayout.Y = 0;
+                controlLayout.X = width;
+
+                width += control.Width;
             }
 
         }

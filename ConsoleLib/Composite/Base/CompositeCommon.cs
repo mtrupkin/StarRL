@@ -8,7 +8,6 @@ namespace ConsoleLib
 
     public abstract class CompositeCommon<T> : ControlCommon, Composite where T:LayoutData
     {
-
         public List<T> ControlData { get; protected set; }
 
         public Mouse Mouse { get; protected set; }
@@ -28,15 +27,20 @@ namespace ConsoleLib
 
         public abstract void AddControl(Control control);
 
-        protected abstract void CompactControls();
+
+        public virtual void Resize()
+        {
+            Size size = MinimumSize();
+
+            Resize(size.Width, size.Height);
+
+            LayoutControls();
+        }
 
         public virtual void LayoutControls()
         {
-            CompactControls();
-
-            Resize(Width, Height);
         }
-
+ 
         public override void Render()
         {
             foreach (LayoutData layoutData in ControlData)

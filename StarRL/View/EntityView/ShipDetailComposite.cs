@@ -21,10 +21,8 @@ namespace StarRL
         public ShipDetailComposite(Composite parent, String title)
             : base(parent, 1, 1)
 		{
-            
-            //GrabHorizontal = true;
 
-			EntityWidget = new EntityDetailComposite(this, title);
+            EntityWidget = new EntityDetailComposite(this, title);
 			
 			
             ShieldsWidget = new TextWidget(this, "Sheilds");

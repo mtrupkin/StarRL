@@ -52,6 +52,7 @@
     <Compile Include="Composite\Base\CompositeCommon.cs" />
     <Compile Include="Layout\HorizontalLayoutData.cs" />
     <Compile Include="Layout\LayoutData.cs" />
+    <Compile Include="Size.cs" />
     <Compile Include="Layout\VerticalLayoutData.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Mouse.cs" />

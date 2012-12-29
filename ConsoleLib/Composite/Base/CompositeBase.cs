@@ -52,13 +52,28 @@ namespace ConsoleLib
                 throw new ArgumentOutOfRangeException("height");
             }
 
-            Screen.Dispose();
-            Screen = Parent.CreateScreen(width, height);
+            if ((width != Width) || (height != Height))
+            {
+                Screen.Dispose();
+                Screen = Parent.CreateScreen(width, height);
 
-            Width = width;
-            Height = height;
+                Width = width;
+                Height = height;
 
-            Parent.LayoutControls();
+                foreach (LayoutData layoutData in ControlData)
+                {
+                    Control control = layoutData.Control;
+                    if (control.Enabled)
+                    {
+                        if (layoutData.GrabExcess)
+                        {
+                            //control.Resize(Width, Height);
+                        }
+                    }
+                }
+
+                Parent.Resize();
+            }
         }
     }
 }

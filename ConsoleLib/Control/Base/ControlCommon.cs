@@ -49,6 +49,8 @@ namespace ConsoleLib
         public event MouseEventHandler MouseMoveEvent;
         public event MouseEventHandler MouseButtonEvent;
 
+        public virtual Size MinimumSize() { return new Size(Width, Height); }
+ 
         public virtual void OnKeyPress(ConsoleKey consoleKey)
         {
             if (KeyPressEvent != null)

@@ -27,54 +27,61 @@ namespace ConsoleLib
         {
             ControlData.Add(layoutData);
 
-            LayoutControls();
+            Resize();
         }
 
-        protected override void CompactControls()
+        public override Size MinimumSize()
         {
-            Height = MinHeight;
-            Width = MinWidth;
+            Size minimumSize = new Size(MinWidth, MinHeight);
 
-            int maxWidth = MinWidth;
-            int maxHeight = 0;
-
+            int width = 0;
+            int height = 0;
 
             foreach (VerticalLayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
 
-                controlLayout.Y = maxHeight;
+                height += control.Height;
 
-                maxHeight += control.Height;
-
-
-                if (control.Width > maxWidth)
+                if (control.Width > width)
                 {
-                    maxWidth = control.Width;
+                    width = control.Width;
                 }
-
             }
 
-            if (maxHeight > MinHeight)
+            if (height > MinHeight)
             {
-                Height = maxHeight;
+                minimumSize.Height = height;
             }
 
-            if (maxWidth > MinWidth)
+            if (width > MinWidth)
             {
-                Width = maxWidth;
+                minimumSize.Width = width;
             }
+
+            return minimumSize;
+
+        }
+
+        public override void LayoutControls()
+        {
+            int height = 0;
 
             foreach (VerticalLayoutData controlLayout in ControlData)
             {
+                Control control = controlLayout.Control;
+
+                controlLayout.X = 0;
+                controlLayout.Y = height;
+
+                height += control.Height;
+
                 if (controlLayout.HorizontalJustify == HorizontalJustify.Right)
                 {
-                    Control control = controlLayout.Control;
-
                     controlLayout.X = Width - control.Width;
                 }
             }
-
         }
+
     }    
 }
