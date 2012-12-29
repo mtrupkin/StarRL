@@ -28,7 +28,7 @@ namespace ConsoleLib
             if (newSize > MinWidth)
             {
                 //MinWidth = newSize;
-                Resize(newSize, 1);
+                Resize(newSize, 1, true);
             }
         }
 		

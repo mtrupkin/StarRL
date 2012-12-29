@@ -28,7 +28,7 @@ namespace ConsoleLib.Widget
 
         }
 
-        public override void Resize(int width, int height)
+        public override void Resize(int width, int height, bool notify)
         {
             if (width <= 0)
             {
@@ -40,7 +40,7 @@ namespace ConsoleLib.Widget
                 throw new ArgumentOutOfRangeException("height");
             }
 
-            base.Resize(width + 2, height + 2);           
+            base.Resize(width + 2, height + 2, notify);           
         }
 
         protected bool IsMouseInControl(Mouse mouse)

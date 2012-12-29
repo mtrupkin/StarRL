@@ -15,7 +15,7 @@ namespace ConsoleLib
         Composite Parent { get; }
         Screen Screen { get; }
        
-        void Resize(int width, int height);
+        void Resize(int width, int height, bool notify);
         void SetEnabled(bool enabled);
 
         void Render();        

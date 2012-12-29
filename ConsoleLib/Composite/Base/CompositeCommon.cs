@@ -32,7 +32,7 @@ namespace ConsoleLib
         {
             Size size = MinimumSize();
 
-            Resize(size.Width, size.Height);
+            Resize(size.Width, size.Height, true);
 
             LayoutControls();
         }

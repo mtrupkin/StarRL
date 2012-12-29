@@ -40,7 +40,7 @@ namespace ConsoleLib
             }
         }
 
-        public override void Resize(int width, int height)
+        public override void Resize(int width, int height, bool notify)
         {
             if (width <= 0)
             {
@@ -67,12 +67,15 @@ namespace ConsoleLib
                     {
                         if (layoutData.GrabExcess)
                         {
-                            //control.Resize(Width, Height);
+                            control.Resize(Width, Height, false);
                         }
                     }
                 }
 
-                Parent.Resize();
+                if (notify)
+                {
+                    Parent.Resize();
+                }
             }
         }
     }
