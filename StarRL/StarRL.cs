@@ -79,6 +79,7 @@ namespace StarRL
             FlagshipGameViewModel.Initialize();
 
             Shell.AddControl(FlagshipGameScreen);
+            Shell.Resize();
 
             // intialize game update tick
             updateTimer = new Timer(100);

@@ -9,7 +9,8 @@ namespace ConsoleLib
     public abstract class ControlBase : ControlCommon
     {
 
-        public ControlBase(Composite parent, int width, int height) : base(width, height)
+        public ControlBase(Composite parent)
+            : base()
         {
             if (parent == null)
             {
@@ -17,7 +18,7 @@ namespace ConsoleLib
             }
 
             Parent = parent;
-            Screen = Parent.CreateScreen(width, height);
+            Screen = CreateScreen(1, 1);
         }
 
         public override void Dispose()
@@ -27,25 +28,14 @@ namespace ConsoleLib
             Enabled = false;
         }
 
-        public override void Resize(int width, int height)
+        public override Screen CreateScreen(int width, int height)
         {
-            if (width <= 0)
-            {
-                throw new ArgumentOutOfRangeException("width");
-            }
+            return Parent.CreateScreen(width, height);
+        }
 
-            if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException("height");
-            }
-            if ((width != Width) || (height != Height))
-            {
-                Screen.Dispose();
-                Screen = Parent.CreateScreen(width, height);
-
-                Width = width;
-                Height = height;
-            }
+        public override void Resize()
+        {
+            Parent.Resize();
         }
     }    
 }

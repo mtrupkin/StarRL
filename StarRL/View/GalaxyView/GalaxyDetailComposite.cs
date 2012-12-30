@@ -17,12 +17,12 @@ namespace StarRL
 
 		public EntityBaseView HighlightedDetailControl { get; set; }
 
-		public TimeWidget TimeWidget { get; set; }
+		public TimeWidget TimeWidget { get; set; } 
 
-        public GalaxyDetailComposite(Composite parent, int width, int height)
-            : base(parent, width, height)
+        public GalaxyDetailComposite(Composite parent)
+            : base(parent)
 		{
-            var detailComposite = new VerticalComposite(this, 1, 1);
+            var detailComposite = new VerticalComposite(this);
 
             FlagshipDetailControl = new ShipDetailComposite(detailComposite, "Flagship");
 
@@ -40,7 +40,8 @@ namespace StarRL
             detailComposite.AddControl(TimeWidget);
 
 
-            AddControl(detailComposite);// BoxWidget(detailComposite));
+            AddControl(new BoxControl(detailComposite));
+            //AddControl(detailComposite);
 		}
 
 	}

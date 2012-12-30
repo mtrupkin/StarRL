@@ -9,8 +9,8 @@ namespace ConsoleLib
     public abstract class CompositeBase<T> : CompositeCommon<T>, Composite where T : LayoutData
     {
       
-        public CompositeBase(Composite parent, int width, int height)
-            : base(width, height)
+        public CompositeBase(Composite parent)
+            : base()
         {
             if (parent == null)
             {
@@ -18,48 +18,18 @@ namespace ConsoleLib
             }
 
             Parent = parent;
-            Screen = Parent.CreateScreen(width, height);
+            Screen = Parent.CreateScreen(1, 1);
 
         }        
 
         public override Screen CreateScreen(int width, int height)
         {
             return Parent.CreateScreen(width, height);
-        }
+        }        
 
-        public override void Render()
+        public override void Resize()
         {
-            foreach (LayoutData layoutData in ControlData)
-            {
-                Control control = layoutData.Control;
-                if (control.Enabled)
-                {
-                    control.Render();
-                    Screen.Display(layoutData.X, layoutData.Y, control.Screen);
-                }
-            }
-        }
-
-        public override void Resize(int width, int height)
-        {
-            if (width <= 0)
-            {
-                throw new ArgumentOutOfRangeException("width");
-            }
-
-            if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException("height");
-            }
-
-            if ((width != Width) || (height != Height))
-            {
-                Screen.Dispose();
-                Screen = Parent.CreateScreen(width, height);
-
-                Width = width;
-                Height = height;
-            }
+            Parent.Resize();
         }
     }
 }

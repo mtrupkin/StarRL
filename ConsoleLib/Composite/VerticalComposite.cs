@@ -7,7 +7,7 @@ namespace ConsoleLib
 {
     public class VerticalComposite: CompositeBase<VerticalLayoutData>
     {
-        public VerticalComposite(Composite parent, int width, int height) : base(parent, width, height) { }
+        public VerticalComposite(Composite parent) : base(parent) { }
 
         public void AddControl(Control control, HorizontalJustify justify)
         {
@@ -28,46 +28,35 @@ namespace ConsoleLib
             ControlData.Add(layoutData);
         }
 
-        public override Size MinimumSize()
+        public override Size CompactSize()
         {
-            Size minimumSize = new Size(MinWidth, MinHeight);
-
             int width = 0;
             int height = 0;
 
             foreach (VerticalLayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
+                Size compactSize = control.CompactSize();
 
-                height += control.Height;
+                height += compactSize.Height;
 
-                if (control.Width > width)
+                if (compactSize.Width > width)
                 {
-                    width = control.Width;
+                    width = compactSize.Width;
                 }
             }
 
-            if (height > MinHeight)
-            {
-                minimumSize.Height = height;
-            }
-
-            if (width > MinWidth)
-            {
-                minimumSize.Width = width;
-            }
-
-            return minimumSize;
-
+            return new Size(width, height);
         }
 
-        public override void LayoutControls()
+        public override void Align()
         {
             int height = 0;
 
             foreach (VerticalLayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
+                control.Align();
 
                 controlLayout.X = 0;
                 controlLayout.Y = height;

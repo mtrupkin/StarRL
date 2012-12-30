@@ -19,7 +19,7 @@ namespace StarRL
 		TextWidget ScannersWidget { get; set; }
 
         public ShipDetailComposite(Composite parent, String title)
-            : base(parent, 1, 1)
+            : base(parent)
 		{
 
             EntityWidget = new EntityDetailComposite(this, title);

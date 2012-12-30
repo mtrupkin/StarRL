@@ -39,7 +39,7 @@ namespace StarRL
 
         //Dictionary<Point, List<IDrawable<Entity>>> StackedEntities;
 
-        public EntityDisplayControl(Composite parent, int width, int height) : base (parent, width, height)
+        public EntityDisplayControl(Composite parent) : base (parent)
         {
         }
 
@@ -87,7 +87,7 @@ namespace StarRL
 
         public override void Render()
         {
-            Screen.Clear();
+            //Screen.Clear();
 
             if (Entities != null)
             {
@@ -143,9 +143,7 @@ namespace StarRL
 
         public override void OnMouseMove(Mouse mouse)
         {
-            base.OnMouseMove(mouse);
-
-            Screen.SetPosition(mouse.X, mouse.Y);
+            Screen.SetPosition(Mouse.X, Mouse.Y);
             Screen.Write(' ');
 
             Screen.SetPosition(mouse.X, mouse.Y);
@@ -156,8 +154,8 @@ namespace StarRL
             HighlightedEntity = GetEntityAt(mousePosition);
 
             OnEntityHighlightedEvent(HighlightedEntity);
-            
-           
+
+            base.OnMouseMove(mouse);  
         }
 
         public override void OnMouseButton(Mouse mouse)

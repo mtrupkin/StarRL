@@ -11,7 +11,7 @@ namespace StarRL
         public MainMenuScreen MainScreen { get; set; }
         public GalaxyScreen GalaxyScreen { get; set; }
          
-        public FlagshipGameScreen(Composite parent):base (parent, 140,60) {
+        public FlagshipGameScreen(Composite parent):base (parent) {
             
             MainScreen = new MainMenuScreen(parent);
 

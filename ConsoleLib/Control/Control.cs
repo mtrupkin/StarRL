@@ -13,14 +13,16 @@ namespace ConsoleLib
         bool Enabled { get; }
 
         Composite Parent { get; }
+        Screen CreateScreen(int width, int height);
         Screen Screen { get; }
 
-        //Size CompactSize { get; }
-        //void CompactControls();
-        //void GrabExcessSize();
-        //void PositionControls();
-        //void Resize();
+        void Layout();
+        Size CompactSize();
+        //void Compact();
+        //void GrabExcess(Size compactSize);
+        void Align();
 
+        void Resize();
         void Resize(int width, int height);
         void SetEnabled(bool enabled);
 

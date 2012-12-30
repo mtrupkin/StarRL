@@ -10,8 +10,9 @@ namespace StarRL.Widget
     {
         public TimeSpan Time { get; set; }
 
-        public TimeWidget(Composite parent) : base(parent, 10, 1)
+        public TimeWidget(Composite parent) : base(parent)
         {
+            Resize(10, 1);
         }
 
         public override void Render()

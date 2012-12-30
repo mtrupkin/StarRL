@@ -10,9 +10,12 @@ namespace ConsoleLib
         public string Title { get; protected set; }
 
         public Shell(string title, int width, int height)
-            : base(width, height)
+            : base()
         {
             Title = title;
+
+            Width = width;
+            Height = height;
         }
 
         public abstract bool isClosed();
@@ -34,42 +37,38 @@ namespace ConsoleLib
             var layoutData = new LayoutData(control);
 
             ControlData.Add(layoutData);
-
-            LayoutControls();
         }
 
-        public override Size MinimumSize()
+        public override void Resize()
         {
-            Size minimumSize = new Size(MinWidth, MinHeight);
+            Screen.Clear();
+            Layout();
+        }
+      
 
+        public override Size CompactSize()
+        {
             int width = 0;
             int height = 0;
 
             foreach (LayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
+                Size compactSize = control.CompactSize();
 
-                if (control.Width > width)
+                if (compactSize.Width > width)
                 {
-                    width = control.Width;
+                    width = compactSize.Width;
                 }
-                if (control.Height > height)
+                if (compactSize.Height > height)
                 {
-                    height = control.Height;
+                    height = compactSize.Height;
                 }
             }
 
-            if (height > MinHeight)
-            {
-                minimumSize.Height = height;
-            }
+            Resize(width, height);
 
-            if (width > MinWidth)
-            {
-                minimumSize.Width = width;
-            }
-
-            return minimumSize;
+            return new Size(width, height);
         }    
     }
 }

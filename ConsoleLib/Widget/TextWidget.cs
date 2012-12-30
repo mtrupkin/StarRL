@@ -4,37 +4,35 @@ namespace ConsoleLib
 {
 	public class TextWidget : ControlBase
 	{
-        protected int MinWidth { get; set; }
 
         public String TextValue { get; protected set; }
 
-        public TextWidget(Composite parent, int width)
-            : base(parent, width, 1)
+        public TextWidget(Composite parent)
+            : base(parent)
         {
-            MinWidth = Width;
         }
 
         public TextWidget(Composite parent, String text)
-            : base(parent, text.Length, 1)
+            : base(parent)
 		{
-            MinWidth = Width;
-            TextValue = text;
+            SetText(text);
 		}
 
         public void SetText(String text)
         {
             TextValue = text;
             int newSize = text.Length;
-            if (newSize > MinWidth)
+
+            if (Width != newSize)
             {
-                //MinWidth = newSize;
                 Resize(newSize, 1);
+                Resize();
             }
         }
 		
 		public override void Render ()
 		{
-			Screen.Clear();
+			//Screen.Clear();
 			
 			if (TextValue != null) {
 				Screen.Write(TextValue);

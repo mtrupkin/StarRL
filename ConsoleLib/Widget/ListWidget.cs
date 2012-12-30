@@ -38,7 +38,7 @@ namespace ConsoleLib.Widget
         public int HighlightedIndex { get; set; }
 
         public ListWidget(Composite parent)
-            : base(parent, 10, 10)
+            : base(parent)
         {
             Items = new List<T>();
         }
@@ -168,6 +168,8 @@ namespace ConsoleLib.Widget
             }
 
             Resize(maxWidth, maxHeight);
+
+            Resize();
         }
     }
 }

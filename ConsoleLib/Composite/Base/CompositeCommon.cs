@@ -8,37 +8,61 @@ namespace ConsoleLib
 
     public abstract class CompositeCommon<T> : ControlCommon, Composite where T:LayoutData
     {
-        public List<T> ControlData { get; protected set; }
+        public List<T> ControlData { get; protected set; }        
 
-        public Mouse Mouse { get; protected set; }
-
-        public int MinWidth { get; protected set; }
-        public int MinHeight { get; protected set; }
-
-        public CompositeCommon(int width, int height)
-            : base(width, height)
+        public CompositeCommon()
+  
         {
-            MinWidth = width;
-            MinHeight = height;
             ControlData = new List<T>();
+            Width = 1;
+            Height = 1;
         }
-
-        public abstract Screen CreateScreen(int width, int height);
 
         public abstract void AddControl(Control control);
 
-        public virtual void LayoutControls()
+        public override Screen CreateScreen(int width, int height)
         {
+            return Parent.CreateScreen(width, height);
+        }
+
+        public override void Resize()
+        {
+            Parent.Resize();
+        }
+
+        public override void Layout()
+        {
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+
+                Size compactSize = control.CompactSize();
+
+                if (controlLayout.GrabExcess)
+                {
+                    control.Resize(Width, compactSize.Height);
+                }
+                else
+                {
+                    control.Resize(compactSize.Width, compactSize.Height);
+                }                 
+
+                control.Align();
+                control.Layout();
+            }
+
+            //Screen.Clear();
         }
  
         public override void Render()
         {
             foreach (LayoutData layoutData in ControlData)
             {
-                if (layoutData.Control.Enabled)
+                Control control = layoutData.Control;
+                if (control.Enabled)
                 {
-                    layoutData.Control.Render();
-                    Screen.Display(layoutData.X, layoutData.Y, layoutData.Control.Screen);
+                    control.Render();
+                    Screen.Display(layoutData.X, layoutData.Y, control.Screen);
                 }
             }
         }
@@ -110,5 +134,38 @@ namespace ConsoleLib
                 control.OnMouseButton(mouseInControl);
             }
         }
+
+        public override Size CompactSize()
+        {
+            int width = 0;
+            int height = 0;
+
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+                Size compactSize = control.CompactSize();
+
+                if (compactSize.Width > width)
+                {
+                    width = compactSize.Width;
+                }
+                if (compactSize.Height > height)
+                {
+                    height = compactSize.Height;
+                }
+            }
+
+            return new Size(width, height);
+        }
+
+        public override void Align()
+        {
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+                control.Align();
+            }
+        }
+
     }
 }

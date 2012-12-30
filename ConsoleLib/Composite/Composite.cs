@@ -10,15 +10,8 @@ namespace ConsoleLib
     {
         Mouse Mouse { get; }        
 
-        int MinWidth { get; }
-        int MinHeight { get; }
-
-        Screen CreateScreen(int width, int height);
-
         void AddControl(Control control);
 
-        Size MinimumSize();
-
-        void LayoutControls();
+        //void LayoutControls();
     }
 }

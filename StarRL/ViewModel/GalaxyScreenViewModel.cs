@@ -51,6 +51,7 @@ namespace StarRL
 			}
 		}
 
+        
 		void EntityHighlightedEvent (Entity item)
 		{
 			GalaxyScreen.GalaxyDetailComposite.HighlightedDetailControl.SetEntity (item);
@@ -65,6 +66,9 @@ namespace StarRL
 			entities.Add (DrawableFactory.GetDrawableShip (FlagshipGame.Galaxy.Flagship));
 
 			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
+            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Resize(40, 40);
+
+            
 			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip (FlagshipGame.Galaxy.Flagship);
 		}
 
