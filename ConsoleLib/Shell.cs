@@ -35,7 +35,11 @@ namespace ConsoleLib
         public override void AddControl(Control control)
         {
             var layoutData = new LayoutData(control);
+            AddControl(layoutData);
+        }
 
+        public void AddControl(LayoutData layoutData)
+        {
             ControlData.Add(layoutData);
         }
 
@@ -63,10 +67,10 @@ namespace ConsoleLib
                 if (compactSize.Height > height)
                 {
                     height = compactSize.Height;
-                }
+                }                
             }
 
-            Resize(width, height);
+            //Resize(width, height);
 
             return new Size(width, height);
         }    

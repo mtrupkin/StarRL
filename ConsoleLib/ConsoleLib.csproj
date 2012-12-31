@@ -58,8 +58,9 @@
     <Compile Include="Mouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shell.cs" />
-    <Compile Include="Widget\BoxControl.cs" />
+    <Compile Include="Widget\BoxWidget.cs" />
     <Compile Include="Widget\ListWidget.cs" />
+    <Compile Include="Widget\SpacerWidget.cs" />
     <Compile Include="Widget\TextWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

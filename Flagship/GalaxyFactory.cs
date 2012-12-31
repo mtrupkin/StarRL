@@ -19,11 +19,11 @@ namespace Flagship
 			Height = height;
 		}
 
-		public Ship CreateFlagship ()
+        public Ship CreateFlagship(Galaxy galaxy)
 		{
 			Ship flagship = new Ship ()
             {
-                Position = RandomPoint(),
+                Position = new Point( RandomStarSystem(galaxy).Position),
                 Name = "Flagship",
 
             };
@@ -65,7 +65,7 @@ namespace Flagship
 			}
 
 			int flagshipStarSystemIndex = _rng.Next (MAX_STARS);
-			Ship flagship = CreateFlagship();
+            Ship flagship = CreateFlagship(newGalaxy);
 			
 			newGalaxy.Flagship = flagship;
 			newGalaxy.StarSystems[flagshipStarSystemIndex].Ships.Add(flagship);
@@ -96,5 +96,15 @@ namespace Flagship
 
 			return newPoint;
 		}
+
+        private StarSystem RandomStarSystem(Galaxy galaxy)
+        {
+            int starCount = galaxy.StarSystems.Count;
+
+            int starIndex = _rng.Next(starCount);
+
+            return galaxy.StarSystems[starIndex];
+        }
+
 	}
 }

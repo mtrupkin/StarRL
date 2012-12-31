@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleLib
 {
-    public class BoxControl : ControlCommon
+    public class BoxWidget : ControlCommon
     {
         //public override int Width { get { return Control.Width + 2; } }
         //public override int Height { get { return Control.Height + 2; } }
@@ -14,16 +14,25 @@ namespace ConsoleLib
 
         LayoutData LayoutData { get; set; }
         Control Control { get; set; }
+        int Margin { get; set; }
 
+        int Offset { get { return Margin + 1; } }
 
-        public BoxControl(Control control)
+        public BoxWidget(Control control)
+            : this(control, 0)
+        {
+
+        }
+        public BoxWidget(Control control, int margin)
             : base()
         {
             Control = control;
             Screen = CreateScreen(1, 1);
             LayoutData = new LayoutData(Control);
-            LayoutData.X = 1;
-            LayoutData.Y = 1;
+            Margin = margin;
+            LayoutData.X = Offset;
+            LayoutData.Y = Offset;
+            
         }
 
         public override Screen CreateScreen(int width, int height)
@@ -42,8 +51,8 @@ namespace ConsoleLib
             {
 
                 Control.Render();
-                Screen.WriteFrame(Control.Width + 2, Control.Height + 2);
-                Screen.Display(1, 1, Control.Screen);
+                Screen.WriteFrame(Control.Width + (Offset * 2), Control.Height + (Offset * 2));
+                Screen.Display(Offset, Offset, Control.Screen);
                 
             }
         }
@@ -84,8 +93,11 @@ namespace ConsoleLib
         public override Size CompactSize()
         {
             Size compactSize = Control.CompactSize();
-            compactSize.Width += 2;
-            compactSize.Height += 2;
+            compactSize.Width += Offset * 2;
+            compactSize.Height += Offset * 2;
+
+            Resize(compactSize);
+
             return compactSize;
         }
 
@@ -97,7 +109,7 @@ namespace ConsoleLib
         public override void Resize(int width, int height)
         {
             base.Resize(width, height);
-            Control.Resize(width-2, height-2);
+            Control.Resize(width- (Offset*2), height-(Offset*2));
         }
         
     

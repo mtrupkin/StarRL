@@ -37,10 +37,13 @@ namespace ConsoleLib.Widget
         public int SelectedIndex { get; set; }
         public int HighlightedIndex { get; set; }
 
+        ConsoleRGB HightlightBG { get; set; }
+
         public ListWidget(Composite parent)
             : base(parent)
         {
             Items = new List<T>();
+            HightlightBG = new ConsoleRGB() { R = 65, G = 65, B = 65 };
         }
 
         public event ItemSelectedEventHandler<T> ItemSelectedEvent;
@@ -51,7 +54,7 @@ namespace ConsoleLib.Widget
             {
                 ItemSelectedEvent(item);
             }
-        }
+        }        
 
         public override void Render()
         {
@@ -70,11 +73,14 @@ namespace ConsoleLib.Widget
                     Screen.ForegroundColor = ConsoleRGB.White;
                     if (i == HighlightedIndex)
                     {
-                        Screen.BackgroundColor = ConsoleRGB.Gray;
+                        Screen.BackgroundColor = HightlightBG;
                     }
                 }
+                string value = o.ToString();
+                int offset = (Width - value.Length) / 2;
+                string paddedValue = value.PadLeft(offset + value.Length).PadRight(Width);
                 Screen.SetPosition(0, i);
-                Screen.Write(o.ToString());
+                Screen.Write(paddedValue);
                 Screen.BackgroundColor = ConsoleRGB.Black;
                 i++;
             }
@@ -157,7 +163,7 @@ namespace ConsoleLib.Widget
             int itemWidth = item.ToString().Length;
             int itemHeight = Items.Count;
 
-            if ( itemWidth > Width)
+            if (itemWidth > Width)
             {
                 maxWidth = itemWidth;
             }

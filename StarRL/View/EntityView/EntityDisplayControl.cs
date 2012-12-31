@@ -36,6 +36,7 @@ namespace StarRL
         Entity HighlightedEntity { get; set; }
 
         public IEnumerable<IDrawable<Entity>> Entities { get; set; }
+        public IDrawable<Entity> Flagship { get; set; }
 
         //Dictionary<Point, List<IDrawable<Entity>>> StackedEntities;
 
@@ -89,6 +90,8 @@ namespace StarRL
         {
             //Screen.Clear();
 
+            DrawJumpRadius(Flagship.Entity);
+
             if (Entities != null)
             {
                 var stackedEntities = GetStackedEntities();
@@ -99,12 +102,35 @@ namespace StarRL
                 {
                     DrawStackedEntities(stack, lastRenderTimeSpan);
                 }
-
-                // render mouse?
+                
                 //Screen.SetPosition(Mouse.X, Mouse.Y);
-                //Screen.Write('X');
+                //Screen.Write('X');                
 
                 lastRenderTime = DateTime.Now;
+            }
+        }
+
+        void DrawJumpRadius(Entity ship)
+        {
+            var r = 6;
+            var x = ship.Position.X;
+            var y = ship.Position.Y;
+
+            for (int i = -r; i <= r; i++)
+            {
+                for (int j = -r; j <= r; j++)
+                {
+
+                    if ((i * i) + (j * j) <= r * r)
+                    {
+                        Screen.BackgroundColor = new ConsoleRGB() { R = 40 };
+
+                        Screen.SetPosition(x + i , y + j);
+                        Screen.Write(' ');
+
+                        Screen.BackgroundColor = ConsoleRGB.Black;
+                    }
+                }
             }
         }
 

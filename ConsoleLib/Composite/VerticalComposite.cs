@@ -46,6 +46,8 @@ namespace ConsoleLib
                 }
             }
 
+            Resize(width, height);
+
             return new Size(width, height);
         }
 
@@ -67,6 +69,12 @@ namespace ConsoleLib
                 {
                     controlLayout.X = Width - control.Width;
                 }
+                if (controlLayout.HorizontalJustify == HorizontalJustify.Center)
+                {
+                    int margin = Width - control.Width;
+                    controlLayout.X = (int)(margin / 2);
+                }
+
             }
         }
 

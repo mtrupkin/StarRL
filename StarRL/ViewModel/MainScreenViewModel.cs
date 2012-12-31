@@ -18,13 +18,13 @@ namespace StarRL
 
         public void Initialize()
         {
-            MainScreen.NewListWidget.AddItem(new Option() { Name = "Create New Game", OptionHandler = NewGame });
-            MainScreen.NewListWidget.AddItem(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
+            MainScreen.NewListWidget.AddItem(new Option() { Name = " Create Game ", OptionHandler = NewGame });
+            MainScreen.NewListWidget.AddItem(new Option() { Name = "Load Game", OptionHandler = LoadGame });
             MainScreen.NewListWidget.AddItem(new Option() { Name = "Quit", OptionHandler = Quit });
 
-            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Create New Game", OptionHandler = NewGame });
-            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Continue Game", OptionHandler = ContinueGame });
-            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Load Existing Game", OptionHandler = LoadGame });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Create Game", OptionHandler = NewGame });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = " Continue Game ", OptionHandler = ContinueGame });
+            MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Load Game", OptionHandler = LoadGame });
             MainScreen.ContinueListWidget.AddItem(new Option() { Name = "Quit", OptionHandler = Quit });
 
             MainScreen.NewListWidget.ItemSelectedEvent += new ItemSelectedEventHandler<Option>(ListControl_SelectedEvent);
@@ -32,6 +32,18 @@ namespace StarRL
 
             MainScreen.NewListWidget.SetEnabled(true);
             MainScreen.ContinueListWidget.SetEnabled(false);
+
+            MainScreen.KeyPressEvent += new KeyPressEventHandler(KeyPressedEvent);
+        }
+
+        void KeyPressedEvent(ConsoleKey consoleKey)
+        {
+            switch (consoleKey)
+            {
+                case ConsoleKey.Escape:
+                    Quit();
+                    break;
+            }
         }
 
         void ListControl_SelectedEvent(Option item)
@@ -45,7 +57,7 @@ namespace StarRL
             MainScreen.NewListWidget.SetEnabled(false);
             MainScreen.ContinueListWidget.SetEnabled(true);
 
-            GalaxyFactory galaxyFactory = new GalaxyFactory(80, 60);
+            GalaxyFactory galaxyFactory = new GalaxyFactory(128, 72);
             FlagshipGameViewModel.FlagshipGame.Galaxy = galaxyFactory.CreateGalaxy();
         }
 

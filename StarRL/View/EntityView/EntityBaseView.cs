@@ -31,21 +31,13 @@ namespace StarRL
         public void SetEntity(Entity entity)
         {
 
-            
-            if ( entity != null )
+            if (entity == null)
             {
-                if (!entity.Equals(Entity))
-                {
+                throw new ArgumentNullException("entity");
+            }
+            
                     Name.SetText(String.Format("Name: {0}", entity.Name));
                     Position.SetPoint(entity.Position);
-                    Position.SetEnabled(true);
-                }
-            }
-            else
-            {
-                Name.SetText("Not Selected");
-                Position.SetEnabled(false);
-            }
 
             Entity = entity;
         }

@@ -36,18 +36,23 @@ namespace ConsoleLib
             {
                 Control control = controlLayout.Control;
 
-                Size compactSize = control.CompactSize();
+                Size size = control.CompactSize();
 
-                if (controlLayout.GrabExcess)
+                if (controlLayout.GrabHorizontal)
                 {
-                    control.Resize(Width, compactSize.Height);
+                    size.Width = Width;
                 }
-                else
+
+                if (controlLayout.GrabVertical)
                 {
-                    control.Resize(compactSize.Width, compactSize.Height);
-                }                 
+                    size.Height = Height;
+                }
+
+                control.Resize(size.Width, size.Height);
+                               
 
                 control.Align();
+
                 control.Layout();
             }
 
@@ -56,15 +61,29 @@ namespace ConsoleLib
  
         public override void Render()
         {
+            var enabledControls = new List<LayoutData>();
+
             foreach (LayoutData layoutData in ControlData)
             {
                 Control control = layoutData.Control;
                 if (control.Enabled)
                 {
-                    control.Render();
-                    Screen.Display(layoutData.X, layoutData.Y, control.Screen);
+                    enabledControls.Add(layoutData);
+                }
+                else
+                {
+                    //control.Screen.Clear();
+                    //Screen.Display(layoutData.X, layoutData.Y, control.Screen);
                 }
             }
+
+            foreach (LayoutData layoutData in enabledControls)
+            {
+                Control control = layoutData.Control;
+                control.Render();
+                Screen.Display(layoutData.X, layoutData.Y, control.Screen);
+            }
+
         }
 
         public override void Dispose()
@@ -137,26 +156,31 @@ namespace ConsoleLib
 
         public override Size CompactSize()
         {
-            int width = 0;
-            int height = 0;
+            int width = 1;
+            int height = 1;
 
             foreach (LayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
-                Size compactSize = control.CompactSize();
+                if (control.Enabled)
+                {
+                    Size compactSize = control.CompactSize();
 
-                if (compactSize.Width > width)
-                {
-                    width = compactSize.Width;
-                }
-                if (compactSize.Height > height)
-                {
-                    height = compactSize.Height;
+                    if (compactSize.Width > width)
+                    {
+                        width = compactSize.Width;
+                    }
+                    if (compactSize.Height > height)
+                    {
+                        height = compactSize.Height;
+                    }
                 }
             }
 
+            Resize(width, height);
+
             return new Size(width, height);
-        }
+        }       
 
         public override void Align()
         {
@@ -164,8 +188,21 @@ namespace ConsoleLib
             {
                 Control control = controlLayout.Control;
                 control.Align();
+
+                if (controlLayout.HorizontalJustify == HorizontalJustify.Center)
+                {
+                    int margin = Width - control.Width;
+                    controlLayout.X = (int)( margin / 2);
+                }
+
+                if (controlLayout.VerticalJustify == VerticalJustify.Center)
+                {
+                    int margin = Height - control.Height;
+                    controlLayout.Y = (int)(margin / 2);
+                }
             }
         }
+
 
     }
 }

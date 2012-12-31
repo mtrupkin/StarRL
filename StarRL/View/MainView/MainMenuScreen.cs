@@ -9,7 +9,7 @@ using Flagship;
 namespace StarRL
 {
 
-    public class MainMenuScreen : StackedComposite
+    public class MainMenuScreen : VerticalComposite
     {
 
         public ListWidget<Option> NewListWidget { get; set; }
@@ -19,11 +19,25 @@ namespace StarRL
             : base(parent)
         {
 
-            NewListWidget = new ListWidget<Option>(this);
-            ContinueListWidget = new ListWidget<Option>(this);
 
-            AddControl(NewListWidget);
-            AddControl(ContinueListWidget);            
+            var titleWidget = new TextWidget(this, "Star Rogue");
+            AddControl(new BoxWidget(titleWidget, 1), HorizontalJustify.Center);
+            //AddControl(titleWidget, HorizontalJustify.Center);
+
+            var stackedComposite = new StackedComposite(this);
+            NewListWidget = new ListWidget<Option>(stackedComposite);
+            ContinueListWidget = new ListWidget<Option>(stackedComposite);
+
+
+            //stackedComposite.AddControl(new LayoutData(NewListWidget) { HorizontalJustify = HorizontalJustify.Center, VerticalJustify = VerticalJustify.Center });
+            //stackedComposite.AddControl(new LayoutData(ContinueListWidget) { HorizontalJustify = HorizontalJustify.Center, VerticalJustify = VerticalJustify.Center });
+            stackedComposite.AddControl(NewListWidget);
+            stackedComposite.AddControl(ContinueListWidget);
+
+            AddControl(new SpacerWidget(this, 1, 5), HorizontalJustify.Center);
+            //AddControl(new BoxWidget(stackedComposite, 1), HorizontalJustify.Center);
+            AddControl(stackedComposite, HorizontalJustify.Center);
+            //AddControl(ContinueListWidget);            
         }
        
 

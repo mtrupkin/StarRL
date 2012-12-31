@@ -39,6 +39,8 @@ namespace ConsoleLib
                 }
             }
 
+            Resize(width, height);
+
             return new Size(width, height);
         }
 

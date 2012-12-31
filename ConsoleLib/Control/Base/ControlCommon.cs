@@ -36,6 +36,7 @@ namespace ConsoleLib
         public virtual void SetEnabled(bool enabled)
         {
             Enabled = enabled;
+            Resize();
         }
 
         public event KeyPressEventHandler KeyPressEvent;
@@ -45,8 +46,13 @@ namespace ConsoleLib
         public abstract void Resize();
         public virtual Size CompactSize() { return new Size(Width, Height);  }
         public virtual void Layout() { }
-        public virtual void Align() { }
+        public virtual void Align() { }       
 
+
+        public virtual void Resize(Size size)
+        {
+            Resize(size.Width, size.Height);
+        }
 
         public virtual void Resize(int width, int height)
         {

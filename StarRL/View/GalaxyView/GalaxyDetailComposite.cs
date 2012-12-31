@@ -30,7 +30,7 @@ namespace StarRL
 
             HighlightedDetailControl = new EntityBaseView(this);
 
-            var layoutData = new VerticalLayoutData(FlagshipDetailControl) { GrabExcess = true };
+            var layoutData = new VerticalLayoutData(FlagshipDetailControl) { GrabHorizontal = true };
             detailComposite.AddControl(layoutData);
             detailComposite.AddControl(TargetDetailControl);
             detailComposite.AddControl(HighlightedDetailControl);
@@ -40,7 +40,7 @@ namespace StarRL
             detailComposite.AddControl(TimeWidget);
 
 
-            AddControl(new BoxControl(detailComposite));
+            AddControl(new BoxWidget(detailComposite));
             //AddControl(detailComposite);
 		}
 

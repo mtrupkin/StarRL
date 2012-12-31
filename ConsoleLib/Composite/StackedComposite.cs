@@ -19,7 +19,6 @@ namespace ConsoleLib
         public void AddControl(LayoutData layoutData)
         {
             ControlData.Add(layoutData);
-
         }
 
     }

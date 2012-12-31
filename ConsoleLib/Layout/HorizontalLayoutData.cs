@@ -8,8 +8,6 @@ namespace ConsoleLib
 
     public class HorizontalLayoutData : LayoutData
     {
-        public HorizontalJustify HorizontalJustify { get; set; }
-
         public HorizontalLayoutData(Control control) : base(control) { }
     }
 }

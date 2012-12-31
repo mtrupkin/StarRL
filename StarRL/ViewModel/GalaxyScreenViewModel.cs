@@ -65,8 +65,12 @@ namespace StarRL
 			entities.AddRange (DrawableFactory.GetDrawableStarSystems (FlagshipGame.Galaxy.StarSystems));
 			entities.Add (DrawableFactory.GetDrawableShip (FlagshipGame.Galaxy.Flagship));
 
+            
+
 			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
-            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Resize(40, 40);
+            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Flagship = DrawableFactory.GetDrawableShip(FlagshipGame.Galaxy.Flagship);
+
+            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Resize(FlagshipGame.Galaxy.Width, FlagshipGame.Galaxy.Height);
 
             
 			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip (FlagshipGame.Galaxy.Flagship);

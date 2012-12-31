@@ -19,7 +19,7 @@ namespace StarRL
 
             GalaxyControl = new EntityDisplayControl(parent);
 
-            var boxControl = new BoxControl(GalaxyControl);
+            var boxControl = new BoxWidget(GalaxyControl);
 
             //SetLayoutManager(new StackedLayoutManager());
             AddControl(boxControl);
