@@ -50,7 +50,7 @@ namespace ConsoleLib
         }
       
 
-        public override Size CompactSize()
+        public override Size Compact()
         {
             int width = 0;
             int height = 0;
@@ -58,7 +58,7 @@ namespace ConsoleLib
             foreach (LayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
-                Size compactSize = control.CompactSize();
+                Size compactSize = control.Compact();
 
                 if (compactSize.Width > width)
                 {

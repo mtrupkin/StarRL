@@ -38,10 +38,10 @@ namespace StarRL
 
             TimeWidget = new TimeWidget(this);
             detailComposite.AddControl(TimeWidget);
-
-
-            AddControl(new BoxWidget(detailComposite));
-            //AddControl(detailComposite);
+            //var boxWidget = new BoxWidget(detailComposite);
+            //var layoutData2 = new VerticalLayoutData(boxWidget) { GrabHorizontal = true };
+            //AddControl(layoutData2);
+            AddControl(detailComposite);
 		}
 
 	}

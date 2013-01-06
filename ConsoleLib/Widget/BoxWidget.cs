@@ -49,10 +49,12 @@ namespace ConsoleLib
         {
             if (Control.Enabled)
             {
-
+                Screen.WriteFrame(Width, Height);
                 Control.Render();
-                Screen.WriteFrame(Control.Width + (Offset * 2), Control.Height + (Offset * 2));
                 Screen.Display(Offset, Offset, Control.Screen);
+              
+               
+                //Screen.WriteFrame(Control.Width + (Offset * 2), Control.Height + (Offset * 2));
                 
             }
         }
@@ -90,9 +92,9 @@ namespace ConsoleLib
             Control.Layout();
         }
 
-        public override Size CompactSize()
+        public override Size Compact()
         {
-            Size compactSize = Control.CompactSize();
+            Size compactSize = Control.Compact();
             compactSize.Width += Offset * 2;
             compactSize.Height += Offset * 2;
 
@@ -108,7 +110,7 @@ namespace ConsoleLib
 
         public override void Resize(int width, int height)
         {
-            base.Resize(width, height);
+            base.Resize(width , height );
             Control.Resize(width- (Offset*2), height-(Offset*2));
         }
         

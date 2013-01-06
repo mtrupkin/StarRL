@@ -32,30 +32,46 @@ namespace ConsoleLib
 
         public override void Layout()
         {
+            
             foreach (LayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
 
-                Size size = control.CompactSize();
+                control.Compact();
 
-                if (controlLayout.GrabHorizontal)
-                {
-                    size.Width = Width;
-                }
+            }
 
-                if (controlLayout.GrabVertical)
-                {
-                    size.Height = Height;
-                }
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
 
-                control.Resize(size.Width, size.Height);
-                               
+                control.GrabExcess();
+
+                //control.Align();
+
+                //control.Layout();
+            }
+
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+
+                //control.GrabExcess();
 
                 control.Align();
 
+                //control.Layout();
+            }
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+
+                //control.GrabExcess();
+
+                //control.Align();
+
                 control.Layout();
             }
-
             //Screen.Clear();
         }
  
@@ -154,7 +170,7 @@ namespace ConsoleLib
             }
         }
 
-        public override Size CompactSize()
+        public override Size Compact()
         {
             int width = 1;
             int height = 1;
@@ -164,7 +180,7 @@ namespace ConsoleLib
                 Control control = controlLayout.Control;
                 if (control.Enabled)
                 {
-                    Size compactSize = control.CompactSize();
+                    Size compactSize = control.Compact();
 
                     if (compactSize.Width > width)
                     {
@@ -200,6 +216,29 @@ namespace ConsoleLib
                     int margin = Height - control.Height;
                     controlLayout.Y = (int)(margin / 2);
                 }
+            }
+        }
+
+        public override void GrabExcess()
+        {
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+                control.GrabExcess();
+
+                int width = control.Width;
+                int heigth = control.Height;
+                if (controlLayout.GrabHorizontal == true)
+                {
+                    width = Width;
+                }
+
+                if (controlLayout.GrabVertical == true)
+                {
+                    heigth = Height;
+                }
+
+                control.Resize(width, heigth);
             }
         }
 

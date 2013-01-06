@@ -24,7 +24,9 @@ namespace StarRL
             GalaxyDetailComposite = new GalaxyDetailComposite(this);
 
             AddControl(GalaxyMasterComposite);
-            AddControl(GalaxyDetailComposite);
+            var boxWidget = new BoxWidget(GalaxyDetailComposite);
+            var layoutData = new HorizontalLayoutData(boxWidget) { GrabHorizontal = true, GrabVertical = true };
+            AddControl(layoutData);
         }
     }
 }

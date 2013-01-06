@@ -17,9 +17,9 @@ namespace ConsoleLib
         Screen Screen { get; }
 
         void Layout();
-        Size CompactSize();
-        //void Compact();
+        Size Compact();
         //void GrabExcess(Size compactSize);
+        void GrabExcess();
         void Align();
 
         void Resize();

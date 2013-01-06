@@ -28,7 +28,7 @@ namespace ConsoleLib
             ControlData.Add(layoutData);
         }
 
-        public override Size CompactSize()
+        public override Size Compact()
         {
             int width = 0;
             int height = 0;
@@ -36,7 +36,7 @@ namespace ConsoleLib
             foreach (VerticalLayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
-                Size compactSize = control.CompactSize();
+                Size compactSize = control.Compact();
 
                 height += compactSize.Height;
 
@@ -74,9 +74,39 @@ namespace ConsoleLib
                     int margin = Width - control.Width;
                     controlLayout.X = (int)(margin / 2);
                 }
-
             }
         }
 
+        public override void GrabExcess()
+        {
+            int totalHeight = 0;
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+                control.GrabExcess();
+
+                int width = control.Width;
+                int heigth = control.Height;
+
+                if (controlLayout.GrabHorizontal == true)
+                {
+                    width = Width;
+                }
+                totalHeight += heigth;
+                control.Resize(width, heigth);
+            }
+            LayoutData lastLayoutData = ControlData.Last();
+
+            if (lastLayoutData.GrabVertical)
+            {
+                Control control = lastLayoutData.Control;
+                int width = control.Width;
+                int height = control.Height;
+                    totalHeight -= height;
+                    height = Height- totalHeight;
+                
+                lastLayoutData.Control.Resize(width, height);
+            }
+        }
     }    
 }

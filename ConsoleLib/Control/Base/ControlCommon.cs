@@ -44,10 +44,10 @@ namespace ConsoleLib
         public event MouseEventHandler MouseButtonEvent;
 
         public abstract void Resize();
-        public virtual Size CompactSize() { return new Size(Width, Height);  }
+        public virtual Size Compact() { return new Size(Width, Height);  }
         public virtual void Layout() { }
-        public virtual void Align() { }       
-
+        public virtual void Align() { }
+        public virtual void GrabExcess() { }
 
         public virtual void Resize(Size size)
         {
@@ -56,19 +56,21 @@ namespace ConsoleLib
 
         public virtual void Resize(int width, int height)
         {
-            if (width <= 0)
+            //if (width <= 0)
+            //{
+            //    throw new ArgumentOutOfRangeException("width");
+            //}
+
+            //if (height <= 0)
+            //{
+            //    throw new ArgumentOutOfRangeException("height");
+            //}
+
+            if ((width > 0) && (height > 0))
             {
-                throw new ArgumentOutOfRangeException("width");
+                Screen.Dispose();
+                Screen = CreateScreen(width, height);
             }
-
-            if (height <= 0)
-            {
-                throw new ArgumentOutOfRangeException("height");
-            }
-
-            Screen.Dispose();
-            Screen = CreateScreen(width, height);
-
             Width = width;
             Height = height;
         }
