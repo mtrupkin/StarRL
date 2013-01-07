@@ -7,6 +7,9 @@ namespace ConsoleLib
 
     public interface Control : IDisposable
     {
+        bool GrabHorizontal { get; set; }
+        bool GrabVertical { get; set; }
+
         int Height { get; }
         int Width { get; }
 
@@ -19,7 +22,7 @@ namespace ConsoleLib
         void Layout();
         Size Compact();
         //void GrabExcess(Size compactSize);
-        void GrabExcess();
+        void GrabExcess(Size excessSize);
         void Align();
 
         void Resize();

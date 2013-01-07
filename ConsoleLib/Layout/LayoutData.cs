@@ -12,8 +12,6 @@ namespace ConsoleLib
     {
         public VerticalJustify VerticalJustify { get; set; }
         public HorizontalJustify HorizontalJustify { get; set; }
-        public bool GrabHorizontal { get; set; }
-        public bool GrabVertical { get; set; }
 
         public int X { get; set; }
         public int Y { get; set; }

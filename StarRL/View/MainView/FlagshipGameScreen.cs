@@ -12,14 +12,14 @@ namespace StarRL
         public GalaxyScreen GalaxyScreen { get; set; }
          
         public FlagshipGameScreen(Composite parent):base (parent) {
-            
-            MainScreen = new MainMenuScreen(parent);
 
-            GalaxyScreen = new GalaxyScreen(parent);
+            MainScreen = new MainMenuScreen(parent) { GrabHorizontal = true, GrabVertical = true };
 
-            AddControl(new LayoutData(MainScreen) { GrabHorizontal = true, GrabVertical = true, VerticalJustify = VerticalJustify.Center});
+            GalaxyScreen = new GalaxyScreen(parent) { GrabHorizontal = true, GrabVertical = true };
 
-            AddControl(new LayoutData(GalaxyScreen) { GrabHorizontal = true, GrabVertical = true, });
+            AddControl(new LayoutData(MainScreen) {  VerticalJustify = VerticalJustify.Center});
+
+            AddControl(new LayoutData(GalaxyScreen) { });
 
            // AddControl(GalaxyScreen);
         }

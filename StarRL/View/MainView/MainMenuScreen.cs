@@ -20,6 +20,7 @@ namespace StarRL
         {
 
 
+            AddControl(new SpacerWidget(this, 1, 5), HorizontalJustify.Center);
             var titleWidget = new TextWidget(this, "Star Rogue");
             AddControl(new BoxWidget(titleWidget, 1), HorizontalJustify.Center);
             //AddControl(titleWidget, HorizontalJustify.Center);

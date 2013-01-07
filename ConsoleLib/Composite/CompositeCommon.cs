@@ -43,9 +43,9 @@ namespace ConsoleLib
 
             foreach (LayoutData controlLayout in ControlData)
             {
-                Control control = controlLayout.Control;
+               Control control = controlLayout.Control;
 
-               control.GrabExcess();
+               control.GrabExcess(new Size(Width, Height));
 
             }
 
@@ -59,18 +59,96 @@ namespace ConsoleLib
 
                 //control.Layout();
             }
+            //foreach (LayoutData controlLayout in ControlData)
+            //{
+            //    Control control = controlLayout.Control;
+
+            //    //control.GrabExcess();
+
+            //    //control.Align();
+
+            //    control.Layout();
+            //}
+            //Screen.Clear();
+        }
+
+        public override Size Compact()
+        {
+            int width = 1;
+            int height = 1;
+
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+                if (control.Enabled)
+                {
+                    Size compactSize = control.Compact();
+
+                    if (compactSize.Width > width)
+                    {
+                        width = compactSize.Width;
+                    }
+                    if (compactSize.Height > height)
+                    {
+                        height = compactSize.Height;
+                    }
+                }
+            }
+
+            Resize(width, height);
+
+            return new Size(width, height);
+        }
+
+        public override void Align()
+        {
+            foreach (LayoutData controlLayout in ControlData)
+            {
+                Control control = controlLayout.Control;
+                control.Align();
+
+                if (controlLayout.HorizontalJustify == HorizontalJustify.Center)
+                {
+                    int margin = Width - control.Width;
+                    controlLayout.X = (int)(margin / 2);
+                }
+
+                if (controlLayout.VerticalJustify == VerticalJustify.Center)
+                {
+                    int margin = Height - control.Height;
+                    controlLayout.Y = (int)(margin / 2);
+                }
+            }
+        }
+
+        public override void GrabExcess(Size excess)
+        {
+            int width = Width;
+            int heigth = Height;
+
+            if (GrabHorizontal)
+            {
+                width = excess.Width;
+            }
+
+            if (GrabVertical)
+            {
+                heigth = excess.Height;
+            }
+
+            Resize(width, heigth);
+
             foreach (LayoutData controlLayout in ControlData)
             {
                 Control control = controlLayout.Control;
 
-                //control.GrabExcess();
 
-                //control.Align();
+                control.GrabExcess(excess);
 
-                control.Layout();
             }
-            //Screen.Clear();
         }
+
+
  
         public override void Render()
         {
@@ -93,8 +171,17 @@ namespace ConsoleLib
             foreach (LayoutData layoutData in enabledControls)
             {
                 Control control = layoutData.Control;
+                if ((control.Width > 1) && (control.Height > 1))
+                {
+                    //control.Screen.WriteFrame(control.Width, control.Height);
+                }
                 control.Render();
+
+                
                 Screen.Display(layoutData.X, layoutData.Y, control.Screen);
+
+                
+                
             }
 
         }
@@ -166,79 +253,6 @@ namespace ConsoleLib
                 control.OnMouseButton(mouseInControl);
             }
         }
-
-        public override Size Compact()
-        {
-            int width = 1;
-            int height = 1;
-
-            foreach (LayoutData controlLayout in ControlData)
-            {
-                Control control = controlLayout.Control;
-                if (control.Enabled)
-                {
-                    Size compactSize = control.Compact();
-
-                    if (compactSize.Width > width)
-                    {
-                        width = compactSize.Width;
-                    }
-                    if (compactSize.Height > height)
-                    {
-                        height = compactSize.Height;
-                    }
-                }
-            }
-
-            Resize(width, height);
-
-            return new Size(width, height);
-        }       
-
-        public override void Align()
-        {
-            foreach (LayoutData controlLayout in ControlData)
-            {
-                Control control = controlLayout.Control;
-                control.Align();
-
-                if (controlLayout.HorizontalJustify == HorizontalJustify.Center)
-                {
-                    int margin = Width - control.Width;
-                    controlLayout.X = (int)( margin / 2);
-                }
-
-                if (controlLayout.VerticalJustify == VerticalJustify.Center)
-                {
-                    int margin = Height - control.Height;
-                    controlLayout.Y = (int)(margin / 2);
-                }
-            }
-        }
-
-        public override void GrabExcess()
-        {
-            foreach (LayoutData controlLayout in ControlData)
-            {
-                Control control = controlLayout.Control;
-                control.GrabExcess();
-
-                int width = control.Width;
-                int heigth = control.Height;
-                if (controlLayout.GrabHorizontal == true)
-                {
-                    width = Width;
-                }
-
-                if (controlLayout.GrabVertical == true)
-                {
-                    heigth = Height;
-                }
-
-                control.Resize(width, heigth);
-            }
-        }
-
 
     }
 }

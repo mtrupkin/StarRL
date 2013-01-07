@@ -61,39 +61,38 @@ namespace ConsoleLib
 
       
         }
-       
-        public override void GrabExcess()
+
+        public override void GrabExcess(Size excess)
         {
+            int width = Width;
+            int heigth = Height;
+
+            if (GrabHorizontal)
+            {
+                width = excess.Width;
+            }
+
+            if (GrabVertical)
+            {
+                heigth = excess.Height;
+            }
+
+            Resize(width, heigth);
+
             if (ControlData.Count > 0)
             {
                 int totalWidth = 0;
                 foreach (LayoutData controlLayout in ControlData)
                 {
                     Control control = controlLayout.Control;
-                    control.GrabExcess();
+                    control.GrabExcess(new Size(control.Width, Height));
 
-                    int width = control.Width;
-                    int heigth = control.Height;
-
-                    if (controlLayout.GrabVertical == true)
-                    {
-                        heigth = Height;
-                    }
-                    totalWidth += width;
-                    control.Resize(width, heigth);
+                    totalWidth += control.Width;
                 }
 
                 LayoutData lastLayoutData = ControlData.Last();
-
-                if (lastLayoutData.GrabHorizontal)
-                {
-                    Control control = lastLayoutData.Control;
-                    int width = control.Width;
-                    int height = control.Height;
-                    totalWidth -= width;
-                    width = Width - totalWidth;
-                    lastLayoutData.Control.Resize(width, height);
-                }
+                Control lastControl = lastLayoutData.Control;
+                lastControl.GrabExcess(new Size(Width - totalWidth + lastControl.Width , Height));
             }
         }
     }

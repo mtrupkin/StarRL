@@ -46,9 +46,9 @@ namespace ConsoleLibTest
             Shell = new Libtcod.LibtcodShell("Console Lib Test", 160, 90);
 
             // intialize view
-            var mainScreen = new  MainScreen(Shell);
+            var mainScreen = new MainScreen(Shell) { GrabHorizontal = true, GrabVertical = true };
 
-            Shell.AddControl(new LayoutData(mainScreen) { GrabHorizontal = true, GrabVertical = true });
+            Shell.AddControl(new LayoutData(mainScreen) { });
             Shell.Resize();
         }
 

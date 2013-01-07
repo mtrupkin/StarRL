@@ -49,7 +49,7 @@
     <Compile Include="Control\Base\ControlBase.cs" />
     <Compile Include="Composite\Base\CompositeBase.cs" />
     <Compile Include="Control\Base\ControlCommon.cs" />
-    <Compile Include="Composite\Base\CompositeCommon.cs" />
+    <Compile Include="Composite\CompositeCommon.cs" />
     <Compile Include="Layout\HorizontalLayoutData.cs" />
     <Compile Include="Layout\LayoutData.cs" />
     <Compile Include="Size.cs" />

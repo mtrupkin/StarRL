@@ -22,15 +22,15 @@ namespace StarRL
         public GalaxyDetailComposite(Composite parent)
             : base(parent)
 		{
-            var detailComposite = new VerticalComposite(this);
+            var detailComposite = new VerticalComposite(this) { GrabHorizontal = false };
 
-            FlagshipDetailControl = new ShipDetailComposite(detailComposite, "Flagship");
+            FlagshipDetailControl = new ShipDetailComposite(detailComposite, "Flagship") { GrabHorizontal = true };
 
             TargetDetailControl = new EntityDetailComposite(detailComposite, "Target");
 
             HighlightedDetailControl = new EntityBaseView(this);
 
-            var layoutData = new VerticalLayoutData(FlagshipDetailControl) { GrabHorizontal = true };
+            var layoutData = new VerticalLayoutData(FlagshipDetailControl) ;
             detailComposite.AddControl(layoutData);
             detailComposite.AddControl(TargetDetailControl);
             detailComposite.AddControl(HighlightedDetailControl);
@@ -38,10 +38,10 @@ namespace StarRL
 
             TimeWidget = new TimeWidget(this);
             detailComposite.AddControl(TimeWidget);
-            //var boxWidget = new BoxWidget(detailComposite);
-            //var layoutData2 = new VerticalLayoutData(boxWidget) { GrabHorizontal = true };
-            //AddControl(layoutData2);
+            //var boxWidget = new BoxWidget(detailComposite) { GrabHorizontal = true };
             AddControl(detailComposite);
+            //AddControl(boxWidget);
+            
 		}
 
 	}

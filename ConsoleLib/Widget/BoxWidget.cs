@@ -49,6 +49,8 @@ namespace ConsoleLib
         {
             if (Control.Enabled)
             {
+                Screen.BackgroundColor = ConsoleRGB.Black;
+                Screen.ForegroundColor = ConsoleRGB.Base1;
                 Screen.WriteFrame(Width, Height);
                 Control.Render();
                 Screen.Display(Offset, Offset, Control.Screen);
@@ -87,11 +89,6 @@ namespace ConsoleLib
             }
         }
 
-        public override void Layout()
-        {
-            Control.Layout();
-        }
-
         public override Size Compact()
         {
             Size compactSize = Control.Compact();
@@ -107,6 +104,28 @@ namespace ConsoleLib
         {
             Control.Align();
         }
+
+        public override void GrabExcess(Size excess)
+        {
+            
+            int width = Width;
+            int height = Height;
+
+            if (GrabHorizontal)
+            {
+                width = excess.Width;
+            }
+
+            if (GrabVertical)
+            {
+                height = excess.Height;
+            }
+
+            Resize(width, height);
+
+            Control.GrabExcess(new Size(width - (Offset * 2), height - (Offset * 2)));
+        }
+    
 
         public override void Resize(int width, int height)
         {

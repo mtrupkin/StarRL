@@ -18,6 +18,8 @@ namespace ConsoleLib
 
         void SetPosition(int x, int y);
 
+        void SetBackground(int x, int y, ConsoleRGB backgroundColor);
+
         void Write(char c);
 
         void Write(string s);

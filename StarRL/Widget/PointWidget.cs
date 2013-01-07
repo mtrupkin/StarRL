@@ -12,7 +12,7 @@ namespace StarRL.Widget
         {
             Point = new Point();
 
-            Resize(7, 1);
+            Resize(9, 1);
             Resize();
         }
 
@@ -20,7 +20,10 @@ namespace StarRL.Widget
         {
             if (Point != null)
             {
-                Screen.Write(String.Format("[{0,2}.{1,2}]", Point.X, Point.Y));
+                String text = String.Format("[{0,3}.{1,3}]", Point.X, Point.Y);
+                
+
+                Screen.Write(text);
             }
         }
 

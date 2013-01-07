@@ -38,7 +38,7 @@ namespace StarRL
 
         public static Drawable<StarSystem> GetDrawableStarSystem(StarSystem starSystem)
         {
-            return new Drawable<StarSystem>(starSystem) { Icon = '.', SelectionPriority = 1000, };
+            return new Drawable<StarSystem>(starSystem) { Icon = (char)7, SelectionPriority = 1000, };
         }
 
         public static List<Drawable<StarSystem>> GetDrawableStarSystems(List<StarSystem> starSystems)

@@ -48,31 +48,6 @@ namespace ConsoleLib
             Screen.Clear();
             Layout();
         }
-      
-
-        public override Size Compact()
-        {
-            int width = 0;
-            int height = 0;
-
-            foreach (LayoutData controlLayout in ControlData)
-            {
-                Control control = controlLayout.Control;
-                Size compactSize = control.Compact();
-
-                if (compactSize.Width > width)
-                {
-                    width = compactSize.Width;
-                }
-                if (compactSize.Height > height)
-                {
-                    height = compactSize.Height;
-                }                
-            }
-
-            //Resize(width, height);
-
-            return new Size(width, height);
-        }    
+     
     }
 }

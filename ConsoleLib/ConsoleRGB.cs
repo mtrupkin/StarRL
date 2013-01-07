@@ -159,6 +159,73 @@ namespace ConsoleLib
             ColorEnum = ColorEnum.Red,
         };
 
+        public static ConsoleRGB Space = new ConsoleRGB()
+        {
+            R = 0,
+            G = 15,
+            B = 19,
+        };
+
+
+        // solorized
+        public static ConsoleRGB Base03 = new ConsoleRGB()
+        {
+            R = 0,
+            G = 43,
+            B = 54,
+        };
+
+        public static ConsoleRGB Base02 = new ConsoleRGB()
+        {
+            R = 7,
+            G = 54,
+            B = 66,
+        };
+
+        public static ConsoleRGB Base01 = new ConsoleRGB()
+        {
+            R = 88,
+            G = 110,
+            B = 117,
+        };
+
+        public static ConsoleRGB Base00 = new ConsoleRGB()
+        {
+            R = 101,
+            G = 123,
+            B = 131,
+        };
+
+        public static ConsoleRGB Base0 = new ConsoleRGB()
+        {
+            R = 131,
+            G = 148,
+            B = 150,
+        };
+
+        public static ConsoleRGB Base1 = new ConsoleRGB()
+        {
+            R = 147,
+            G = 161,
+            B = 161,
+        };
+
+        public static ConsoleRGB Base2 = new ConsoleRGB()
+        {
+            R = 238,
+            G = 232,
+            B = 213,
+        };
+
+
+        public static ConsoleRGB Base3 = new ConsoleRGB()
+        {
+            R = 253,
+            G = 246,
+            B = 227,
+        };
+
+
         public byte R { get; set; }
         public byte G { get; set; }
         public byte B { get; set; }

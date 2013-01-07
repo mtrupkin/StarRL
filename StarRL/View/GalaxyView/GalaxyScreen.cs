@@ -21,12 +21,14 @@ namespace StarRL
         {
             GalaxyMasterComposite = new GalaxyMasterComposite(this);
 
-            GalaxyDetailComposite = new GalaxyDetailComposite(this);
+            GalaxyDetailComposite = new GalaxyDetailComposite(this) { GrabHorizontal = true, };
 
             AddControl(GalaxyMasterComposite);
-            var boxWidget = new BoxWidget(GalaxyDetailComposite);
-            var layoutData = new HorizontalLayoutData(boxWidget) { GrabHorizontal = true, GrabVertical = true };
-            AddControl(layoutData);
+            var boxWidget = new BoxWidget(GalaxyDetailComposite) { GrabHorizontal = true, GrabVertical = true };
+            
+            var layoutData = new HorizontalLayoutData(GalaxyDetailComposite) { };
+            //AddControl(layoutData);
+            AddControl(boxWidget);
         }
     }
 }

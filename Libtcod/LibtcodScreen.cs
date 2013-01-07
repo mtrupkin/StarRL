@@ -23,9 +23,12 @@ namespace Libtcod
 		public int Width { get; set; }
 
 		public int Height { get; set; }
+
+        
     
 		public LibtcodScreen (int width, int height) : this(width, height, new TCODConsole (width, height))
 		{
+         
 		}
 
         public LibtcodScreen(int width, int height, TCODConsole tcodConsole)
@@ -49,6 +52,12 @@ namespace Libtcod
 			TCODConsoleInst.clear ();
 		}
 
+        public void SetBackground(int x, int y, ConsoleRGB backgroundColor)
+        {
+            TCODColor bg = getTCODColor(backgroundColor);
+            TCODConsoleInst.setCharBackground(x, y, bg, TCODBackgroundFlag.Set);
+        }
+
 		public void Write (char c)
 		{
 			TCODColor bg = getTCODColor (BackgroundColor);
@@ -62,9 +71,9 @@ namespace Libtcod
 			TCODColor fg = getTCODColor (ForegroundColor);
 			
 			TCODConsoleInst.setBackgroundColor (bg);
-			TCODConsoleInst.setForegroundColor (fg);                        
-  
-			TCODConsoleInst.printFrame (CursorX, CursorY, width, height);
+			TCODConsoleInst.setForegroundColor (fg);
+
+            TCODConsoleInst.printFrame(CursorX, CursorY, width, height, false, TCODBackgroundFlag.Set);
             
 		}
 
@@ -106,58 +115,11 @@ namespace Libtcod
 			CursorY = y;
 		}
 
-		TCODColor getTCODColor (ConsoleRGB consoleRGB)
-		{
-			TCODColor color = null;
+        public TCODColor getTCODColor(ConsoleRGB consoleRGB)
+        {
+            return LibtcodShell.getTCODColor(consoleRGB);
+        }
 
-			if (consoleRGB.GetColorEnum () != null) {
-				ColorEnum consoleColor = (ColorEnum)consoleRGB.GetColorEnum ();
-
-
-				switch (consoleColor) {
-				case ColorEnum.Black:
-					color = TCODColor.black;
-					break;
-				case ColorEnum.White:
-					color = TCODColor.white;
-					break;
-				case ColorEnum.Gray:
-					color = TCODColor.grey;
-					break;
-				case ColorEnum.Red:
-					color = TCODColor.red;
-					break;
-				case ColorEnum.Blue:
-					color = TCODColor.blue;
-					break;
-				case ColorEnum.Yellow:
-					color = TCODColor.yellow;
-					break;
-				case ColorEnum.DarkGray:
-					color = TCODColor.darkGrey;
-					break;
-				case ColorEnum.DarkRed:
-					color = TCODColor.darkRed;
-					break;
-				case ColorEnum.LightGray:
-					color = TCODColor.lightGrey;
-					break;
-				case ColorEnum.LightRed:
-					color = TCODColor.lightRed;
-					break;
-				default:
-					color = TCODColor.black;
-					break;
-				}
-			} else {
-				color = new TCODColor ();
-				color.Red = consoleRGB.R;
-				color.Green = consoleRGB.G;
-				color.Blue = consoleRGB.B;
-			}            
-            
-			return color;
-		}
 
 	}
 }

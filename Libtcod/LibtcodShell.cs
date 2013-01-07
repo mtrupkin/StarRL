@@ -143,5 +143,74 @@ namespace Libtcod
             }
         }
 
+       protected static Dictionary<int, TCODColor> TCODColors = new Dictionary<int,TCODColor>();
+
+       public static TCODColor getTCODColor(ConsoleRGB consoleRGB)
+        {
+            TCODColor color = null;
+
+            if (consoleRGB.GetColorEnum() != null)
+            {
+                ColorEnum consoleColor = (ColorEnum)consoleRGB.GetColorEnum();
+
+
+                switch (consoleColor)
+                {
+                    case ColorEnum.Black:
+                        color = TCODColor.black;
+                        break;
+                    case ColorEnum.White:
+                        color = TCODColor.white;
+                        break;
+                    case ColorEnum.Gray:
+                        color = TCODColor.grey;
+                        break;
+                    case ColorEnum.Red:
+                        color = TCODColor.red;
+                        break;
+                    case ColorEnum.Blue:
+                        color = TCODColor.blue;
+                        break;
+                    case ColorEnum.Yellow:
+                        color = TCODColor.yellow;
+                        break;
+                    case ColorEnum.DarkGray:
+                        color = TCODColor.darkGrey;
+                        break;
+                    case ColorEnum.DarkRed:
+                        color = TCODColor.darkRed;
+                        break;
+                    case ColorEnum.LightGray:
+                        color = TCODColor.lightGrey;
+                        break;
+                    case ColorEnum.LightRed:
+                        color = TCODColor.lightRed;
+                        break;
+                    default:
+                        color = TCODColor.black;
+                        break;
+                }
+            }
+            else
+            {
+                int key = consoleRGB.R * 0x10000 + consoleRGB.G * 0x100 + consoleRGB.B;
+                //TCODColor color;
+
+                if (!TCODColors.TryGetValue(key, out color))
+                {
+
+                    color = new TCODColor();
+                    color.Red = consoleRGB.R;
+                    color.Green = consoleRGB.G;
+                    color.Blue = consoleRGB.B;
+
+                    TCODColors.Add(key, color);
+                }
+            }
+
+            return color;
+        }
+
+
     }
 }

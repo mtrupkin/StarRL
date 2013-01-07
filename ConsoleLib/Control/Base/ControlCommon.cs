@@ -9,6 +9,9 @@ namespace ConsoleLib
     public abstract class ControlCommon : Control
     {
 
+        public bool GrabHorizontal { get; set; }
+        public bool GrabVertical { get; set; }
+
         public  int Width { get; protected set; }
         public  int Height { get; protected set; }       
 
@@ -47,7 +50,7 @@ namespace ConsoleLib
         public virtual Size Compact() { return new Size(Width, Height);  }
         public virtual void Layout() { }
         public virtual void Align() { }
-        public virtual void GrabExcess() { }
+        public virtual void GrabExcess(Size excess) { }
 
         public virtual void Resize(Size size)
         {

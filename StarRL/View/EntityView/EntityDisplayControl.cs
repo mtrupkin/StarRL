@@ -90,7 +90,10 @@ namespace StarRL
         {
             //Screen.Clear();
 
-            DrawJumpRadius(Flagship.Entity);
+            //DrawJumpRadius(Flagship.Entity);
+            Screen.BackgroundColor = ConsoleRGB.Space;
+            Screen.ForegroundColor = ConsoleRGB.Base1;
+            Screen.Clear();
 
             if (Entities != null)
             {
@@ -102,9 +105,13 @@ namespace StarRL
                 {
                     DrawStackedEntities(stack, lastRenderTimeSpan);
                 }
+
+
+                Screen.SetBackground(Mouse.X, Mouse.Y, ConsoleRGB.Base3);
+                Screen.BackgroundColor = ConsoleRGB.Base3;
+                Screen.SetPosition(Mouse.X, Mouse.Y);
+                //Screen.Write((char)197);
                 
-                //Screen.SetPosition(Mouse.X, Mouse.Y);
-                //Screen.Write('X');                
 
                 lastRenderTime = DateTime.Now;
             }
@@ -169,11 +176,8 @@ namespace StarRL
 
         public override void OnMouseMove(Mouse mouse)
         {
-            Screen.SetPosition(Mouse.X, Mouse.Y);
-            Screen.Write(' ');
-
-            Screen.SetPosition(mouse.X, mouse.Y);
-            Screen.Write('X');
+            //ClearCrossHairs(Mouse.X, Mouse.Y);
+            //DrawCrossHairs(mouse.X, mouse.Y);
 
             mousePosition.Set(mouse.X, mouse.Y);
 
@@ -182,6 +186,22 @@ namespace StarRL
             OnEntityHighlightedEvent(HighlightedEntity);
 
             base.OnMouseMove(mouse);  
+        }
+
+        public void ClearCrossHairs(int x, int y)
+        {
+            Screen.SetPosition(x - 1, y);
+            Screen.Write(' ');
+            Screen.SetPosition(x + 1, y);
+            Screen.Write(' ');
+        }
+
+        public void DrawCrossHairs(int x, int y)
+        {
+            Screen.SetPosition(x - 1, y);
+            Screen.Write('[');
+            Screen.SetPosition(x + 1, y);
+            Screen.Write(']');
         }
 
         public override void OnMouseButton(Mouse mouse)
