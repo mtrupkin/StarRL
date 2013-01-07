@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainScreen.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ConsoleLibApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

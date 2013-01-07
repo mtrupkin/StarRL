@@ -61,59 +61,39 @@ namespace ConsoleLib
 
       
         }
-        public override void Layout()
-        {
-
-            foreach (LayoutData controlLayout in ControlData)
-            {
-                Control control = controlLayout.Control;
-
-                Size size = control.Compact();
-
-                if (controlLayout.GrabVertical)
-                {
-                    size.Height = Height;
-                }
-
-                control.Resize(size.Width, size.Height);
-
-
-                control.Align();
-
-                control.Layout();
-            }
-
-
-            //Screen.Clear();
-        }
+       
         public override void GrabExcess()
         {
-            int totalWidth = 0; 
-            foreach (LayoutData controlLayout in ControlData)
+            if (ControlData.Count > 0)
             {
-                Control control = controlLayout.Control;
-                control.GrabExcess();
-
-                int width = control.Width;
-                int heigth = control.Height;
-              
-                if (controlLayout.GrabVertical == true)
+                int totalWidth = 0;
+                foreach (LayoutData controlLayout in ControlData)
                 {
-                    heigth = Height;
-                }
-                totalWidth += width;
-                control.Resize(width, heigth);
-            }
-            LayoutData lastLayoutData = ControlData.Last();
+                    Control control = controlLayout.Control;
+                    control.GrabExcess();
 
-            if (lastLayoutData.GrabHorizontal)
-            {
-                Control control = lastLayoutData.Control;
-                int width = control.Width;
-                int height = control.Height;
+                    int width = control.Width;
+                    int heigth = control.Height;
+
+                    if (controlLayout.GrabVertical == true)
+                    {
+                        heigth = Height;
+                    }
+                    totalWidth += width;
+                    control.Resize(width, heigth);
+                }
+
+                LayoutData lastLayoutData = ControlData.Last();
+
+                if (lastLayoutData.GrabHorizontal)
+                {
+                    Control control = lastLayoutData.Control;
+                    int width = control.Width;
+                    int height = control.Height;
                     totalWidth -= width;
                     width = Width - totalWidth;
-                lastLayoutData.Control.Resize(width, height);
+                    lastLayoutData.Control.Resize(width, height);
+                }
             }
         }
     }

@@ -45,11 +45,8 @@ namespace ConsoleLib
             {
                 Control control = controlLayout.Control;
 
-                control.GrabExcess();
+               control.GrabExcess();
 
-                //control.Align();
-
-                //control.Layout();
             }
 
             foreach (LayoutData controlLayout in ControlData)

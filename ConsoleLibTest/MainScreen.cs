@@ -1,14 +1,27 @@
 ﻿using ConsoleLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ConsoleLib.Widget;
 
 namespace ConsoleLibTest
 {
-    public class MainScreen : StackedComposite
+    public class MainScreen : HorizontalComposite
     {
-        public MainScreen(Composite parent) : base(parent) { }
+        public MainScreen(Composite parent)
+            : base(parent)
+        {
+            var widget1 = new FrameWidget(this);
+            var data1 = new HorizontalLayoutData(widget1)
+            {
+                GrabVertical = true,
+            };
+            var widget2 = new FrameWidget(this);
+            var data2 = new HorizontalLayoutData(widget2)
+            {
+                GrabVertical = true,
+                GrabHorizontal = true,
+            };
+ 
+            AddControl(data1);
+            AddControl(data2);
+        }
     }
 }

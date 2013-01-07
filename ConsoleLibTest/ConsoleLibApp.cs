@@ -4,7 +4,7 @@ using ConsoleLib;
 
 namespace ConsoleLibTest
 {
-    class Program
+    class ConsoleLibApp
     {
         Shell Shell { get; set; }
 
@@ -12,7 +12,7 @@ namespace ConsoleLibTest
 
         static void Main(string[] args)
         {
-            Program program = new Program();
+            ConsoleLibApp program = new ConsoleLibApp();
             program.Run();
         }
 
@@ -46,7 +46,7 @@ namespace ConsoleLibTest
             Shell = new Libtcod.LibtcodShell("Console Lib Test", 160, 90);
 
             // intialize view
-            var mainScreen = new MainScreen(Shell);
+            var mainScreen = new  MainScreen(Shell);
 
             Shell.AddControl(new LayoutData(mainScreen) { GrabHorizontal = true, GrabVertical = true });
             Shell.Resize();
