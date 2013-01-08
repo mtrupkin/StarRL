@@ -112,11 +112,19 @@ namespace ConsoleLib
                     int margin = Width - control.Width;
                     controlLayout.X = (int)(margin / 2);
                 }
+                else if (controlLayout.HorizontalJustify == HorizontalJustify.Right)
+                {
+                    controlLayout.X = Width - control.Width;
+                }
 
                 if (controlLayout.VerticalJustify == VerticalJustify.Center)
                 {
                     int margin = Height - control.Height;
                     controlLayout.Y = (int)(margin / 2);
+                }
+                else if (controlLayout.VerticalJustify == VerticalJustify.Bottom)
+                {
+                    controlLayout.Y = Height - control.Height;
                 }
             }
         }

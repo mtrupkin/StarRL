@@ -21,11 +21,7 @@ namespace StarRL
 
             var boxControl = new BoxWidget(GalaxyControl);
 
-            //SetLayoutManager(new StackedLayoutManager());
             AddControl(boxControl);
-            //GalaxyControl.X = 1;
-            //GalaxyControl.Y = 1;
-            //AddControl(GalaxyControl);
         }        
 
         void Fire() { }

@@ -54,7 +54,7 @@ namespace StarRL
         
 		void EntityHighlightedEvent (Entity item)
 		{
-			GalaxyScreen.GalaxyDetailComposite.HighlightedDetailControl.SetEntity (item);
+			GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.SetEntity (item);
 		}
 				
 		public void SetFlagshipGame (FlagshipGame flagshipGame)

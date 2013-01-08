@@ -12,7 +12,7 @@ namespace StarRL
     public class ShipDetailComposite : VerticalComposite
 	{
 		public Ship Ship {get;set;}
-        EntityDetailComposite EntityWidget {get;set;}
+        EntityBaseView EntityWidget {get;set;}
 		TextWidget ShieldsWidget { get; set; }
 		TextWidget TorpedoesWidget { get; set; }
 		TextWidget PhasersWidget { get; set; }
@@ -22,21 +22,17 @@ namespace StarRL
             : base(parent)
 		{
 
-            EntityWidget = new EntityDetailComposite(this, title);
-			
-			
+            EntityWidget = new EntityBaseView(this);						
             ShieldsWidget = new TextWidget(this, "Sheilds");
-            TorpedoesWidget = new TextWidget(this, "Torps");
-            PhasersWidget = new TextWidget(this, "Phasers");
-            ScannersWidget = new TextWidget(this, "Scanners");
+            //TorpedoesWidget = new TextWidget(this, "Torps");
+            //PhasersWidget = new TextWidget(this, "Phasers");
+            //ScannersWidget = new TextWidget(this, "Scanners");
 
             AddControl(EntityWidget);
             AddControl(ShieldsWidget);
-            AddControl(TorpedoesWidget);
-
-            AddControl(PhasersWidget, HorizontalJustify.Right);
-
-            AddControl(ScannersWidget);
+            //AddControl(TorpedoesWidget);
+            //AddControl(PhasersWidget, HorizontalJustify.Right);
+            //AddControl(ScannersWidget);
 
 		}
 
@@ -46,10 +42,7 @@ namespace StarRL
 			base.Render();
 		}
 		
-        public void SetTitle(String title)
-        {
-            EntityWidget.SetTitle(title);
-        }
+       
 
         public void SetShip(Ship ship)
 		{			

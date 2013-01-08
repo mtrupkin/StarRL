@@ -9,38 +9,32 @@ using Flagship;
 
 namespace StarRL
 {
-    public class GalaxyDetailComposite : VerticalComposite
+    public class GalaxyDetailComposite : StackedComposite
 	{
 		public ShipDetailComposite FlagshipDetailControl { get; set; }
 
-		public EntityDetailComposite TargetDetailControl { get; set; }
-
-		public EntityBaseView HighlightedDetailControl { get; set; }
+        public EntityBaseView TargetDetailControl { get; set; }
 
 		public TimeWidget TimeWidget { get; set; } 
 
         public GalaxyDetailComposite(Composite parent)
             : base(parent)
 		{
-            var detailComposite = new VerticalComposite(this) { GrabHorizontal = false };
+            var detailComposite = new VerticalComposite(this);
 
             FlagshipDetailControl = new ShipDetailComposite(detailComposite, "Flagship") { GrabHorizontal = true };
+            TargetDetailControl = new EntityBaseView(detailComposite);
 
-            TargetDetailControl = new EntityDetailComposite(detailComposite, "Target");
-
-            HighlightedDetailControl = new EntityBaseView(this);
-
-            var layoutData = new VerticalLayoutData(FlagshipDetailControl) ;
-            detailComposite.AddControl(layoutData);
+            detailComposite.AddControl(FlagshipDetailControl);
             detailComposite.AddControl(TargetDetailControl);
-            detailComposite.AddControl(HighlightedDetailControl);
-            // TODO move to bottom of control
 
-            TimeWidget = new TimeWidget(this);
-            detailComposite.AddControl(TimeWidget);
-            //var boxWidget = new BoxWidget(detailComposite) { GrabHorizontal = true };
             AddControl(detailComposite);
-            //AddControl(boxWidget);
+
+            // TODO move to bottom of control
+            
+            TimeWidget = new TimeWidget(this);
+            var timeLayout = new VerticalLayoutData(TimeWidget) { VerticalJustify = VerticalJustify.Bottom, HorizontalJustify = HorizontalJustify.Right };
+            AddControl(timeLayout);
             
 		}
 

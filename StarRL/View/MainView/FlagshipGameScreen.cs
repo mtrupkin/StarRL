@@ -15,7 +15,7 @@ namespace StarRL
 
             MainScreen = new MainMenuScreen(parent) { GrabHorizontal = true, GrabVertical = true };
 
-            GalaxyScreen = new GalaxyScreen(parent) { GrabHorizontal = true, GrabVertical = true };
+            GalaxyScreen = new GalaxyScreen(parent) { GrabHorizontal = true, GrabVertical = false };
 
             AddControl(new LayoutData(MainScreen) {  VerticalJustify = VerticalJustify.Center});
 
