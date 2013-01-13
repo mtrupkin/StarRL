@@ -3,15 +3,15 @@ using StarRL.Widget;
 
 namespace StarRL
 {
-    public class GalaxyDetailComposite : StackedComposite
+    public class SystemDetailComposite: StackedComposite
 	{
 		public ShipDetailComposite FlagshipDetailControl { get; set; }
 
         public EntityBaseView TargetDetailControl { get; set; }
 
-		public TimeWidget TimeWidget { get; set; } 
+		public TimeWidget TimeWidget { get; set; }
 
-        public GalaxyDetailComposite(Composite parent)
+        public SystemDetailComposite(Composite parent)
             : base(parent)
 		{
             var detailComposite = new VerticalComposite(this);

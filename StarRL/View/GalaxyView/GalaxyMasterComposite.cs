@@ -17,11 +17,9 @@ namespace StarRL
             : base(parent)
         {
 
-            GalaxyControl = new EntityDisplayControl(parent);
+            GalaxyControl = new EntityDisplayControl(this);
 
-            var boxControl = new BoxWidget(GalaxyControl);
-
-            AddControl(boxControl);
+            AddControl(GalaxyControl);
         }        
 
         void Fire() { }

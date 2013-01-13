@@ -35,6 +35,11 @@ namespace StarRL
         Entity SelectedEntity { get; set; }
         Entity HighlightedEntity { get; set; }
 
+        public override void Resize(int width, int height)
+        {
+            base.Resize(width, height);
+        }
+
         public IEnumerable<IDrawable<Entity>> Entities { get; set; }
         public IDrawable<Entity> Flagship { get; set; }
 
@@ -42,6 +47,7 @@ namespace StarRL
 
         public EntityDisplayControl(Composite parent) : base (parent)
         {
+            
         }
 
         public event EntityEventHandler EntitySelectedEvent;

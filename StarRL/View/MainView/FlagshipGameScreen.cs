@@ -8,20 +8,19 @@ namespace StarRL
 {
     public class FlagshipGameScreen : StackedComposite
     {
-        public MainMenuScreen MainScreen { get; set; }
         public GalaxyScreen GalaxyScreen { get; set; }
+        public SystemScreen SystemScreen { get; set; }
          
         public FlagshipGameScreen(Composite parent):base (parent) {
 
-            MainScreen = new MainMenuScreen(parent) { GrabHorizontal = true, GrabVertical = true };
-
             GalaxyScreen = new GalaxyScreen(parent) { GrabHorizontal = true, GrabVertical = false };
 
-            AddControl(new LayoutData(MainScreen) {  VerticalJustify = VerticalJustify.Center});
+            SystemScreen = new SystemScreen(parent) { GrabHorizontal = true, GrabVertical = false };
+            SystemScreen.SetEnabled(false);
 
-            AddControl(new LayoutData(GalaxyScreen) { });
-
-           // AddControl(GalaxyScreen);
+            AddControl(GalaxyScreen);
+            AddControl(SystemScreen);
         }
+
     } 
 }

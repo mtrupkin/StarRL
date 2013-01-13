@@ -15,9 +15,12 @@ namespace StarRL
 		public FlagshipGameViewModel FlagshipGameViewModel { get; set; }
 
 		public GalaxyScreen GalaxyScreen { get; set; }
-		 
-		public GalaxyScreenViewModel ()
+
+        public GalaxyScreenViewModel(FlagshipGameViewModel flagshipGameViewModel, GalaxyScreen galaxyScreen)
 		{
+            FlagshipGameViewModel = flagshipGameViewModel;
+            GalaxyScreen = galaxyScreen;
+            Initialize();
 		}
 
         public void Initialize()
@@ -74,13 +77,10 @@ namespace StarRL
 
             
 			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip (FlagshipGame.Galaxy.Flagship);
+
+            GalaxyScreen.Resize();
 		}
 
-
-		public void SetTime(TimeSpan timeSpan)
-		{
-            GalaxyScreen.GalaxyDetailComposite.TimeWidget.Time = timeSpan;
-	    }
 
 	}
 } 

@@ -18,7 +18,8 @@ namespace StarRL
         Shell Shell { get; set; }
 
         FlagshipGame FlagshipGame { get; set; }
-        FlagshipGameViewModel FlagshipGameViewModel { get; set; }
+        //FlagshipGameViewModel FlagshipGameViewModel
+        MainViewModel MainViewModel { get; set; }
 
         System.Timers.Timer updateTimer;
         DateTime lastUpdateTime;
@@ -44,7 +45,9 @@ namespace StarRL
             // main loop
             do
             {
+                
                 Shell.Render();
+                
 
                 if (Shell.isClosed() || FlagshipGame.Complete)
                 {
@@ -68,17 +71,18 @@ namespace StarRL
             Shell = new Libtcod.LibtcodShell("StarRL", 160, 90);
             
             // intialize view
-            var FlagshipGameScreen = new FlagshipGameScreen(Shell) { GrabHorizontal = true, GrabVertical = true };
+            var MainScreen = new MainScreen(Shell) { GrabHorizontal = true, GrabVertical = true };
 
             // initialize view model
-            FlagshipGameViewModel = new FlagshipGameViewModel()
+            MainViewModel = new MainViewModel(MainScreen)
             {
-                FlagshipGameScreen = FlagshipGameScreen,
                 FlagshipGame = FlagshipGame,
-            };
-            FlagshipGameViewModel.Initialize();
 
-            Shell.AddControl(new LayoutData(FlagshipGameScreen) );
+            };
+
+            MainViewModel.DisplayMainMenu();
+
+            Shell.AddControl(MainScreen);
             Shell.Resize();
 
             // intialize game update tick
@@ -112,7 +116,7 @@ namespace StarRL
 
             if (lastUpdateTimeSpan > updateTimeSpan)
             {
-                FlagshipGameViewModel.Update(lastUpdateTimeSpan.Milliseconds);
+                MainViewModel.Update(lastUpdateTimeSpan.Milliseconds);
 
                 lastUpdateTime = DateTime.Now;
             }

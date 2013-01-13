@@ -37,13 +37,18 @@ namespace ConsoleLib.Widget
         public int SelectedIndex { get; set; }
         public int HighlightedIndex { get; set; }
 
-        ConsoleRGB HightlightBG { get; set; }
+        ConsoleRGB HightlightBackgroundColor { get; set; }
+        ConsoleRGB HightlightForegroundColor { get; set; }
+        ConsoleRGB ForegroundColor { get; set; }
 
         public ListWidget(Composite parent)
             : base(parent)
         {
             Items = new List<T>();
-            HightlightBG = new ConsoleRGB() { R = 65, G = 65, B = 65 };
+            //HightlightBG = new ConsoleRGB() { R = 65, G = 65, B = 65 };
+            HightlightBackgroundColor = ConsoleRGB.Base2;
+            HightlightForegroundColor = ConsoleRGB.Base01;
+            ForegroundColor = ConsoleRGB.White;
         }
 
         public event ItemSelectedEventHandler<T> ItemSelectedEvent;
@@ -70,10 +75,16 @@ namespace ConsoleLib.Widget
                 //}
                 //else
                 {
-                    Screen.ForegroundColor = ConsoleRGB.White;
+
                     if (i == HighlightedIndex)
                     {
-                        Screen.BackgroundColor = HightlightBG;
+                        Screen.ForegroundColor = HightlightForegroundColor;
+                        Screen.BackgroundColor = HightlightBackgroundColor;
+                    }
+                    else
+                    {
+                        Screen.BackgroundColor = ConsoleRGB.Black;
+                        Screen.ForegroundColor = ForegroundColor;
                     }
                 }
                 string value = o.ToString();
@@ -81,7 +92,7 @@ namespace ConsoleLib.Widget
                 string paddedValue = value.PadLeft(offset + value.Length).PadRight(Width);
                 Screen.SetPosition(0, i);
                 Screen.Write(paddedValue);
-                Screen.BackgroundColor = ConsoleRGB.Black;
+                
                 i++;
             }
         }
