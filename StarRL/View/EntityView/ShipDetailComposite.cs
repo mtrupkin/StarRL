@@ -14,6 +14,7 @@ namespace StarRL
 		public Ship Ship {get;set;}
         EntityBaseView EntityWidget {get;set;}
 		TextWidget ShieldsWidget { get; set; }
+        TextWidget HullWidget { get; set; }
 		TextWidget TorpedoesWidget { get; set; }
 		TextWidget PhasersWidget { get; set; }
 		TextWidget ScannersWidget { get; set; }
@@ -24,12 +25,16 @@ namespace StarRL
 
             EntityWidget = new EntityBaseView(this);						
             ShieldsWidget = new TextWidget(this, "Sheilds");
+            HullWidget = new TextWidget(this, "Hull");
+            
             //TorpedoesWidget = new TextWidget(this, "Torps");
             //PhasersWidget = new TextWidget(this, "Phasers");
             //ScannersWidget = new TextWidget(this, "Scanners");
 
             AddControl(EntityWidget);
             AddControl(ShieldsWidget);
+            AddControl(HullWidget);
+            
             //AddControl(TorpedoesWidget);
             //AddControl(PhasersWidget, HorizontalJustify.Right);
             //AddControl(ScannersWidget);
@@ -48,6 +53,7 @@ namespace StarRL
 		{			
 			EntityWidget.SetEntity(ship);
             ShieldsWidget.SetText(String.Format("Shields: {0}", ship.Shields));
+            HullWidget.SetText(String.Format(   "Hull   : {0}", ship.Hull));
 
             Ship = ship;
         }
