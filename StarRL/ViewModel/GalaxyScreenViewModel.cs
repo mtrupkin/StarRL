@@ -19,7 +19,9 @@ namespace StarRL
         public GalaxyScreenViewModel(FlagshipGameViewModel flagshipGameViewModel, GalaxyScreen galaxyScreen)
 		{
             FlagshipGameViewModel = flagshipGameViewModel;
+            FlagshipGame = FlagshipGameViewModel.FlagshipGame;
             GalaxyScreen = galaxyScreen;
+            
             Initialize();
 		}
 
@@ -49,7 +51,7 @@ namespace StarRL
 			GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.SetEntity (item);
 			
 			if (item != null) {
-				FlagshipGame.Galaxy.Flagship.Position.Set (item.Position);
+				FlagshipGame.Galaxy.Flagship.Position.Set(item.Position);
                 GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip(FlagshipGame.Galaxy.Flagship);
 			}
 		}
@@ -60,27 +62,7 @@ namespace StarRL
 			GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.SetEntity (item);
 		}
 				
-		public void SetFlagshipGame (FlagshipGame flagshipGame)
-		{
-			FlagshipGame = flagshipGame;
-			var entities = new List<IDrawable<Entity>> ();
-
-			entities.AddRange (DrawableFactory.GetDrawableStarSystems (FlagshipGame.Galaxy.StarSystems));
-			entities.Add (DrawableFactory.GetDrawableShip (FlagshipGame.Galaxy.Flagship));
-
-            
-
-			GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
-            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Flagship = DrawableFactory.GetDrawableShip(FlagshipGame.Galaxy.Flagship);
-
-            GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Resize(FlagshipGame.Galaxy.Width, FlagshipGame.Galaxy.Height);
-
-            
-			GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip (FlagshipGame.Galaxy.Flagship);
-
-            GalaxyScreen.Resize();
-		}
-
+	
 
 	}
 } 

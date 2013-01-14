@@ -12,9 +12,7 @@ namespace StarRL
 
             SystemControl = new EntityDisplayControl(parent);
 
-            var boxControl = new BoxWidget(SystemControl);
-
-            AddControl(boxControl);
+            AddControl(SystemControl);
         }        
 
     }

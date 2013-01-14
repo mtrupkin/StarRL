@@ -16,13 +16,15 @@ namespace StarRL
 
         public FlagshipGameScreen FlagshipGameScreen { get; set; }
 
-        //public MainMenuViewModel MainScreenViewModel { get; set; }
+        public MainViewModel MainViewModel { get; set; }
         public GalaxyScreenViewModel GalaxyScreenViewModel { get; set; }
         public SystemScreenViewModel SystemScreenViewModel { get; set; }
 
-        public FlagshipGameViewModel(FlagshipGameScreen flagshipGameScreen)
+        public FlagshipGameViewModel(FlagshipGame flagshipGame, MainViewModel mainViewModel, FlagshipGameScreen flagshipGameScreen)
         {
             FlagshipGameScreen = flagshipGameScreen;
+            MainViewModel = mainViewModel;
+            FlagshipGame = flagshipGame;
             Initialize();
         }
 
@@ -44,6 +46,7 @@ namespace StarRL
             //GalaxyScreenViewModel.Initialize();
 
             FlagshipGameScreen.KeyPressEvent += new KeyPressEventHandler(KeyPressedEvent);
+            GalaxyViewEnabled = true;
 
             DisplayMainMenu();
         }
@@ -55,6 +58,10 @@ namespace StarRL
                 case ConsoleKey.Tab:
                     ToggleView();
                     break;
+                case ConsoleKey.Escape:
+                    DisplayMainMenu();
+                    break;
+
             }
         }
 
@@ -79,22 +86,44 @@ namespace StarRL
             GalaxyViewEnabled = !GalaxyViewEnabled;
             FlagshipGameScreen.GalaxyScreen.SetEnabled(GalaxyViewEnabled);
             FlagshipGameScreen.SystemScreen.SetEnabled(!GalaxyViewEnabled);
+
+            SystemScreenViewModel.SystemScreen.SystemMasterComposite.SystemControl.Resize(100, 60);
+            //SystemScreenViewModel.SystemScreen.SystemMasterComposite.SystemControl.Entities;
+            //FlagshipGame.Galaxy.Flagship;
         }
 
-        public void DisplayGame()
-        {
-            //FlagshipGameScreen.GalaxyScreen.SetEnabled(true);
-            //FlagshipGameScreen.SystemScreen.SetEnabled(true);
-            //FlagshipGameScreen.MainScreen.SetEnabled(false);
-
-           // GalaxyScreenViewModel.SetFlagshipGame(FlagshipGame);           
-        }
 
         public void DisplayMainMenu()
         {
+            MainViewModel.DisplayMainMenu();
             //FlagshipGameScreen.GalaxyScreen.SetEnabled(false);
             //FlagshipGameScreen.SystemScreen.SetEnabled(false);
             //MainScreen.MenuScreen.SetEnabled(true);
         }
+
+        public void SetFlagshipGame(FlagshipGame flagshipGame)
+        {
+            FlagshipGame = flagshipGame;
+            var entities = new List<IDrawable<Entity>>();
+
+            entities.AddRange(DrawableFactory.GetDrawableStarSystems(FlagshipGame.Galaxy.StarSystems));
+            entities.Add(DrawableFactory.GetDrawableShip(FlagshipGame.Galaxy.Flagship));
+
+
+
+           FlagshipGameScreen.GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Entities = entities;
+           FlagshipGameScreen.GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Flagship = DrawableFactory.GetDrawableShip(FlagshipGame.Galaxy.Flagship);
+           FlagshipGameScreen.GalaxyScreen.GalaxyMasterComposite.GalaxyControl.Resize(FlagshipGame.Galaxy.Width, FlagshipGame.Galaxy.Height);
+           FlagshipGameScreen.GalaxyScreen.GalaxyDetailComposite.FlagshipDetailControl.SetShip(FlagshipGame.Galaxy.Flagship);
+           FlagshipGameScreen.GalaxyScreen.Resize();
+
+           //FlagshipGameScreen.SystemScreen.SystemMasterComposite.SystemControl.Entities = entities;
+           FlagshipGameScreen.SystemScreen.SystemMasterComposite.SystemControl.Flagship = DrawableFactory.GetDrawableShip(FlagshipGame.Galaxy.Flagship);
+           FlagshipGameScreen.SystemScreen.SystemMasterComposite.SystemControl.Resize(FlagshipGame.Galaxy.Width, FlagshipGame.Galaxy.Height);
+           FlagshipGameScreen.SystemScreen.SystemDetailComposite.FlagshipDetailControl.SetShip(FlagshipGame.Galaxy.Flagship);
+           FlagshipGameScreen.SystemScreen.Resize();
+
+        }
+
     }
 }

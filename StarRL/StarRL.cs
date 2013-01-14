@@ -74,11 +74,7 @@ namespace StarRL
             var MainScreen = new MainScreen(Shell) { GrabHorizontal = true, GrabVertical = true };
 
             // initialize view model
-            MainViewModel = new MainViewModel(MainScreen)
-            {
-                FlagshipGame = FlagshipGame,
-
-            };
+            MainViewModel = new MainViewModel(FlagshipGame, MainScreen);
 
             MainViewModel.DisplayMainMenu();
 

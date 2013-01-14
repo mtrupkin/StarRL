@@ -16,9 +16,10 @@ namespace StarRL
             SystemMasterComposite = new SystemMasterComposite(this);
             SystemDetailComposite = new SystemDetailComposite(this) { GrabHorizontal = true, };
 
-            var boxWidget = new BoxWidget(SystemDetailComposite) { GrabHorizontal = true, GrabVertical = true };
-            AddControl(SystemMasterComposite);
-            AddControl(boxWidget);
+            var masterBoxWidget = new BoxWidget(SystemMasterComposite) { GrabHorizontal = true, GrabVertical = true };
+            var detailBoxWidget = new BoxWidget(SystemDetailComposite) { GrabHorizontal = true, GrabVertical = true };
+            AddControl(masterBoxWidget);
+            AddControl(detailBoxWidget);
         }
     }
 }

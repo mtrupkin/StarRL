@@ -14,11 +14,12 @@ namespace StarRL
         public MainMenuViewModel MainScreenViewModel { get; set; }
         public FlagshipGameViewModel FlagshipGameViewModel { get; set; }
 
-        public MainViewModel(MainScreen mainScreen)
+        public MainViewModel(FlagshipGame flagshipGame, MainScreen mainScreen)
         {
             MainScreen = mainScreen;
             MainScreenViewModel = new MainMenuViewModel(this, MainScreen.MenuScreen);
-            FlagshipGameViewModel = new FlagshipGameViewModel(MainScreen.GameScreen);
+            FlagshipGameViewModel = new FlagshipGameViewModel(flagshipGame, this, MainScreen.GameScreen);
+            FlagshipGame = flagshipGame;
         }
 
         public void Update(int duration)
@@ -51,7 +52,8 @@ namespace StarRL
         {
             GalaxyFactory galaxyFactory = new GalaxyFactory(128, 72);
             FlagshipGame.Galaxy = galaxyFactory.CreateGalaxy();
-            FlagshipGameViewModel.GalaxyScreenViewModel.SetFlagshipGame(FlagshipGame);
+            //FlagshipGameViewModel.GalaxyScreenViewModel.SetFlagshipGame(FlagshipGame);
+            FlagshipGameViewModel.SetFlagshipGame(FlagshipGame);
             
             
         }

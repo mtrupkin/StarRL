@@ -26,7 +26,7 @@ namespace StarRL
         public void Initialize()
         {
             //SystemScreen.SystemMasterComposite.SystemControl.EntitySelectedEvent += new EntityEventHandler(EntitySelectedEvent);
-            //SystemScreen.SystemMasterComposite.SystemControl.EntityHighlightedEvent += new EntityEventHandler(EntityHighlightedEvent);
+            SystemScreen.SystemMasterComposite.SystemControl.EntityHighlightedEvent += new EntityEventHandler(EntityHighlightedEvent);
 
             SystemScreen.KeyPressEvent += new KeyPressEventHandler(KeyPressedEvent);
         }
@@ -55,10 +55,10 @@ namespace StarRL
         //}
 
         
-        //void EntityHighlightedEvent (Entity item)
-        //{
-        //    GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.SetEntity (item);
-        //}
+        void EntityHighlightedEvent (Entity item)
+        {
+          // GalaxyScreen.GalaxyDetailComposite.TargetDetailControl.SetEntity (item);
+        }
 				
         //public void SetFlagshipGame (FlagshipGame flagshipGame)
         //{

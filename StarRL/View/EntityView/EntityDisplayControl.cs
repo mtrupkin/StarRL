@@ -111,7 +111,7 @@ namespace StarRL
                 {
                     DrawStackedEntities(stack, lastRenderTimeSpan);
                 }
-
+            }
 
                 Screen.SetBackground(Mouse.X, Mouse.Y, ConsoleRGB.Base3);
                 Screen.BackgroundColor = ConsoleRGB.Base3;
@@ -120,7 +120,7 @@ namespace StarRL
                 
 
                 lastRenderTime = DateTime.Now;
-            }
+            
         }
 
         void DrawJumpRadius(Entity ship)
